@@ -16,10 +16,13 @@ if (hamburgerBtn && navMenu && navRight) {
   // Close menu when clicking on a link
   navMenu.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
-      navMenu.classList.remove("active");
-      navRight.classList.remove("active");
-      hamburgerBtn.classList.remove("active");
-      hamburgerBtn.setAttribute("aria-expanded", "false");
+      // Solo cerrar el menú si NO es un link dentro de un dropdown
+      if (!link.closest(".dropdown")) {
+        navMenu.classList.remove("active");
+        navRight.classList.remove("active");
+        hamburgerBtn.classList.remove("active");
+        hamburgerBtn.setAttribute("aria-expanded", "false");
+      }
     });
   });
 
@@ -119,8 +122,13 @@ document.addEventListener("keydown", e => {
 // Close dropdown when a submenu link is clicked
 document.querySelectorAll(".dropdown-menu a").forEach(link => {
   link.addEventListener("click", () => {
+    // Cerrar el dropdown
     dropdowns.forEach(dropdown => {
       dropdown.classList.remove("active");
     });
-  });
+    // Cerrar el menú hamburger en móvil
+    navMenu.classList.remove("active");
+    navRight.classList.remove("active");
+    hamburgerBtn.classList.remove("active");
+    hamburgerBtn.setAttribute("aria-expanded", "false");  });
 });
