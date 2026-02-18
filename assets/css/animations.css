@@ -1,0 +1,562 @@
+/* KEYFRAME ANIMATIONS */
+
+/* Fade In - Aparición suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slide In Left */
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Slide In Right */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale Up - Crecimiento suave */
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Float - Efecto flotante */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Glow Pulse - Brillo pulsante */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(107, 107, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(107, 107, 255, 0.6);
+  }
+}
+
+/* Gradient Shift - Cambio de gradiente */
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Bounce - Efecto de rebote */
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Shimmer - Efecto brillante */
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Rotate - Rotación suave */
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Pulse - Pulso suave */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* APLICACIÓN DE ANIMACIONES A ELEMENTOS */
+
+/* Navbar */
+.navbar {
+  animation: slideInDown 0.6s ease-out;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.navbar:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border-bottom-color: var(--purple);
+}
+
+/* Brand */
+.brand {
+  animation: scaleUp 0.6s ease-out 0.2s both;
+}
+
+.brand img {
+  transition: transform 0.3s ease;
+}
+
+.brand:hover img {
+  animation: rotate 2s linear infinite;
+}
+
+/* Nav Links */
+.nav-links li {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.nav-links li:nth-child(1) { animation-delay: 0.3s; }
+.nav-links li:nth-child(2) { animation-delay: 0.4s; }
+.nav-links li:nth-child(3) { animation-delay: 0.5s; }
+.nav-links li:nth-child(4) { animation-delay: 0.6s; }
+.nav-links li:nth-child(5) { animation-delay: 0.7s; }
+
+.nav-links a {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.nav-links a::before {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--purple);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::before {
+  width: 100%;
+}
+
+.nav-links a:hover {
+  color: var(--purple);
+  transform: translateY(-2px);
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdown-menu li {
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu li:hover {
+  background: rgba(107, 107, 255, 0.08);
+  transform: translateX(5px);
+}
+
+/* Accessibility Controls */
+.accessibility-controls {
+  animation: slideInRight 0.6s ease-out 0.8s both;
+}
+
+#accessibility-toggle {
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+#accessibility-toggle:hover {
+  transform: scale(1.1);
+  animation: glowPulse 1.5s ease-in-out;
+}
+
+#accessibility-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Hero Section */
+.hero-content {
+  animation: fadeIn 0.8s ease-out 0.4s both;
+}
+
+.hero-content h1 {
+  animation: slideInLeft 0.8s ease-out 0.5s both;
+  font-size: 2.5rem;
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.5px;
+}
+
+.hero-content p {
+  animation: slideInLeft 0.8s ease-out 0.6s both;
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+
+/* Hero Actions */
+.hero-actions {
+  animation: slideInUp 0.8s ease-out 0.7s both;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Botones */
+.btn-primary,
+.btn-secondary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary::before,
+.btn-secondary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.3s ease;
+  z-index: 1;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(107, 107, 255, 0.3);
+}
+
+.btn-primary:hover::before,
+.btn-secondary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:active,
+.btn-secondary:active {
+  transform: translateY(0px);
+  box-shadow: 0 4px 10px rgba(107, 107, 255, 0.2);
+}
+
+/* Sections */
+.section.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  pointer-events: none;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.section h2 {
+  animation: slideInLeft 0.8s ease-out;
+  position: relative;
+  padding-bottom: 15px;
+}
+
+.section h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--purple), var(--blue));
+  animation: expandWidth 0.6s ease-out 0.2s backwards;
+}
+
+@keyframes expandWidth {
+  from {
+    width: 0;
+  }
+  to {
+    width: 50px;
+  }
+}
+
+.section p {
+  animation: fadeIn 0.8s ease-out 0.2s both;
+  line-height: 1.8;
+  transition: all 0.3s ease;
+}
+
+.section p:hover {
+  color: var(--purple);
+  transform: translateX(5px);
+}
+
+.section li {
+  animation: fadeIn 0.8s ease-out both;
+}
+
+.section li:nth-child(1) { animation-delay: 0.2s; }
+.section li:nth-child(2) { animation-delay: 0.3s; }
+.section li:nth-child(3) { animation-delay: 0.4s; }
+.section li:nth-child(4) { animation-delay: 0.5s; }
+
+/* Highlight */
+.highlight {
+  background: linear-gradient(135deg, rgba(107, 107, 255, 0.1), rgba(74, 144, 226, 0.1));
+  border-left: 4px solid var(--purple);
+  padding: 1.5rem;
+  border-radius: 8px;
+  animation: slideInLeft 0.8s ease-out;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.highlight:hover {
+  background: linear-gradient(135deg, rgba(107, 107, 255, 0.15), rgba(74, 144, 226, 0.15));
+  border-left-width: 6px;
+  transform: translateX(10px);
+  box-shadow: 0 4px 15px rgba(107, 107, 255, 0.2);
+}
+
+/* Footer */
+.footer {
+  animation: slideInUp 0.8s ease-out;
+  border-top: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.footer:hover {
+  border-top-color: var(--purple);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.footer-bottom p {
+  transition: all 0.3s ease;
+}
+
+.footer:hover .footer-bottom p {
+  color: var(--purple);
+}
+
+/* Forms & Inputs */
+input,
+textarea,
+select {
+  transition: all 0.3s ease;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--purple);
+  box-shadow: 0 0 0 4px rgba(107, 107, 255, 0.1);
+  outline: none;
+  transform: scale(1.02);
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: var(--purple);
+  box-shadow: 0 2px 8px rgba(107, 107, 255, 0.1);
+}
+
+/* Labels */
+label {
+  transition: all 0.3s ease;
+}
+
+input:focus ~ label,
+textarea:focus ~ label,
+select:focus ~ label {
+  color: var(--purple);
+  font-weight: 600;
+}
+
+/* Page Section */
+.page-section {
+  animation: fadeIn 0.8s ease-out 0.3s both;
+}
+
+.page-section h1 {
+  animation: slideInDown 0.8s ease-out;
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.page-section p {
+  animation: fadeIn 0.8s ease-out 0.1s both;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text);
+}
+
+.page-section p:hover {
+  color: var(--purple);
+  transform: translateX(5px);
+}
+
+/* Dropdown Link Animation */
+.dropdown > a {
+  transition: all 0.3s ease;
+}
+
+.dropdown > a:hover {
+  color: var(--purple);
+}
+
+.dropdown.active > a {
+  color: var(--purple);
+  border-bottom: 2px solid var(--purple);
+}
+
+/* Separator Line Animation */
+hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--purple), transparent);
+  animation: expandWidth 0.6s ease-out;
+}
+
+/* Stagger Animation Helper */
+.stagger > * {
+  animation: fadeIn 0.6s ease-out backwards;
+}
+
+.stagger > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger > *:nth-child(6) { animation-delay: 0.6s; }
+.stagger > *:nth-child(7) { animation-delay: 0.7s; }
+.stagger > *:nth-child(8) { animation-delay: 0.8s; }
+
+/* Smooth Scroll Behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Accessibility Controls Additions */
+#accessibility-options li {
+  animation: fadeIn 0.3s ease-out;
+}
+
+#accessibility-options li:nth-child(1) { animation-delay: 0; }
+#accessibility-options li:nth-child(2) { animation-delay: 0.05s; }
+#accessibility-options li:nth-child(3) { animation-delay: 0.1s; }
+#accessibility-options li:nth-child(4) { animation-delay: 0.15s; }
+
+/* Modern Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--purple), var(--blue));
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--blue), var(--purple));
+  box-shadow: 0 0 10px rgba(107, 107, 255, 0.3);
+}
+
+/* Reduce Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

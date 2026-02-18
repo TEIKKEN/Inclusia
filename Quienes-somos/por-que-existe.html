@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>¿Por qué existe INCLUSIA?</title>
+  <link rel="icon" type="image/png" href="../assets/img/logo-inclusia.png">
+
+  <link rel="stylesheet" href="../assets/css/variables.css" />
+  <link rel="stylesheet" href="../assets/css/base.css" />
+  <link rel="stylesheet" href="../assets/css/accessibility.css" />
+  <link rel="stylesheet" href="../assets/css/animations.css" />
+  <link rel="stylesheet" href="../assets/css/layout.css" />
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-container">
+
+    <div class="brand">
+      <img src="../assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" />
+      <span>INCLUSIA</span>
+    </div>
+
+    <div class="nav-right">
+      <ul class="nav-links" id="nav-menu">
+        <li><a href="../index.htm">Inicio</a></li>
+
+        <li class="dropdown">
+          <a href="#" aria-haspopup="true">Quiénes somos</a>
+
+          <ul class="dropdown-menu">
+            <li>
+              <a href="por-que-existe.html">
+                ¿Por qué existe INCLUSIA?
+              </a>
+            </li>
+            <li>
+              <a href="personas-apoyando.html">
+                Personas apoyando INCLUSIA
+              </a>
+            </li>
+            <li>
+              <a href="lo-que-queremos.html">
+                Lo que queremos cambiar
+              </a>
+            </li>
+            <li>
+              <a href="futuro.html">
+                Hoy y futuro
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li><a href="../index.htm#proposito">Propósito</a></li>
+        <li><a href="../index.htm#donaciones">Donaciones</a></li>
+        <li><a href="../index.htm#contacto">Contáctanos</a></li>
+      </ul>
+    </div>
+
+    <button class="hamburger-btn" id="hamburger-menu" aria-label="Abrir menú de navegación" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</nav>
+
+<main>
+
+  <section class="section page-section">
+    <h1>¿Por qué existe INCLUSIA?</h1>
+
+    <p>
+      INCLUSIA nace desde una realidad que muchas personas prefieren no ver:
+      el mundo no está diseñado para todos.
+    </p>
+
+    <p>
+      Las personas con discapacidad no enfrentan límites por su condición,
+      sino por calles inaccesibles, espacios sin empatía y decisiones tomadas
+      sin pensar en la diversidad humana.
+    </p>
+
+    <p>
+      Muchas veces la accesibilidad se reduce a cumplir una norma:
+      una rampa mal hecha, un ascensor que no funciona o soluciones
+      improvisadas que no garantizan independencia ni dignidad.
+    </p>
+
+    <p class="highlight">
+      INCLUSIA existe para cambiar esa lógica.
+      Para demostrar que la accesibilidad bien hecha no es un favor,
+      es un derecho.
+    </p>
+
+    <p>
+      Este proyecto nace con una visión clara:
+      que ninguna persona tenga miedo de salir,
+      de conocer el mundo o de vivir plenamente
+      por culpa de un entorno mal diseñado.
+    </p>
+
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-bottom">
+    <p>© 2026 INCLUSIA · Inclusión y Accesibilidad</p>
+  </div>
+</footer>
+
+<!-- FLOATING ACCESSIBILITY BUTTON -->
+<div class="floating-accessibility-wrapper">
+  <button
+    id="floating-accessibility-btn"
+    class="floating-accessibility-btn"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-label="Opciones de accesibilidad visual"
+    title="Opciones de accesibilidad">
+    ♿
+  </button>
+
+  <ul id="floating-accessibility-menu" class="floating-accessibility-menu" hidden>
+    <li data-theme="default">
+      <button>Predeterminado</button>
+    </li>
+    <li data-theme="soft">
+      <button>Colores suaves</button>
+    </li>
+    <li data-theme="dark">
+      <button>Modo oscuro</button>
+    </li>
+    <li data-theme="colorblind">
+      <button>Daltonismo</button>
+    </li>
+    <li data-theme="high-contrast">
+      <button>Alto Contraste</button>
+    </li>
+  </ul>
+</div>
+
+<script type="module" src="../assets/JS/main.js"></script>
+
+</body>
+</html>
