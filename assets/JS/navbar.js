@@ -3,36 +3,75 @@ const hamburgerBtn = document.getElementById("hamburger-menu");
 const navMenu = document.getElementById("nav-menu");
 const navRight = document.querySelector(".nav-right");
 
+function closeMenu() {
+  navMenu.classList.remove("active");
+  navRight.classList.remove("active");
+  hamburgerBtn.classList.remove("active");
+  hamburgerBtn.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("menu-open");
+}
+
+function openMenu() {
+  navMenu.classList.add("active");
+  navRight.classList.add("active");
+  hamburgerBtn.classList.add("active");
+  hamburgerBtn.setAttribute("aria-expanded", "true");
+  document.body.classList.add("menu-open");
+}
+
 if (hamburgerBtn && navMenu && navRight) {
-  hamburgerBtn.addEventListener("click", () => {
-    navMenu.classList.toggle("active");
-    navRight.classList.toggle("active");
-    hamburgerBtn.classList.toggle("active");
-    hamburgerBtn.setAttribute("aria-expanded", 
-      hamburgerBtn.getAttribute("aria-expanded") === "false" ? "true" : "false"
-    );
+  hamburgerBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    if (navRight.classList.contains("active")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
   });
 
-  // Close menu when clicking on a link
+  // Close menu when clicking on ::before pseudo-element (X button) or menu content area
+  navRight.addEventListener("click", (e) => {
+    // Si se hace clic en el área del botón X (esquina superior derecha)
+    const rect = navRight.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+    
+    // Área aproximada del botón X (esquina superior derecha)
+    if (clickX > rect.width - 70 && clickY < 80) {
+      closeMenu();
+      return;
+    }
+
+    // Si se hace clic en el área del contenido del menú (logo/frase) también cerrar
+    if (e.target.closest('.menu-content')) {
+      closeMenu();
+      return;
+    }
+  });
+
+  // Close menu when clicking on a non-dropdown link
   navMenu.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
-      // Solo cerrar el menú si NO es un link dentro de un dropdown
-      if (!link.closest(".dropdown")) {
-        navMenu.classList.remove("active");
-        navRight.classList.remove("active");
-        hamburgerBtn.classList.remove("active");
-        hamburgerBtn.setAttribute("aria-expanded", "false");
+      // Solo cerrar el menú si NO es un link dentro de un dropdown Y no es el link principal del dropdown
+      if (!link.closest(".dropdown") || link.closest(".dropdown-menu")) {
+        closeMenu();
       }
     });
   });
 
-  // Close menu when clicking outside
-  document.addEventListener("click", (e) => {
-    if (!hamburgerBtn.contains(e.target) && !navRight.contains(e.target)) {
-      navMenu.classList.remove("active");
-      navRight.classList.remove("active");
-      hamburgerBtn.classList.remove("active");
-      hamburgerBtn.setAttribute("aria-expanded", "false");
+  // Close menu when pressing ESC key
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && navRight.classList.contains("active")) {
+      closeMenu();
+    }
+  });
+
+  // Prevent body scroll when menu is open
+  window.addEventListener("resize", () => {
+    if (navRight.classList.contains("active") && window.innerWidth > 768) {
+      closeMenu();
     }
   });
 }
@@ -72,6 +111,7 @@ document.querySelectorAll(".nav-links > li:not(.dropdown) > a").forEach(link => 
       const section = document.querySelector(sectionId);
       if (section) {
         smoothScrollTo(section, 1100);
+        closeMenu(); // Cerrar menú después del scroll
       }
     }
   });
@@ -100,19 +140,11 @@ dropdowns.forEach(dropdown => {
   });
 });
 
-// Close dropdowns when clicking outside - MÁS ROBUSTO
-document.addEventListener("click", e => {
-  dropdowns.forEach(dropdown => {
-    // Si el click NO está dentro del dropdown, ciérralo
-    if (!dropdown.contains(e.target)) {
-      dropdown.classList.remove("active");
-    }
-  });
-});
-
-// Close dropdowns with Escape key
-document.addEventListener("keydown", e => {
-  if (e.key === "Escape") {
+// Close dropdowns when clicking outside dropdown area (but within menu)
+navRight.addEventListener("click", e => {
+  // Solo si el click no está dentro de un dropdown
+  const clickedDropdown = e.target.closest(".dropdown");
+  if (!clickedDropdown) {
     dropdowns.forEach(dropdown => {
       dropdown.classList.remove("active");
     });
@@ -122,13 +154,41 @@ document.addEventListener("keydown", e => {
 // Close dropdown when a submenu link is clicked
 document.querySelectorAll(".dropdown-menu a").forEach(link => {
   link.addEventListener("click", () => {
-    // Cerrar el dropdown
+    // Cerrar todos los dropdowns
     dropdowns.forEach(dropdown => {
       dropdown.classList.remove("active");
     });
-    // Cerrar el menú hamburger en móvil
-    navMenu.classList.remove("active");
-    navRight.classList.remove("active");
-    hamburgerBtn.classList.remove("active");
-    hamburgerBtn.setAttribute("aria-expanded", "false");  });
+    
+    // Cerrar el menú completo
+    closeMenu();
+  });
 });
+
+// ACCESIBILIDAD: Focus trap para el menú
+function trapFocus() {
+  if (!navRight.classList.contains("active")) return;
+  
+  const focusableElements = navRight.querySelectorAll(
+    'a, button, [tabindex]:not([tabindex="-1"])'
+  );
+  
+  const firstElement = focusableElements[0];
+  const lastElement = focusableElements[focusableElements.length - 1];
+  
+  document.addEventListener("keydown", function handleTabKey(e) {
+    if (e.key !== "Tab") return;
+    
+    // Si llegamos al final y presionamos Tab, volver al inicio
+    if (e.shiftKey) {
+      if (document.activeElement === firstElement) {
+        e.preventDefault();
+        lastElement.focus();
+      }
+    } else {
+      if (document.activeElement === lastElement) {
+        e.preventDefault();
+        firstElement.focus();
+      }
+    }
+  });
+}

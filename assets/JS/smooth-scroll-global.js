@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         targetId = link.getAttribute('data-scroll');
       }
 
-      if (targetId && targetId.startsWith('#')) {
+      if (targetId && targetId.startsWith('#') && targetId.length > 1) {
         e.preventDefault();
         const targetElement = document.querySelector(targetId);
         if (targetElement) {

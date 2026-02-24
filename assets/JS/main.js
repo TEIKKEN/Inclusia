@@ -5,5 +5,6 @@ import "./form.js";
 import "./donate.js";
 import "./accessibility.js";
 import "./floating-accessibility.js";
+import "./text-to-speech.js";
 
 console.log("INCLUSIA main.js cargado 💙");

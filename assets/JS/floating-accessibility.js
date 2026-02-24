@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Handle theme/contrast selection
-    floatingMenu.querySelectorAll('button').forEach((btn) => {
+    floatingMenu.querySelectorAll('li[data-theme] button').forEach((btn) => {
       btn.addEventListener('click', (e) => {
         e.stopPropagation();
         const theme = btn.parentElement.dataset.theme;
@@ -39,6 +39,15 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('selectedTheme', theme);
       });
     });
+
+    // Handle TTS button - don't close menu
+    const ttsButton = document.getElementById('toggle-text-to-speech-btn');
+    if (ttsButton) {
+      ttsButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        // TTS button handles itself, don't close menu
+      });
+    }
 
     // Close menu when clicking outside
     document.addEventListener('click', (e) => {

@@ -1,0 +1,281 @@
+/* =====================================
+   ESTILOS DEL FORMULARIO
+   ===================================== */
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 2rem auto;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+/* Labels */
+.form-group label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--text-primary, #333);
+  margin-bottom: 0.25rem;
+}
+
+/* Inputs y Textareas */
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 0.875rem 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: all 0.3s ease;
+  background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary-color, #0066cc);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+  background-color: #f8f9ff;
+}
+
+/* Estados del input */
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: var(--primary-color, #0066cc);
+}
+
+/* Inputs con error */
+.form-group input.input-error,
+.form-group select.input-error,
+.form-group textarea.input-error {
+  border-color: #d32f2f;
+  background-color: #fff5f5;
+}
+
+.form-group input.input-error:focus,
+.form-group select.input-error:focus,
+.form-group textarea.input-error:focus {
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.1);
+  background-color: #fff5f5;
+}
+
+/* Mensaje de error */
+.error-message {
+  display: none;
+  color: #d32f2f;
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-top: 0.25rem;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Placeholder styling */
+.form-group input::placeholder,
+.form-group select::placeholder,
+.form-group textarea::placeholder {
+  color: #999;
+}
+
+/* Textarea específico */
+.form-group textarea {
+  resize: vertical;
+  min-height: 120px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Select styling */
+.form-group select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1.25rem;
+  padding-right: 2.5rem;
+}
+
+/* Botón de envío */
+form button[type="submit"] {
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1rem;
+}
+
+form button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 102, 204, 0.2);
+}
+
+form button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+/* =====================================
+   SWEETALERT2 FIXES - SOLUCIÓN CONFLICTOS
+   ===================================== */
+
+/* Asegurar que SweetAlert2 esté por encima de todo */
+.swal2-container {
+  z-index: 999999 !important;
+  backdrop-filter: blur(5px) !important;
+}
+
+.swal2-popup {
+  z-index: 999999 !important;
+}
+
+/* Corregir overlay */
+.swal2-backdrop-show {
+  background-color: rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Evitar conflictos con animaciones personalizadas */
+.swal2-popup.swal2-show {
+  animation: swal2-show 0.3s !important;
+}
+
+.swal2-popup.swal2-hide {
+  animation: swal2-hide 0.15s forwards !important;
+}
+
+/* Limpiar estilos del body cuando SweetAlert se cierra */
+body:not(.swal2-shown) {
+  overflow: auto !important;
+  padding-right: 0 !important;
+}
+
+/* Forzar que no haya overflow hidden cuando no hay modal */
+body.swal2-height-auto {
+  height: auto !important;
+}
+
+/* Asegurar que el backdrop sea clickeable */
+.swal2-backdrop {
+  z-index: 999998 !important;
+}
+
+/* Fix para el loading */
+.swal2-loader {
+  z-index: 999999 !important;
+}
+
+/* =====================================
+   TEXT TO SPEECH BUTTON STYLES  
+   ===================================== */
+
+#toggle-text-to-speech-btn {
+  position: relative;
+  transition: all 0.3s ease !important;
+}
+
+#toggle-text-to-speech-btn.speaking {
+  background: #e74c3c !important;
+  animation: pulse 2s infinite;
+}
+
+#toggle-text-to-speech-btn:hover {
+  transform: scale(1.05);
+}
+
+/* Animación para cuando está hablando */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+}
+
+/* Indicador visual para el modo de foco */
+#toggle-text-to-speech-btn[title*="foco"]::after {
+  content: "🎯";
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 12px;
+  background: #27ae60;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  form {
+    gap: 1.25rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem 0.875rem;
+    font-size: 16px; /* Evita zoom en iOS */
+  }
+
+  .form-group label {
+    font-size: 0.95rem;
+  }
+  
+  /* SweetAlert mobile fixes */
+  .swal2-popup {
+    width: 90% !important;
+    margin: 0 5% !important;
+  }
+}
+
+/* Accesibilidad - Focus visible */
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+  outline: 2px solid var(--primary-color, #0066cc);
+  outline-offset: 2px;
+}
+
+/* States para mejor UX */
+.form-group input:disabled,
+.form-group select:disabled,
+.form-group textarea:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  color: #999;
+  border-color: #e0e0e0;
+}
+
+.form-group label:has(+ input:disabled),
+.form-group label:has(+ select:disabled),
+.form-group label:has(+ textarea:disabled) {
+  color: #999;
+}

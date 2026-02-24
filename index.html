@@ -12,7 +12,10 @@
   <link rel="stylesheet" href="assets/css/accessibility.css" />
   <link rel="stylesheet" href="assets/css/animations.css" />
   <link rel="stylesheet" href="assets/css/layout.css" />
+  <link rel="stylesheet" href="assets/css/forms.css" />
   
+  <!-- SweetAlert2 CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
 
@@ -61,6 +64,13 @@
         <li><a href="#donaciones">Donaciones</a></li>
         <li><a href="#contacto">Contáctanos</a></li>
       </ul>
+
+      <!-- CONTENIDO CENTRAL DEL MENÚ -->
+      <div class="menu-content">
+        <p class="menu-phrase">
+          INCLUSIÓN no es caridad, es dignidad.
+        </p>
+      </div>
     </div>
 
     <button class="hamburger-btn" id="hamburger-menu" aria-label="Abrir menú de navegación" aria-expanded="false">
@@ -196,8 +206,8 @@
         id="nombre"
         name="nombre"
         placeholder="Tu nombre"
-        required
       />
+      <span class="error-message" id="error-nombre"></span>
     </div>
 
     <div class="form-group">
@@ -207,8 +217,8 @@
         id="correo"
         name="correo"
         placeholder="correo@ejemplo.com"
-        required
       />
+      <span class="error-message" id="error-correo"></span>
     </div>
 
     <div class="form-group">
@@ -230,6 +240,7 @@
         rows="4"
         placeholder="Cuéntanos cómo te gustaría apoyar"
       ></textarea>
+      <span class="error-message" id="error-mensaje"></span>
     </div>
 
     <button type="submit" class="btn-primary">
@@ -320,6 +331,16 @@
     </li>
     <li data-theme="high-contrast">
       <button>Alto Contraste</button>
+    </li>
+    <li class="tts-separator"></li>
+    <li class="tts-button-container">
+      <button 
+        id="toggle-text-to-speech-btn"
+        aria-label="Leer página en voz alta"
+        aria-pressed="false"
+        title="Leer página en voz alta">
+        🔊 Leer página
+      </button>
     </li>
   </ul>
 </div>
