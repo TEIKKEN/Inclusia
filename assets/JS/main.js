@@ -6,5 +6,6 @@ import "./donate.js";
 import "./accessibility.js";
 import "./floating-accessibility.js";
 import "./text-to-speech.js";
+import "./keyboard-navigation.js";
 
-console.log("INCLUSIA main.js cargado 💙");
+console.log("INCLUSIA main.js cargado 💙 - Con navegación por teclado avanzada");

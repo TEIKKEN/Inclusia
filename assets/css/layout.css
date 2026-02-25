@@ -292,10 +292,13 @@
   .navbar .menu-phrase {
     font-size: 1rem;
     font-weight: 400;
-    color: #6366f1 !important;
+    color: #8b5cf6 !important;
     line-height: 1.3;
     margin: 0;
     text-align: center;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    font-family: 'Georgia', 'Garamond', serif;
   }
 
   /* ACCESIBILIDAD */
@@ -350,6 +353,8 @@
   .navbar .menu-phrase {
     font-size: 0.95rem;
     max-width: 250px;
+    font-style: italic;
+    font-family: 'Georgia', 'Garamond', serif;
   }
   
   /* Ajustar padding del body para pantallas muy pequeñas */

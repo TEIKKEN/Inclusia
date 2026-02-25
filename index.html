@@ -3,9 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="INCLUSIA - Iniciativa por la inclusión, accesibilidad e independencia de personas con discapacidad en Colombia y el mundo" />
+  <meta name="keywords" content="inclusión, accesibilidad, discapacidad, derechos, independencia, dignidad" />
+  <meta name="author" content="INCLUSIA" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Open Graph para redes sociales -->
+  <meta property="og:title" content="INCLUSIA - Inclusión no es caridad, es dignidad" />
+  <meta property="og:description" content="Iniciativa por un mundo accesible donde las personas con discapacidad vivan con dignidad y libertad" />
+  <meta property="og:type" content="website" />
+  
+  <!-- Mejorar accesibilidad -->
+  <meta name="theme-color" content="#6366f1" />
+  
   <link rel="icon" type="image/png" href="assets/img/logo-inclusia.png">
 
-  <title>Inclusia</title>
+  <title>INCLUSIA</title>
 
   <link rel="stylesheet" href="assets/css/variables.css" />
   <link rel="stylesheet" href="assets/css/base.css" />
@@ -19,6 +32,10 @@
 </head>
 <body>
 
+  <!-- SKIP LINKS PARA NAVEGACIÓN POR TECLADO -->
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+  <a href="#nav-menu" class="skip-link">Saltar a la navegación</a>
+  <a href="#contacto" class="skip-link">Saltar al formulario de contacto</a>
 
   <!-- NAVBAR -->
  <nav class="navbar">
@@ -29,54 +46,68 @@
       <span>INCLUSIA</span>
     </div>
 
-    <div class="nav-right">
-      <ul class="nav-links" id="nav-menu">
-        <li><a href="#hero">Inicio</a></li>
+    <div class="nav-right" role="navigation" aria-label="Navegación principal">
+      <ul class="nav-links" id="nav-menu" role="menubar">
+        <li role="none"><a href="#hero" role="menuitem">Inicio</a></li>
 
-        <li class="dropdown">
-          <a href="#" aria-haspopup="true">Quiénes somos</a>
+        <li class="dropdown" role="none">
+          <a href="#" 
+             role="menuitem" 
+             aria-haspopup="true" 
+             aria-expanded="false"
+             aria-controls="submenu-quienes-somos"
+             tabindex="0">
+            Quiénes somos
+          </a>
 
-          <ul class="dropdown-menu">
-            <li>
-              <a href="Quienes-somos/por-que-existe.html">
+          <ul class="dropdown-menu" 
+              id="submenu-quienes-somos"
+              role="menu" 
+              aria-label="Submenú de Quiénes somos">
+            <li role="none">
+              <a href="Quienes-somos/por-que-existe.html" role="menuitem" tabindex="-1">
                 ¿Por qué existe INCLUSIA?
               </a>
             </li>
-            <li>
-              <a href="Quienes-somos/personas-apoyando.html">
+            <li role="none">
+              <a href="Quienes-somos/personas-apoyando.html" role="menuitem" tabindex="-1">
                 Personas apoyando INCLUSIA
               </a>
             </li>
-            <li>
-              <a href="Quienes-somos/lo-que-queremos.html">
+            <li role="none">
+              <a href="Quienes-somos/lo-que-queremos.html" role="menuitem" tabindex="-1">
                 Lo que queremos cambiar
               </a>
             </li>
-            <li>
-              <a href="Quienes-somos/futuro.html">
+            <li role="none">
+              <a href="Quienes-somos/futuro.html" role="menuitem" tabindex="-1">
                 Hoy y futuro
               </a>
             </li>
           </ul>
         </li>
 
-        <li><a href="#proposito">Propósito</a></li>
-        <li><a href="#donaciones">Donaciones</a></li>
-        <li><a href="#contacto">Contáctanos</a></li>
+        <li role="none"><a href="#proposito" role="menuitem">Propósito</a></li>
+        <li role="none"><a href="#donaciones" role="menuitem">Donaciones</a></li>
+        <li role="none"><a href="#contacto" role="menuitem">Contáctanos</a></li>
       </ul>
 
       <!-- CONTENIDO CENTRAL DEL MENÚ -->
-      <div class="menu-content">
+      <div class="menu-content" role="complementary" aria-label="Eslogan de INCLUSIA">
         <p class="menu-phrase">
           INCLUSIÓN no es caridad, es dignidad.
         </p>
       </div>
     </div>
 
-    <button class="hamburger-btn" id="hamburger-menu" aria-label="Abrir menú de navegación" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
+    <button class="hamburger-btn" 
+            id="hamburger-menu" 
+            aria-label="Abrir menú de navegación" 
+            aria-expanded="false"
+            aria-controls="nav-menu">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
     </button>
 
   </div>
@@ -84,11 +115,11 @@
 </nav>
 
 
-  <main>
+  <main id="main-content" role="main">
     <!-- HERO -->
-    <section id="hero" class="section hidden">
+    <section id="hero" class="section hidden" role="banner" aria-labelledby="hero-heading">
       <div class="hero-content">
-        <h1>
+        <h1 id="hero-heading">
           Inclusión no es caridad.<br />
           Es dignidad, acceso y libertad.
         </h1>
@@ -99,27 +130,36 @@
           verdadera independencia.
         </p>
 
-        <div class="hero-actions">
-          <a href="#donaciones" class="btn-primary">Apoyar la iniciativa</a>
-          <a href="#proposito" class="btn-secondary">Conocer el propósito</a>
+        <div class="hero-actions" role="group" aria-label="Acciones principales">
+          <a href="#donaciones" 
+             class="btn-primary"
+             aria-describedby="hero-heading">
+            Apoyar la iniciativa
+          </a>
+          <a href="#proposito" 
+             class="btn-secondary"
+             aria-describedby="hero-heading">
+            Conocer el propósito
+          </a>
         </div>
       </div>
     </section>
 
     <!-- QUIÉNES SOMOS -->
-    <section id="quienes-somos" class="section hidden">
-      <h2>Quiénes somos</h2>
+    <section id="quienes-somos" class="section hidden" role="region" aria-labelledby="quienes-somos-heading">
+      <h2 id="quienes-somos-heading">Quiénes somos</h2>
       <p>
-        Este espacio busca promover la inclusión, la accesibilidad
-        y el apoyo a personas con discapacidad.  
-        Es una iniciativa independiente que cree en una sociedad
-        más justa y empática.
+      Somos una Entidad Sin Ánimo de Lucro (ESAL) comprometida con la promoción de la inclusión, la accesibilidad y la generación de oportunidades reales para las personas con discapacidad. Nuestra organización surge con el propósito de contribuir activamente a la construcción de una sociedad más equitativa, donde todas las personas puedan participar plenamente en los ámbitos social, educativo, laboral y digital.
+        Creemos firmemente que la accesibilidad no es un complemento, sino un derecho fundamental. Por ello, trabajamos en la identificación y reducción de barreras físicas, digitales y actitudinales, impulsando iniciativas que promuevan entornos más inclusivos y sostenibles.
+        Nuestra labor integra un enfoque social con una visión estratégica y tecnológica. Apostamos por la innovación como motor de transformación, desarrollando y promoviendo soluciones que faciliten el acceso a la información, los espacios y los servicios. Entendemos la tecnología como una herramienta clave para cerrar brechas y ampliar oportunidades.
+          Actuamos con responsabilidad, transparencia y compromiso, fomentando alianzas con organizaciones, empresas e instituciones que compartan nuestra visión. Buscamos generar impacto medible y sostenible en el tiempo, promoviendo una cultura de inclusión que trascienda discursos y se convierta en acciones concretas.
+            Trabajamos por un futuro donde la inclusión sea un estándar social, donde la accesibilidad forme parte del diseño desde el origen y donde cada persona, sin excepción, pueda desarrollar su proyecto de vida con dignidad y autonomía.
       </p>
     </section>
 
     <!-- PROPÓSITO -->
-    <section id="proposito" class="section hidden">
-      <h2>Propósito de INCLUSIA</h2>
+    <section id="proposito" class="section hidden" role="region" aria-labelledby="proposito-heading">
+      <h2 id="proposito-heading">Propósito de INCLUSIA</h2>
 
       <p>
         INCLUSIA nace con un propósito claro: que las personas con discapacidad,
@@ -155,8 +195,8 @@
     </section>
 
     <!-- DONACIONES -->
-    <section id="donaciones" class="section hidden">
-      <h2>Apoyar INCLUSIA</h2>
+    <section id="donaciones" class="section hidden" role="region" aria-labelledby="donaciones-heading">
+      <h2 id="donaciones-heading">Apoyar INCLUSIA</h2>
 
       <p>
         INCLUSIA es una iniciativa que está dando sus primeros pasos.
@@ -184,8 +224,8 @@
     </section>
 
     <!-- CONTACTO -->
-    <section id="contacto" class="section hidden">
-      <h2>Contáctanos</h2>
+    <section id="contacto" class="section hidden" role="region" aria-labelledby="contacto-heading">
+      <h2 id="contacto-heading">Contáctanos</h2>
 
       <p>
         Si deseas apoyar esta iniciativa, convertirte en socio, aportar ideas
@@ -194,58 +234,76 @@
       </p>
 
   <form 
-    aria-label="Formulario de contacto de INCLUSIA"
+    aria-labelledby="contacto-heading"
     action="https://formspree.io/f/xzbywokn"
     method="POST"
-  >
+    novalidate>
 
     <div class="form-group">
-      <label for="nombre">Nombre completo</label>
+      <label for="nombre">Nombre completo <span aria-label="campo requerido">*</span></label>
       <input
         type="text"
         id="nombre"
         name="nombre"
         placeholder="Tu nombre"
+        required
+        aria-required="true"
+        aria-describedby="error-nombre"
+        aria-invalid="false"
       />
-      <span class="error-message" id="error-nombre"></span>
+      <span class="error-message" id="error-nombre" role="alert" aria-live="polite"></span>
     </div>
 
     <div class="form-group">
-      <label for="correo">Correo electrónico</label>
+      <label for="correo">Correo electrónico <span aria-label="campo requerido">*</span></label>
       <input
         type="email"
         id="correo"
         name="correo"
         placeholder="correo@ejemplo.com"
+        required
+        aria-required="true"
+        aria-describedby="error-correo"
+        aria-invalid="false"
       />
-      <span class="error-message" id="error-correo"></span>
+      <span class="error-message" id="error-correo" role="alert" aria-live="polite"></span>
     </div>
 
     <div class="form-group">
       <label for="tipo">¿Cómo te gustaría apoyar?</label>
-      <select id="tipo" name="tipo">
+      <select id="tipo" name="tipo" aria-describedby="tipo-help">
         <option value="">Selecciona una opción</option>
         <option value="donacion">Donación</option>
         <option value="socio">Ser socio</option>
         <option value="colaboracion">Colaboración</option>
         <option value="informacion">Más información</option>
       </select>
+      <div id="tipo-help" class="sr-only">Selecciona cómo te gustaría contribuir con INCLUSIA</div>
     </div>
 
     <div class="form-group">
-      <label for="mensaje">Mensaje</label>
+      <label for="mensaje">Mensaje <span aria-label="campo requerido">*</span></label>
       <textarea
         id="mensaje"
         name="mensaje"
         rows="4"
         placeholder="Cuéntanos cómo te gustaría apoyar"
+        required
+        aria-required="true"
+        aria-describedby="error-mensaje mensaje-help"
+        aria-invalid="false"
       ></textarea>
-      <span class="error-message" id="error-mensaje"></span>
+      <div id="mensaje-help" class="form-help">Comparte tus ideas, preguntas o cómo quieres colaborar</div>
+      <span class="error-message" id="error-mensaje" role="alert" aria-live="polite"></span>
     </div>
 
-    <button type="submit" class="btn-primary">
+    <button type="submit" 
+            class="btn-primary"
+            aria-describedby="form-status">
       Enviar mensaje
     </button>
+    
+    <div id="form-status" aria-live="polite" aria-atomic="true" class="sr-only"></div>
 
   </form>
 </section>
@@ -253,7 +311,7 @@
 
   </main>
 
- <footer class="footer">
+ <footer class="footer" role="contentinfo">
   <div class="footer-container">
 
     <div class="footer-brand">
@@ -265,7 +323,7 @@
       </p>
     </div>
 
-    <nav class="footer-nav" aria-label="Navegación del pie de página">
+    <nav class="footer-nav" aria-label="Navegación del pie de página" role="navigation">
       <h4>Menú</h4>
       <a href="#hero">Inicio</a>
       <a href="#proposito">Propósito</a>
@@ -281,17 +339,29 @@
 
     <div class="footer-socials">
       <h4>Síguenos</h4>
-      <div class="social-links-footer">
-        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+      <div class="social-links-footer" role="list" aria-label="Enlaces a redes sociales">
+        <a href="https://facebook.com" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           aria-label="Visitar nuestra página de Facebook (se abre en ventana nueva)">
           f
         </a>
-        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <a href="https://instagram.com" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           aria-label="Visitar nuestro perfil de Instagram (se abre en ventana nueva)">
           <img src="assets/img/imstagram.png" alt="Instagram" width="18" height="18" />
         </a>
-        <a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X">
+        <a href="https://x.com" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           aria-label="Visitar nuestro perfil de X (se abre en ventana nueva)">
           <img src="assets/img/X.png" alt="X" width="18" height="18" />
         </a>
-        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <a href="https://tiktok.com" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           aria-label="Visitar nuestro perfil de TikTok (se abre en ventana nueva)">
           <img src="assets/img/tiktok.png" alt="TikTok" width="18" height="18" />
         </a>
       </div>
@@ -305,39 +375,49 @@
 </footer>
 
 <!-- FLOATING ACCESSIBILITY BUTTON -->
-<div class="floating-accessibility-wrapper">
+<div class="floating-accessibility-wrapper" role="region" aria-label="Herramientas de accesibilidad">
   <button
     id="floating-accessibility-btn"
     class="floating-accessibility-btn"
     aria-haspopup="true"
     aria-expanded="false"
-    aria-label="Opciones de accesibilidad visual"
+    aria-controls="floating-accessibility-menu"
+    aria-label="Opciones de accesibilidad visual - Presiona Enter o Espacio para abrir"
     title="Opciones de accesibilidad">
-    ♿
+    <img src="assets/img/logo-accesibilidad-web-azul.png" 
+         alt="" 
+         width="54" 
+         height="54" 
+         aria-hidden="true" />
   </button>
 
-  <ul id="floating-accessibility-menu" class="floating-accessibility-menu" hidden>
-    <li data-theme="default">
-      <button>Predeterminado</button>
+  <ul id="floating-accessibility-menu" 
+      class="floating-accessibility-menu" 
+      role="menu"
+      aria-label="Menú de opciones de accesibilidad"
+      hidden>
+    <li data-theme="default" role="none">
+      <button role="menuitem" tabindex="-1">Predeterminado</button>
     </li>
-    <li data-theme="soft">
-      <button>Colores suaves</button>
+    <li data-theme="soft" role="none">
+      <button role="menuitem" tabindex="-1">Colores suaves</button>
     </li>
-    <li data-theme="dark">
-      <button>Modo oscuro</button>
+    <li data-theme="dark" role="none">
+      <button role="menuitem" tabindex="-1">Modo oscuro</button>
     </li>
-    <li data-theme="colorblind">
-      <button>Daltonismo</button>
+    <li data-theme="colorblind" role="none">
+      <button role="menuitem" tabindex="-1">Daltonismo</button>
     </li>
-    <li data-theme="high-contrast">
-      <button>Alto Contraste</button>
+    <li data-theme="high-contrast" role="none">
+      <button role="menuitem" tabindex="-1">Alto Contraste</button>
     </li>
-    <li class="tts-separator"></li>
-    <li class="tts-button-container">
+    <li class="tts-separator" role="separator" aria-hidden="true"></li>
+    <li class="tts-button-container" role="none">
       <button 
         id="toggle-text-to-speech-btn"
+        role="menuitem"
+        tabindex="-1"
         aria-label="Leer página en voz alta"
-        aria-pressed="false"
         title="Leer página en voz alta">
         🔊 Leer página
       </button>
