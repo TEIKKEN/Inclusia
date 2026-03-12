@@ -145,8 +145,11 @@
   /* Brand centrado absolutamente en la barra */
   .navbar .brand {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    right: 0;
+    width: fit-content;
+    margin: 0 auto;
+    transform: none;
     z-index: 1003;
   }
 
