@@ -285,7 +285,7 @@
   position: relative;
   overflow: hidden;
   transition: all 0.3s ease;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   letter-spacing: 0.5px;
 }
 
@@ -386,7 +386,7 @@
   border-radius: 8px;
   animation: slideInLeft 0.8s ease-out;
   transition: all 0.3s ease;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   font-size: 1.1rem;
 }
 
@@ -414,7 +414,11 @@
 }
 
 .footer:hover .footer-bottom p {
-  color: var(--purple);
+  /* Removed color change for better readability */
+}
+
+.footer:hover .footer-legal {
+  color: rgba(255, 255, 255, 0.75);
 }
 
 /* Forms & Inputs */
@@ -451,7 +455,7 @@ input:focus ~ label,
 textarea:focus ~ label,
 select:focus ~ label {
   color: var(--purple);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 /* Page Section */
@@ -550,6 +554,96 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(180deg, var(--blue), var(--purple));
   box-shadow: 0 0 10px rgba(107, 107, 255, 0.3);
+}
+
+/* ============================================
+   PAGE LOADER
+   ============================================ */
+#page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.2rem;
+  transition: opacity 0.75s ease, visibility 0.75s ease;
+}
+
+#page-loader.loaded {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.loader-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+  animation: loaderBrandIn 0.65s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+}
+
+@keyframes loaderBrandIn {
+  from { opacity: 0; transform: translateY(22px) scale(0.88); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.loader-logo {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 18px rgba(123, 97, 255, 0.25));
+  animation: loaderLogoPulse 2s ease-in-out infinite;
+}
+
+@keyframes loaderLogoPulse {
+  0%, 100% { filter: drop-shadow(0 4px 18px rgba(123, 97, 255, 0.25)); }
+  50%       { filter: drop-shadow(0 6px 28px rgba(123, 97, 255, 0.5)); }
+}
+
+.loader-name {
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  font-size: 1.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, var(--purple), var(--blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.loader-bar-track {
+  width: 160px;
+  height: 3px;
+  background: rgba(123, 97, 255, 0.12);
+  border-radius: 99px;
+  overflow: hidden;
+  animation: loaderBrandIn 0.4s ease 0.25s both;
+}
+
+.loader-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--purple), var(--blue));
+  border-radius: 99px;
+  animation: loaderFill 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
+}
+
+@keyframes loaderFill {
+  0%   { width: 0%; }
+  55%  { width: 65%; }
+  100% { width: 100%; }
+}
+
+/* ============================================
+   PAGE TRANSITION OVERLAY
+   ============================================ */
+#page-transition {
+  display: none; /* overlay de navegación desactivado */
 }
 
 /* Reduce Motion */

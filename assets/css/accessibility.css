@@ -83,7 +83,7 @@ body.theme-dark #contacto h2 {
 body.theme-dark .btn-primary {
   background: linear-gradient(135deg, #6fa8ff, #9b8cff);
   color: #ffffff;
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
 }
 
 body.theme-dark .btn-secondary {
@@ -286,7 +286,7 @@ body.theme-high-contrast .btn-secondary {
   border: 2px solid #000000;
   background-color: #ffffff;
   color: #000000;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 body.theme-high-contrast button:hover,

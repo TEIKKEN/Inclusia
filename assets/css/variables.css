@@ -4,4 +4,11 @@
   --background: #F5F7FF;
   --text: #1F2933;
   --white: #FFFFFF;
+  
+  /* Typography variables */
+  --font-primary: 'Poppins', system-ui, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 }

@@ -20,6 +20,11 @@
 
   <title>INCLUSIA</title>
 
+  <!-- Tipografía principal - Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="assets/css/variables.css" />
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/accessibility.css" />
@@ -38,27 +43,46 @@
   <a href="#contacto" class="skip-link">Saltar al formulario de contacto</a>
 
   <!-- NAVBAR -->
- <nav class="navbar">
+ <nav class="navbar" role="navigation" aria-label="Navegación principal">
   <div class="nav-container">
 
     <div class="brand">
-      <img src="assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" />
-      <span>INCLUSIA</span>
+      <a href="#hero" aria-label="INCLUSIA - Ir al inicio">
+        <img src="assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" />
+        <span>INCLUSIA</span>
+      </a>
     </div>
 
-    <div class="nav-right" role="navigation" aria-label="Navegación principal">
+    <button class="hamburger-btn" 
+            id="hamburger-menu" 
+            aria-label="Abrir menú de navegación" 
+            aria-expanded="false"
+            aria-controls="nav-menu">
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
+    </button>
+
+    <!-- Overlay de fondo para móvil -->
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+    <div class="nav-right" id="nav-right">
+
       <ul class="nav-links" id="nav-menu" role="menubar">
         <li role="none"><a href="#hero" role="menuitem">Inicio</a></li>
 
         <li class="dropdown" role="none">
-          <a href="#" 
-             role="menuitem" 
-             aria-haspopup="true" 
-             aria-expanded="false"
-             aria-controls="submenu-quienes-somos"
-             tabindex="0">
+          <button class="dropdown-toggle"
+                  role="menuitem" 
+                  aria-haspopup="true" 
+                  aria-expanded="false"
+                  aria-controls="submenu-quienes-somos"
+                  tabindex="0">
             Quiénes somos
-          </a>
+            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="2 4 6 8 10 4"></polyline>
+            </svg>
+          </button>
 
           <ul class="dropdown-menu" 
               id="submenu-quienes-somos"
@@ -100,18 +124,7 @@
       </div>
     </div>
 
-    <button class="hamburger-btn" 
-            id="hamburger-menu" 
-            aria-label="Abrir menú de navegación" 
-            aria-expanded="false"
-            aria-controls="nav-menu">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </button>
-
   </div>
-  
 </nav>
 
 
@@ -218,7 +231,7 @@
       </p>
 
       <div class="donation-actions">
-        <a href="#" class="btn-primary">Hacer una donación</a>
+        <a href="#contacto" class="btn-primary">Hacer una donación</a>
         <a href="#contacto" class="btn-secondary">Quiero ser socio</a>
       </div>
     </section>
@@ -371,6 +384,7 @@
 
   <div class="footer-bottom">
     <p>© 2026 INCLUSIA · Inclusión y Accesibilidad</p>
+    <p class="footer-legal">Inclusia – Corporación sin ánimo de lucro registrada en la Cámara de Comercio de Medellín, Colombia.</p>
   </div>
 </footer>
 

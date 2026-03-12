@@ -1,3 +1,4 @@
+import "./page-transitions.js";
 import "./smooth-scroll-global.js";
 import "./navbar.js";
 import "./scroll-animations.js";

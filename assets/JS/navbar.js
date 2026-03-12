@@ -1,194 +1,180 @@
-// HAMBURGER MENU TOGGLE
-const hamburgerBtn = document.getElementById("hamburger-menu");
-const navMenu = document.getElementById("nav-menu");
-const navRight = document.querySelector(".nav-right");
+﻿// ============================================
+// NAVBAR - INCLUSIA
+// ============================================
 
+const hamburgerBtn = document.getElementById("hamburger-menu");
+const navMenu      = document.getElementById("nav-menu");
+const navRight     = document.getElementById("nav-right");
+const navOverlay   = document.getElementById("nav-overlay");
+
+// ---------- ABRIR / CERRAR ----------
 function closeMenu() {
-  navMenu.classList.remove("active");
+  if (!navRight) return;
   navRight.classList.remove("active");
-  hamburgerBtn.classList.remove("active");
-  hamburgerBtn.setAttribute("aria-expanded", "false");
+  hamburgerBtn?.classList.remove("active");
+  hamburgerBtn?.setAttribute("aria-expanded", "false");
+  navOverlay?.classList.remove("active");
   document.body.classList.remove("menu-open");
+
+  // Cerrar todos los dropdowns
+  document.querySelectorAll(".dropdown.active").forEach(d => {
+    d.classList.remove("active");
+    d.querySelector(".dropdown-toggle")?.setAttribute("aria-expanded", "false");
+  });
+
+  hamburgerBtn?.focus();
 }
 
 function openMenu() {
-  navMenu.classList.add("active");
+  if (!navRight) return;
   navRight.classList.add("active");
-  hamburgerBtn.classList.add("active");
-  hamburgerBtn.setAttribute("aria-expanded", "true");
+  hamburgerBtn?.classList.add("active");
+  hamburgerBtn?.setAttribute("aria-expanded", "true");
+  navOverlay?.classList.add("active");
   document.body.classList.add("menu-open");
+
+  // Foco en primer link del menu
+  setTimeout(() => {
+    const firstLink = navRight.querySelector(".nav-links a, .nav-links button");
+    firstLink?.focus();
+  }, 350);
 }
 
-if (hamburgerBtn && navMenu && navRight) {
-  hamburgerBtn.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    if (navRight.classList.contains("active")) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  });
+// ---------- HAMBURGER (abre Y cierra) ----------
+hamburgerBtn?.addEventListener("click", (e) => {
+  e.preventDefault();
+  e.stopPropagation();
+  navRight?.classList.contains("active") ? closeMenu() : openMenu();
+});
 
-  // Close menu when clicking on ::before pseudo-element (X button) or menu content area
-  navRight.addEventListener("click", (e) => {
-    // Si se hace clic en el área del botón X (esquina superior derecha)
-    const rect = navRight.getBoundingClientRect();
-    const clickX = e.clientX - rect.left;
-    const clickY = e.clientY - rect.top;
-    
-    // Área aproximada del botón X (esquina superior derecha)
-    if (clickX > rect.width - 70 && clickY < 80) {
-      closeMenu();
-      return;
-    }
+// ---------- OVERLAY CIERRA ----------
+navOverlay?.addEventListener("click", closeMenu);
 
-    // Si se hace clic en el área del contenido del menú (logo/frase) también cerrar
-    if (e.target.closest('.menu-content')) {
-      closeMenu();
-      return;
-    }
-  });
-
-  // Close menu when clicking on a non-dropdown link
-  navMenu.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      // Solo cerrar el menú si NO es un link dentro de un dropdown Y no es el link principal del dropdown
-      if (!link.closest(".dropdown") || link.closest(".dropdown-menu")) {
-        closeMenu();
-      }
-    });
-  });
-
-  // Close menu when pressing ESC key
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && navRight.classList.contains("active")) {
-      closeMenu();
-    }
-  });
-
-  // Prevent body scroll when menu is open
-  window.addEventListener("resize", () => {
-    if (navRight.classList.contains("active") && window.innerWidth > 768) {
-      closeMenu();
-    }
-  });
-}
-
-function smoothScrollTo(target, duration = 900) {
-  const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
-  const startPosition = window.pageYOffset;
-  const distance = targetPosition - startPosition;
-  let startTime = null;
-
-  function animation(currentTime) {
-    if (!startTime) startTime = currentTime;
-    const timeElapsed = currentTime - startTime;
-    const progress = Math.min(timeElapsed / duration, 1);
-
-    // easing suave
-    const ease = progress < 0.5
-      ? 2 * progress * progress
-      : 1 - Math.pow(-2 * progress + 2, 2) / 2;
-
-    window.scrollTo(0, startPosition + distance * ease);
-
-    if (timeElapsed < duration) {
-      requestAnimationFrame(animation);
-    }
+// ---------- ESCAPE CIERRA ----------
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && navRight?.classList.contains("active")) {
+    closeMenu();
   }
+});
 
-  requestAnimationFrame(animation);
+// ---------- RESIZE: cierra en desktop ----------
+window.addEventListener("resize", () => {
+  if (navRight?.classList.contains("active") && window.innerWidth > 768) {
+    closeMenu();
+  }
+});
+
+// ---------- LINKS NORMALES CIERRAN EL MENU ----------
+navMenu?.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => closeMenu());
+});
+
+// ---------- FOCUS TRAP ----------
+navRight?.addEventListener("keydown", (e) => {
+  if (e.key !== "Tab" || !navRight.classList.contains("active")) return;
+
+  const focusable = Array.from(navRight.querySelectorAll(
+    'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  )).filter(el => el.offsetParent !== null); // solo elementos visibles
+
+  if (focusable.length === 0) return;
+  const first = focusable[0];
+  const last  = focusable[focusable.length - 1];
+
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault(); last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault(); first.focus();
+  }
+});
+
+// ---------- SMOOTH SCROLL ----------
+function smoothScrollTo(target, duration = 900) {
+  const start    = window.pageYOffset;
+  const distance = target.getBoundingClientRect().top + start;
+  let startTime  = null;
+
+  function step(now) {
+    if (!startTime) startTime = now;
+    const t = Math.min((now - startTime) / duration, 1);
+    const ease = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;
+    window.scrollTo(0, start + (distance - start) * ease);
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
 }
 
-// Smooth scroll para links internos
-document.querySelectorAll(".nav-links > li:not(.dropdown) > a").forEach(link => {
+document.querySelectorAll('.nav-links > li:not(.dropdown) > a[href^="#"]').forEach(link => {
   link.addEventListener("click", e => {
-    const sectionId = link.getAttribute("href");
-    if (sectionId.startsWith("#")) {
+    const target = document.querySelector(link.getAttribute("href"));
+    if (target) {
       e.preventDefault();
-      const section = document.querySelector(sectionId);
-      if (section) {
-        smoothScrollTo(section, 1100);
-        closeMenu(); // Cerrar menú después del scroll
-      }
+      smoothScrollTo(target, 1000);
+      closeMenu();
     }
   });
 });
 
-// Dropdown menu functionality
-const dropdowns = document.querySelectorAll(".dropdown");
+// ---------- DROPDOWN ----------
+document.querySelectorAll(".dropdown").forEach(dropdown => {
+  const toggle = dropdown.querySelector(".dropdown-toggle");
+  if (!toggle) return;
 
-dropdowns.forEach(dropdown => {
-  const link = dropdown.querySelector("a");
-  
-  // Toggle dropdown on click
-  link.addEventListener("click", e => {
+  toggle.addEventListener("click", e => {
     e.preventDefault();
     e.stopPropagation();
-    
-    // Close other dropdowns
-    dropdowns.forEach(d => {
+
+    const isOpen = dropdown.classList.contains("active");
+
+    // Cerrar otros dropdowns
+    document.querySelectorAll(".dropdown.active").forEach(d => {
       if (d !== dropdown) {
         d.classList.remove("active");
+        d.querySelector(".dropdown-toggle")?.setAttribute("aria-expanded", "false");
       }
     });
-    
-    // Toggle current dropdown
-    dropdown.classList.toggle("active");
+
+    dropdown.classList.toggle("active", !isOpen);
+    toggle.setAttribute("aria-expanded", isOpen ? "false" : "true");
+  });
+
+  // Teclado: Enter/Space/ArrowDown
+  toggle.addEventListener("keydown", e => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault(); toggle.click();
+    }
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      dropdown.classList.contains("active")
+        ? dropdown.querySelector(".dropdown-menu a")?.focus()
+        : toggle.click();
+    }
+  });
+
+  // Navegacion con flechas dentro del submenu
+  const subLinks = [...dropdown.querySelectorAll(".dropdown-menu a")];
+  subLinks.forEach((link, i) => {
+    link.addEventListener("keydown", e => {
+      if (e.key === "ArrowDown") { e.preventDefault(); (subLinks[i+1] ?? subLinks[0]).focus(); }
+      if (e.key === "ArrowUp")   { e.preventDefault(); (subLinks[i-1] ?? toggle).focus(); }
+      if (e.key === "Escape")    { e.preventDefault(); dropdown.classList.remove("active"); toggle.setAttribute("aria-expanded","false"); toggle.focus(); }
+    });
+    link.addEventListener("click", () => {
+      dropdown.classList.remove("active");
+      toggle.setAttribute("aria-expanded", "false");
+      closeMenu();
+    });
   });
 });
 
-// Close dropdowns when clicking outside dropdown area (but within menu)
-navRight.addEventListener("click", e => {
-  // Solo si el click no está dentro de un dropdown
-  const clickedDropdown = e.target.closest(".dropdown");
-  if (!clickedDropdown) {
-    dropdowns.forEach(dropdown => {
-      dropdown.classList.remove("active");
+// Cerrar dropdown al clicar fuera
+document.addEventListener("click", e => {
+  if (!e.target.closest(".dropdown")) {
+    document.querySelectorAll(".dropdown.active").forEach(d => {
+      d.classList.remove("active");
+      d.querySelector(".dropdown-toggle")?.setAttribute("aria-expanded", "false");
     });
   }
 });
 
-// Close dropdown when a submenu link is clicked
-document.querySelectorAll(".dropdown-menu a").forEach(link => {
-  link.addEventListener("click", () => {
-    // Cerrar todos los dropdowns
-    dropdowns.forEach(dropdown => {
-      dropdown.classList.remove("active");
-    });
-    
-    // Cerrar el menú completo
-    closeMenu();
-  });
-});
-
-// ACCESIBILIDAD: Focus trap para el menú
-function trapFocus() {
-  if (!navRight.classList.contains("active")) return;
-  
-  const focusableElements = navRight.querySelectorAll(
-    'a, button, [tabindex]:not([tabindex="-1"])'
-  );
-  
-  const firstElement = focusableElements[0];
-  const lastElement = focusableElements[focusableElements.length - 1];
-  
-  document.addEventListener("keydown", function handleTabKey(e) {
-    if (e.key !== "Tab") return;
-    
-    // Si llegamos al final y presionamos Tab, volver al inicio
-    if (e.shiftKey) {
-      if (document.activeElement === firstElement) {
-        e.preventDefault();
-        lastElement.focus();
-      }
-    } else {
-      if (document.activeElement === lastElement) {
-        e.preventDefault();
-        firstElement.focus();
-      }
-    }
-  });
-}
+console.log("INCLUSIA navbar.js listo");

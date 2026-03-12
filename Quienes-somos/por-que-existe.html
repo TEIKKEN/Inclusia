@@ -6,6 +6,11 @@
   <title>¿Por qué existe INCLUSIA?</title>
   <link rel="icon" type="image/png" href="../assets/img/logo-inclusia.png">
 
+  <!-- Tipografía para el logo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="../assets/css/variables.css" />
   <link rel="stylesheet" href="../assets/css/base.css" />
   <link rel="stylesheet" href="../assets/css/accessibility.css" />
@@ -17,56 +22,75 @@
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar">
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
   <div class="nav-container">
 
     <div class="brand">
-      <img src="../assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" />
-      <span>INCLUSIA</span>
+      <a href="../index.html" aria-label="INCLUSIA - Ir al inicio">
+        <img src="../assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" />
+        <span>INCLUSIA</span>
+      </a>
     </div>
 
-    <div class="nav-right">
-      <ul class="nav-links" id="nav-menu">
-        <li><a href="../index.html">Inicio</a></li>
+    <button class="hamburger-btn"
+            id="hamburger-menu"
+            aria-label="Abrir menú de navegación"
+            aria-expanded="false"
+            aria-controls="nav-menu">
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
+      <span class="hamburger-line" aria-hidden="true"></span>
+    </button>
 
-        <li class="dropdown">
-          <a href="#" aria-haspopup="true">Quiénes somos</a>
+    <!-- Overlay de fondo para móvil -->
+    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
 
-          <ul class="dropdown-menu">
-            <li>
-              <a href="por-que-existe.html">
-                ¿Por qué existe INCLUSIA?
-              </a>
+    <div class="nav-right" id="nav-right">
+
+      <ul class="nav-links" id="nav-menu" role="menubar">
+        <li role="none"><a href="../index.html" role="menuitem">Inicio</a></li>
+
+        <li class="dropdown" role="none">
+          <button class="dropdown-toggle"
+                  role="menuitem"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="submenu-quienes-somos"
+                  tabindex="0">
+            Quiénes somos
+            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="2 4 6 8 10 4"></polyline>
+            </svg>
+          </button>
+
+          <ul class="dropdown-menu"
+              id="submenu-quienes-somos"
+              role="menu"
+              aria-label="Submenú de Quiénes somos">
+            <li role="none">
+              <a href="por-que-existe.html" role="menuitem" tabindex="-1">¿Por qué existe INCLUSIA?</a>
             </li>
-            <li>
-              <a href="personas-apoyando.html">
-                Personas apoyando INCLUSIA
-              </a>
+            <li role="none">
+              <a href="personas-apoyando.html" role="menuitem" tabindex="-1">Personas apoyando INCLUSIA</a>
             </li>
-            <li>
-              <a href="lo-que-queremos.html">
-                Lo que queremos cambiar
-              </a>
+            <li role="none">
+              <a href="lo-que-queremos.html" role="menuitem" tabindex="-1">Lo que queremos cambiar</a>
             </li>
-            <li>
-              <a href="futuro.html">
-                Hoy y futuro
-              </a>
+            <li role="none">
+              <a href="futuro.html" role="menuitem" tabindex="-1">Hoy y futuro</a>
             </li>
           </ul>
         </li>
 
-        <li><a href="../index.html#proposito">Propósito</a></li>
-        <li><a href="../index.html#donaciones">Donaciones</a></li>
-        <li><a href="../index.html#contacto">Contáctanos</a></li>
+        <li role="none"><a href="../index.html#proposito" role="menuitem">Propósito</a></li>
+        <li role="none"><a href="../index.html#donaciones" role="menuitem">Donaciones</a></li>
+        <li role="none"><a href="../index.html#contacto" role="menuitem">Contáctanos</a></li>
       </ul>
-    </div>
 
-    <button class="hamburger-btn" id="hamburger-menu" aria-label="Abrir menú de navegación" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+      <div class="menu-content" role="complementary" aria-label="Eslogan de INCLUSIA">
+        <p class="menu-phrase">INCLUSIÓN no es caridad, es dignidad.</p>
+      </div>
+    </div>
 
   </div>
 </nav>
