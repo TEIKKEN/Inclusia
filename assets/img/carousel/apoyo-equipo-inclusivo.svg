@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-label="Equipo diverso colaborando en accesibilidad">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7B61FF" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#4A90E2" stop-opacity="0.14"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="960" height="640" rx="28" fill="url(#bg)"/>
+
+  <!-- Mesa -->
+  <rect x="140" y="390" width="680" height="26" rx="13" fill="#1F2933" fill-opacity="0.10"/>
+  <rect x="170" y="416" width="620" height="120" rx="22" fill="#FFFFFF" fill-opacity="0.70" stroke="#1F2933" stroke-opacity="0.18"/>
+
+  <!-- Personas (estilo minimalista, 4 figuras) -->
+  <!-- Persona 1 -->
+  <circle cx="270" cy="260" r="44" fill="#7B61FF" fill-opacity="0.22" stroke="#7B61FF" stroke-opacity="0.55"/>
+  <rect x="220" y="310" width="100" height="140" rx="24" fill="#FFFFFF" fill-opacity="0.78" stroke="#1F2933" stroke-opacity="0.16"/>
+  <path d="M240 358 C 262 338, 278 338, 300 358" fill="none" stroke="#7B61FF" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Persona 2 -->
+  <circle cx="430" cy="246" r="46" fill="#4A90E2" fill-opacity="0.22" stroke="#4A90E2" stroke-opacity="0.55"/>
+  <rect x="378" y="302" width="104" height="148" rx="26" fill="#FFFFFF" fill-opacity="0.78" stroke="#1F2933" stroke-opacity="0.16"/>
+  <path d="M398 354 C 420 336, 440 336, 462 354" fill="none" stroke="#4A90E2" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Persona 3 -->
+  <circle cx="590" cy="260" r="44" fill="#7B61FF" fill-opacity="0.18" stroke="#7B61FF" stroke-opacity="0.45"/>
+  <rect x="540" y="310" width="100" height="140" rx="24" fill="#FFFFFF" fill-opacity="0.78" stroke="#1F2933" stroke-opacity="0.16"/>
+  <path d="M560 360 C 582 340, 598 340, 620 360" fill="none" stroke="#7B61FF" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Persona 4 -->
+  <circle cx="740" cy="246" r="46" fill="#4A90E2" fill-opacity="0.18" stroke="#4A90E2" stroke-opacity="0.45"/>
+  <rect x="688" y="302" width="104" height="148" rx="26" fill="#FFFFFF" fill-opacity="0.78" stroke="#1F2933" stroke-opacity="0.16"/>
+  <path d="M708 354 C 730 336, 750 336, 772 354" fill="none" stroke="#4A90E2" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Elementos de colaboración (tarjetas) -->
+  <rect x="238" y="452" width="190" height="54" rx="14" fill="#FFFFFF" fill-opacity="0.85" stroke="#7B61FF" stroke-opacity="0.25"/>
+  <rect x="460" y="452" width="262" height="54" rx="14" fill="#FFFFFF" fill-opacity="0.85" stroke="#4A90E2" stroke-opacity="0.25"/>
+
+  <!-- Icono accesibilidad (círculo + check) -->
+  <circle cx="272" cy="479" r="16" fill="#7B61FF" fill-opacity="0.22" stroke="#7B61FF" stroke-opacity="0.6"/>
+  <path d="M265 480 L271 486 L281 472" fill="none" stroke="#7B61FF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Icono documento -->
+  <path d="M486 468 H542" stroke="#4A90E2" stroke-width="6" stroke-linecap="round"/>
+  <path d="M486 484 H592" stroke="#4A90E2" stroke-width="6" stroke-linecap="round" stroke-opacity="0.9"/>
+  <path d="M486 500 H560" stroke="#4A90E2" stroke-width="6" stroke-linecap="round" stroke-opacity="0.75"/>
+</svg>

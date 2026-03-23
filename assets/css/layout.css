@@ -474,46 +474,65 @@ body.theme-dark .navbar .menu-phrase {
 
 /* ============================================
    HIGH CONTRAST
+   - Importante: en desktop el navbar es fondo blanco.
+     Por eso NO podemos forzar links blancos globalmente.
+   - En móvil el panel (.nav-right) es oscuro, ahí sí usamos links claros.
    ============================================ */
-body.theme-high-contrast .navbar .hamburger-btn .hamburger-line {
-  background-color: #000;
+
+/* Desktop (>=769px): mantener navbar visible (texto oscuro sobre fondo claro) */
+@media (min-width: 769px) {
+  body.theme-high-contrast .navbar .nav-right {
+    background: transparent;
+  }
+
+  body.theme-high-contrast .navbar .nav-links > li > a,
+  body.theme-high-contrast .navbar .nav-links > li > .dropdown-toggle {
+    color: #000 !important;
+  }
 }
 
-body.theme-high-contrast .navbar .nav-right {
-  background: #000;
-}
+/* Mobile (<=768px): panel del menú es oscuro, links claros */
+@media (max-width: 768px) {
+  body.theme-high-contrast .navbar .hamburger-btn .hamburger-line {
+    background-color: #000;
+  }
 
-body.theme-high-contrast .navbar .nav-links > li {
-  border-top-color: #222;
-}
+  body.theme-high-contrast .navbar .nav-right {
+    background: #000;
+  }
 
-body.theme-high-contrast .navbar .nav-links > li > a,
-body.theme-high-contrast .navbar .nav-links > li > .dropdown-toggle {
-  color: #fff !important;
-}
+  body.theme-high-contrast .navbar .nav-links > li {
+    border-top-color: #222;
+  }
 
-body.theme-high-contrast .navbar .nav-links > li > a:hover,
-body.theme-high-contrast .navbar .nav-links > li > .dropdown-toggle:hover {
-  background: rgba(255,255,255,0.08) !important;
-  color: #fff !important;
-  border-left-color: #fff !important;
-}
+  body.theme-high-contrast .navbar .nav-links > li > a,
+  body.theme-high-contrast .navbar .nav-links > li > .dropdown-toggle {
+    color: #fff !important;
+  }
 
-body.theme-high-contrast .navbar .nav-right .dropdown-menu {
-  background: #0a0a0a !important;
-}
+  body.theme-high-contrast .navbar .nav-links > li > a:hover,
+  body.theme-high-contrast .navbar .nav-links > li > .dropdown-toggle:hover {
+    background: rgba(255,255,255,0.08) !important;
+    color: #fff !important;
+    border-left-color: #fff !important;
+  }
 
-body.theme-high-contrast .navbar .nav-right .dropdown-menu a {
-  color: #ccc !important;
-}
+  body.theme-high-contrast .navbar .nav-right .dropdown-menu {
+    background: #0a0a0a !important;
+  }
 
-body.theme-high-contrast .navbar .nav-right .dropdown-menu a:hover {
-  color: #fff !important;
-  background: rgba(255,255,255,0.08) !important;
-}
+  body.theme-high-contrast .navbar .nav-right .dropdown-menu a {
+    color: #e6e6e6 !important;
+  }
 
-body.theme-high-contrast .navbar .menu-phrase {
-  color: #444 !important;
+  body.theme-high-contrast .navbar .nav-right .dropdown-menu a:hover {
+    color: #fff !important;
+    background: rgba(255,255,255,0.08) !important;
+  }
+
+  body.theme-high-contrast .navbar .menu-phrase {
+    color: #fff !important;
+  }
 }
 
 /* ============================================

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="640" viewBox="0 0 960 640" role="img" aria-label="Persona usando tecnología asistiva para acceder a información">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7B61FF" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#4A90E2" stop-opacity="0.14"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="960" height="640" rx="28" fill="url(#bg)"/>
+
+  <!-- Dispositivo (pantalla) -->
+  <rect x="470" y="150" width="390" height="290" rx="24" fill="#FFFFFF" fill-opacity="0.78" stroke="#1F2933" stroke-opacity="0.18"/>
+  <rect x="505" y="190" width="320" height="210" rx="18" fill="#1F2933" fill-opacity="0.06"/>
+
+  <!-- Texto simulado en pantalla (alto contraste por formas) -->
+  <path d="M535 230 H765" stroke="#4A90E2" stroke-width="10" stroke-linecap="round" stroke-opacity="0.75"/>
+  <path d="M535 260 H735" stroke="#4A90E2" stroke-width="10" stroke-linecap="round" stroke-opacity="0.65"/>
+  <path d="M535 290 H785" stroke="#7B61FF" stroke-width="10" stroke-linecap="round" stroke-opacity="0.70"/>
+  <path d="M535 320 H710" stroke="#7B61FF" stroke-width="10" stroke-linecap="round" stroke-opacity="0.58"/>
+
+  <!-- Icono lector de pantalla (ondas) -->
+  <circle cx="525" cy="392" r="18" fill="#7B61FF" fill-opacity="0.18" stroke="#7B61FF" stroke-opacity="0.6"/>
+  <path d="M555 392 C565 380, 565 404, 555 392" fill="none" stroke="#7B61FF" stroke-width="8" stroke-linecap="round"/>
+  <path d="M585 392 C600 372, 600 412, 585 392" fill="none" stroke="#7B61FF" stroke-width="8" stroke-linecap="round" stroke-opacity="0.75"/>
+
+  <!-- Persona (lado izquierdo) -->
+  <circle cx="240" cy="250" r="44" fill="#4A90E2" fill-opacity="0.18" stroke="#4A90E2" stroke-opacity="0.55"/>
+  <rect x="190" y="306" width="110" height="180" rx="28" fill="#FFFFFF" fill-opacity="0.78" stroke="#1F2933" stroke-opacity="0.16"/>
+
+  <!-- Bastón / apoyo -->
+  <path d="M330 310 L330 510" stroke="#1F2933" stroke-opacity="0.25" stroke-width="12" stroke-linecap="round"/>
+  <path d="M330 310 C330 290, 350 290, 350 310" fill="none" stroke="#1F2933" stroke-opacity="0.25" stroke-width="12" stroke-linecap="round"/>
+
+  <!-- Mano apuntando al dispositivo -->
+  <path d="M300 378 C360 360, 410 330, 470 316" fill="none" stroke="#4A90E2" stroke-opacity="0.55" stroke-width="12" stroke-linecap="round"/>
+</svg>
