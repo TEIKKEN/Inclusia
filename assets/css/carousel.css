@@ -391,6 +391,11 @@
   .hero-carousel-intro {
     padding: 2rem 1.25rem 1.5rem;
   }
+
+  /* Reducir espacio superior cuando el carrusel es lo primero en main */
+  main:has(.hero-carousel) {
+    padding-top: 0;
+  }
 }
 
 /* --- Mobile pequeno (hasta 480px) --- */
