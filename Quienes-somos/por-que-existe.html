@@ -6,16 +6,17 @@
   <title>¿Por qué existe INCLUSIA?</title>
   <link rel="icon" type="image/png" href="../assets/img/logo-inclusia.png">
 
-  <!-- Tipografía para el logo -->
+  <!-- Tipografía global del sitio -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="../assets/css/variables.css" />
   <link rel="stylesheet" href="../assets/css/base.css" />
   <link rel="stylesheet" href="../assets/css/accessibility.css" />
   <link rel="stylesheet" href="../assets/css/animations.css" />
   <link rel="stylesheet" href="../assets/css/layout.css" />
+  <link rel="stylesheet" href="../assets/css/quienes-por-que-existe.css" />
 
 </head>
 
@@ -74,6 +75,9 @@
               <a href="personas-apoyando.html" role="menuitem" tabindex="-1">Personas apoyando INCLUSIA</a>
             </li>
             <li role="none">
+              <a href="nosotros.html" role="menuitem" tabindex="-1">Nosotros</a>
+            </li>
+            <li role="none">
               <a href="lo-que-queremos.html" role="menuitem" tabindex="-1">Lo que queremos cambiar</a>
             </li>
             <li role="none">
@@ -97,39 +101,139 @@
 
 <main>
 
-  <section class="section page-section">
-    <h1>¿Por qué existe INCLUSIA?</h1>
+  <section id="hero" class="section pqe-hero hidden" role="banner" aria-labelledby="pqe-hero-title">
+    <div class="pqe-hero-content">
+      <h1 id="pqe-hero-title">¿Por qué existe INCLUSIA?</h1>
+      <p class="pqe-subtitle">
+        Porque demasiadas personas han tenido que planear su vida alrededor de barreras
+        que nunca debieron existir.
+      </p>
+    </div>
+  </section>
 
+  <section class="section pqe-narrative hidden" role="region" aria-labelledby="historia-heading">
+    <div class="pqe-section-heading">
+      <p class="pqe-eyebrow">Una verdad incómoda</p>
+      <h2 id="historia-heading">INCLUSIA nace desde una realidad que muchas personas prefieren no ver</h2>
+    </div>
+
+    <div class="pqe-copy-flow">
+      <p>
+        Para muchas personas con discapacidad, salir de casa no es una rutina simple.
+        Es un cálculo constante: dónde hay escalones, qué rutas no tienen acceso, qué lugares
+        van a decir "sí somos incluyentes" y en la práctica no lo son.
+      </p>
+
+      <p>
+        El problema no empieza en el cuerpo. Empieza en decisiones de diseño que dejan por fuera,
+        en una infraestructura hecha para un solo tipo de persona y en una cultura que sigue tratando
+        la accesibilidad como un extra opcional.
+      </p>
+
+      <p>
+        Durante años, la respuesta fue cumplir por cumplir: una rampa imposible, un baño "adaptado"
+        que no funciona, un espacio público que obliga a depender de otros. Eso no es inclusión,
+        eso es sobrevivir al entorno.
+      </p>
+
+      <p>
+        INCLUSIA existe para cambiar esa lógica desde la raíz. No desde discursos correctos, sino desde
+        experiencias reales, observables y humanas. Si una persona no puede moverse con autonomía,
+        no estamos hablando de accesibilidad real.
+      </p>
+    </div>
+  </section>
+
+  <section class="section pqe-barriers hidden" role="region" aria-labelledby="barreras-heading">
+    <div class="pqe-section-heading">
+      <p class="pqe-eyebrow">Las barreras reales</p>
+      <h2 id="barreras-heading">No son casos aislados. Son escenas cotidianas.</h2>
+    </div>
+
+    <div class="barriers-grid" role="list" aria-label="Ejemplos de barreras de accesibilidad">
+      <div class="barrier-card" role="listitem">
+        <img src="../assets/img/faltadeinfraestructura.png" alt="Rampa mal diseñada que dificulta el acceso autónomo" loading="lazy" />
+        <div class="barrier-card-body">
+          <h3>Rampas mal diseñadas</h3>
+          <p>Pendientes peligrosas y accesos simbólicos que existen en papel, pero no en la vida real.</p>
+        </div>
+      </div>
+
+      <div class="barrier-card" role="listitem">
+        <img src="../assets/img/faltadeinfraestructura.png" alt="Andén con obstáculos y desniveles sin alternativas seguras" loading="lazy" />
+        <div class="barrier-card-body">
+          <h3>Andenes sin acceso</h3>
+          <p>Desniveles, huecos y cruces sin continuidad que convierten un trayecto corto en una barrera.</p>
+        </div>
+      </div>
+
+      <div class="barrier-card" role="listitem">
+        <img src="../assets/img/inclusion1.jpg" alt="Sistema de transporte público con limitaciones de accesibilidad" loading="lazy" />
+        <div class="barrier-card-body">
+          <h3>Transporte no adaptado</h3>
+          <p>Paradas, buses y estaciones que no permiten un uso autónomo y seguro para todas las personas.</p>
+        </div>
+      </div>
+
+      <div class="barrier-card" role="listitem">
+        <img src="../assets/img/inclusion1.jpg" alt="Baño supuestamente accesible sin medidas funcionales" loading="lazy" />
+        <div class="barrier-card-body">
+          <h3>Espacios y baños no funcionales</h3>
+          <p>Lugares públicos con diseños que impiden usar servicios básicos con seguridad y autonomía.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pqe-statement hidden" role="region" aria-labelledby="statement-heading">
+    <div class="pqe-section-heading">
+      <p class="pqe-eyebrow">Punto de partida</p>
+      <h2 id="statement-heading">El problema no es la discapacidad</h2>
+    </div>
+
+    <p class="statement-intro">
+      El obstáculo real aparece cuando el entorno se diseña sin pensar en todas las personas.
+    </p>
+
+    <ul class="statement-list" aria-label="Frases clave sobre barreras estructurales">
+      <li>No es la silla de ruedas. Es la escalera sin alternativa.</li>
+      <li>No es pedir apoyo. Es no tener información clara para decidir.</li>
+      <li>No es la diferencia. Es el diseño que sigue excluyendo.</li>
+    </ul>
+  </section>
+
+  <section class="section pqe-change hidden" role="region" aria-labelledby="cambiar-heading">
+    <div class="pqe-section-heading">
+      <p class="pqe-eyebrow">Lo que queremos cambiar</p>
+      <h2 id="cambiar-heading">Una nueva forma de mirar la accesibilidad</h2>
+    </div>
+
+    <div class="change-pillars" role="list" aria-label="Principios de cambio de INCLUSIA">
+      <div class="pillar" role="listitem">
+        <h3>Accesibilidad real</h3>
+        <p>Pasar de la norma mínima a experiencias que sí permitan autonomía.</p>
+      </div>
+      <div class="pillar" role="listitem">
+        <h3>Experiencia humana</h3>
+        <p>Diseñar desde la vida cotidiana de quienes enfrentan barreras todos los días.</p>
+      </div>
+      <div class="pillar" role="listitem">
+        <h3>Dignidad en lo cotidiano</h3>
+        <p>Entrar, moverse y participar sin pedir favores ni sentirse fuera de lugar.</p>
+      </div>
+      <div class="pillar" role="listitem">
+        <h3>Independencia posible</h3>
+        <p>Que las personas decidan cómo vivir su ciudad con libertad y confianza.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section pqe-close hidden" role="region" aria-labelledby="cierre-heading">
+    <h2 id="cierre-heading">INCLUSIA existe para que nadie tenga miedo de salir.</h2>
     <p>
-      INCLUSIA nace desde una realidad que muchas personas prefieren no ver:
-      el mundo no está diseñado para todos.
+      Queremos un mundo donde la accesibilidad sea parte natural del diseño y no una corrección tardía.
+      Un mundo en el que vivir plenamente no dependa de la suerte, sino de derechos que se cumplen.
     </p>
-
-    <p>
-      Las personas con discapacidad no enfrentan límites por su condición,
-      sino por calles inaccesibles, espacios sin empatía y decisiones tomadas
-      sin pensar en la diversidad humana.
-    </p>
-
-    <p>
-      Muchas veces la accesibilidad se reduce a cumplir una norma:
-      una rampa mal hecha, un ascensor que no funciona o soluciones
-      improvisadas que no garantizan independencia ni dignidad.
-    </p>
-
-    <p class="highlight">
-      INCLUSIA existe para cambiar esa lógica.
-      Para demostrar que la accesibilidad bien hecha no es un favor,
-      es un derecho.
-    </p>
-
-    <p>
-      Este proyecto nace con una visión clara:
-      que ninguna persona tenga miedo de salir,
-      de conocer el mundo o de vivir plenamente
-      por culpa de un entorno mal diseñado.
-    </p>
-
   </section>
 
 </main>
@@ -146,13 +250,12 @@
       </p>
     </div>
 
-    <nav class="footer-nav" aria-label="Navegación del pie de página">
-      <h4>Menú</h4>
-      <a href="../index.html#hero">Inicio</a>
-      <a href="../index.html#proposito">Propósito</a>
-      <a href="../index.html#donaciones">Donaciones</a>
-      <a href="../index.html#contacto">Contacto</a>
-    </nav>
+    <div class="footer-nav" role="group" aria-label="Acción de navegación">
+      <h4>Volver arriba</h4>
+      <div class="social-links-footer" role="list" aria-label="Volver al inicio de la página">
+        <a href="#" aria-label="Volver arriba" title="Volver arriba">↑</a>
+      </div>
+    </div>
 
     <div class="footer-contact">
       <h4>Contacto</h4>

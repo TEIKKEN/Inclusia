@@ -8,5 +8,6 @@ import "./accessibility.js";
 import "./floating-accessibility.js";
 import "./text-to-speech.js";
 import "./keyboard-navigation.js";
+import "./back-to-top.js";
 
 console.log("INCLUSIA main.js cargado 💙 - Con navegación por teclado avanzada");
