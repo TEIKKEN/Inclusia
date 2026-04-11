@@ -1,0 +1,344 @@
+.if-about-section {
+  --if-bg-0: var(--white);
+  --if-bg-1: var(--background);
+  --if-surface: color-mix(in srgb, var(--white) 88%, var(--background) 12%);
+  --if-border: color-mix(in srgb, var(--text) 16%, transparent);
+  --if-text: var(--text);
+  --if-muted: color-mix(in srgb, var(--text) 74%, transparent);
+  --if-soft-line: color-mix(in srgb, var(--text) 12%, transparent);
+  --if-soft-surface: color-mix(in srgb, var(--white) 76%, var(--background) 24%);
+  --if-blue: var(--blue);
+  --if-purple: var(--purple);
+  --if-radius-xl: 16px;
+  --if-radius-lg: 14px;
+  --if-shadow: 0 10px 26px rgba(31, 41, 51, 0.1);
+
+  position: relative;
+  isolation: isolate;
+  margin: clamp(1.5rem, 5vw, 3rem) auto;
+  color: var(--if-text);
+  font-family: "Sora", "Poppins", sans-serif;
+  background:
+    radial-gradient(1100px 520px at 8% -10%, color-mix(in srgb, var(--blue) 16%, transparent), transparent 55%),
+    radial-gradient(900px 420px at 92% 120%, color-mix(in srgb, var(--purple) 14%, transparent), transparent 58%),
+    linear-gradient(180deg, var(--if-bg-0) 0%, var(--if-bg-1) 100%);
+  border: 1px solid var(--if-border);
+  border-radius: var(--if-radius-xl);
+  overflow: clip;
+}
+
+.if-about-bg {
+  position: absolute;
+  inset: -15% -8%;
+  background:
+    radial-gradient(circle at 20% 25%, color-mix(in srgb, var(--blue) 16%, transparent), transparent 38%),
+    radial-gradient(circle at 80% 80%, color-mix(in srgb, var(--purple) 15%, transparent), transparent 42%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.if-about-shell {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 3vw, 2.6rem);
+}
+
+.if-about-header {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.if-about-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.if-about-kicker {
+  margin: 0 0 0.6rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  color: var(--purple);
+}
+
+.if-about-subtitle {
+  margin: 0;
+  color: var(--if-muted);
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: clamp(1rem, 2.1vw, 1.14rem);
+  line-height: 1.65;
+}
+
+.if-about-controls {
+  margin-top: clamp(1.2rem, 2.6vw, 1.8rem);
+  display: grid;
+  justify-items: center;
+}
+
+.if-about-tablist {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  width: min(380px, 100%);
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.24rem;
+  gap: 0.24rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--text) 12%, transparent);
+  background: color-mix(in srgb, var(--background) 86%, var(--text) 14%);
+}
+
+.if-about-indicator {
+  position: absolute;
+  z-index: 0;
+  top: 0.24rem;
+  left: 0;
+  bottom: 0.24rem;
+  width: calc(50% - 0.24rem);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--purple) 22%, var(--background));
+  box-shadow: none;
+}
+
+.if-about-tab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 42px;
+  position: relative;
+  z-index: 1;
+  border: 0;
+  background: transparent;
+  color: color-mix(in srgb, var(--text) 72%, transparent);
+  padding: 0.56rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.94rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: color 0.24s ease, background-color 0.24s ease, opacity 0.24s ease;
+}
+
+.if-about-tab:hover,
+.if-about-tab:focus-visible {
+  color: var(--text);
+}
+
+.if-about-tab:not(.is-active):hover,
+.if-about-tab:not(.is-active):focus-visible {
+  background: color-mix(in srgb, var(--text) 7%, transparent);
+}
+
+.if-about-tab.is-active:hover,
+.if-about-tab.is-active:focus-visible {
+  background: transparent;
+}
+
+.if-about-tab:focus-visible {
+  outline: 2px solid var(--purple);
+  outline-offset: 2px;
+}
+
+.if-about-tab.is-active {
+  color: var(--text);
+  font-weight: 600;
+  background: transparent;
+}
+
+.if-about-progress-wrap {
+  display: none !important;
+}
+
+.if-about-progress {
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--if-soft-line);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--background) 88%, var(--text) 12%);
+}
+
+.if-about-progress-fill {
+  display: block;
+  width: 45%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--if-blue), var(--if-purple));
+}
+
+.if-about-progress-text {
+  margin: 0.55rem 0 0;
+  font-size: 0.9rem;
+  color: var(--if-muted);
+}
+
+.if-about-panels {
+  position: relative;
+  margin-top: 1.2rem;
+}
+
+.if-about-panel {
+  border: 1px solid var(--if-soft-line);
+  border-radius: var(--if-radius-lg);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--white) 26%, transparent), transparent),
+    var(--if-surface);
+  padding: clamp(1rem, 2.2vw, 1.6rem);
+  box-shadow: var(--if-shadow);
+  transform-origin: center top;
+  will-change: transform, opacity, filter;
+}
+
+.if-about-panel-future {
+  background:
+    radial-gradient(120% 95% at 100% 0%, color-mix(in srgb, var(--blue) 12%, transparent), transparent 58%),
+    radial-gradient(95% 90% at 0% 100%, color-mix(in srgb, var(--purple) 14%, transparent), transparent 58%),
+    var(--if-surface);
+}
+
+.if-about-section.is-future .if-about-panel-future {
+  border-color: color-mix(in srgb, var(--purple) 44%, transparent);
+  box-shadow:
+    var(--if-shadow),
+    0 0 18px color-mix(in srgb, var(--blue) 16%, transparent),
+    0 0 34px color-mix(in srgb, var(--purple) 16%, transparent);
+}
+
+.if-about-panel-title {
+  margin: 0 0 0.9rem;
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  line-height: 1.2;
+}
+
+.if-about-panel p {
+  margin: 0 0 0.88rem;
+  color: var(--if-muted);
+  line-height: 1.68;
+}
+
+.if-about-list-wrap {
+  margin: 1rem 0;
+}
+
+.if-about-list-title {
+  color: var(--if-text);
+  margin-bottom: 0.55rem;
+  font-weight: 600;
+}
+
+.if-about-list {
+  margin: 0;
+  padding: 0 0 0 1.1rem;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.if-about-list li {
+  color: var(--if-muted);
+  transition: color 0.22s ease, transform 0.22s ease;
+}
+
+.if-about-list li:hover {
+  color: var(--if-text);
+  transform: translateX(3px);
+}
+
+.if-about-note {
+  margin: 0.3rem 0 0;
+  padding: 0.85rem 1rem;
+  border-left: 3px solid color-mix(in srgb, var(--blue) 72%, transparent);
+  border-radius: 0 12px 12px 0;
+  background: color-mix(in srgb, var(--blue) 10%, var(--background));
+  color: var(--if-text);
+  font-weight: 500;
+  line-height: 1.58;
+}
+
+.if-about-note-future {
+  border-left-color: color-mix(in srgb, var(--purple) 78%, transparent);
+  background: color-mix(in srgb, var(--purple) 12%, var(--background));
+}
+
+body.theme-dark .if-about-section {
+  --if-bg-0: color-mix(in srgb, var(--background) 88%, #1a1a1a 12%);
+  --if-bg-1: color-mix(in srgb, var(--background) 94%, #000000 6%);
+  --if-surface: color-mix(in srgb, var(--background) 82%, #2a2a2a 18%);
+  --if-border: color-mix(in srgb, var(--text) 22%, transparent);
+  --if-muted: color-mix(in srgb, var(--text) 84%, transparent);
+  --if-soft-line: color-mix(in srgb, var(--text) 20%, transparent);
+  --if-soft-surface: color-mix(in srgb, var(--background) 70%, #2a2a2a 30%);
+  --if-shadow: 0 12px 28px rgba(0, 0, 0, 0.34);
+}
+
+body.theme-high-contrast .if-about-section {
+  --if-bg-0: #ffffff;
+  --if-bg-1: #ffffff;
+  --if-surface: #ffffff;
+  --if-border: #000000;
+  --if-text: #000000;
+  --if-muted: #000000;
+  --if-soft-line: #000000;
+  --if-soft-surface: #ffffff;
+  --if-shadow: none;
+}
+
+body.theme-high-contrast .if-about-section,
+body.theme-high-contrast .if-about-panel,
+body.theme-high-contrast .if-about-tablist,
+body.theme-high-contrast .if-about-progress {
+  box-shadow: none;
+  border-width: 2px;
+}
+
+body.theme-high-contrast .if-about-indicator {
+  background: #000000;
+}
+
+body.theme-high-contrast .if-about-tab.is-active {
+  color: #ffffff;
+}
+
+@media (max-width: 768px) {
+  .if-about-section {
+    border-radius: 22px;
+  }
+
+  .if-about-shell {
+    padding: 1rem;
+  }
+
+  .if-about-tab {
+    font-size: 0.9rem;
+    padding: 0.66rem 0.8rem;
+  }
+
+  .if-about-note {
+    padding: 0.78rem 0.86rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .if-about-section *,
+  .if-about-section *::before,
+  .if-about-section *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

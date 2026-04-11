@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Hoy y futuro | INCLUSIA</title>
+	<link rel="icon" type="image/png" href="../assets/img/logo-inclusia.png" />
+
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Sora:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+	<link rel="stylesheet" href="../assets/css/variables.css" />
+	<link rel="stylesheet" href="../assets/css/base.css" />
+	<link rel="stylesheet" href="../assets/css/accessibility.css" />
+	<link rel="stylesheet" href="../assets/css/animations.css" />
+	<link rel="stylesheet" href="../assets/css/layout.css" />
+	<link rel="stylesheet" href="../assets/css/quienes-futuro.css" />
+</head>
+
+<body>
+	<a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+	<a href="#nav-menu" class="skip-link">Saltar a la navegacion</a>
+	<a href="#hoy-futuro" class="skip-link">Saltar a hoy y futuro</a>
+
+	<nav class="navbar" role="navigation" aria-label="Navegacion principal">
+		<div class="nav-container">
+			<div class="brand">
+				<a href="../index.html" aria-label="INCLUSIA - Ir al inicio">
+					<img src="../assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" />
+					<span>INCLUSIA</span>
+				</a>
+			</div>
+
+			<button class="hamburger-btn"
+							id="hamburger-menu"
+							aria-label="Abrir menu de navegacion"
+							aria-expanded="false"
+							aria-controls="nav-menu">
+				<span class="hamburger-line" aria-hidden="true"></span>
+				<span class="hamburger-line" aria-hidden="true"></span>
+				<span class="hamburger-line" aria-hidden="true"></span>
+			</button>
+
+			<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+			<div class="nav-right" id="nav-right">
+				<ul class="nav-links" id="nav-menu" role="menubar">
+					<li role="none"><a href="../index.html" role="menuitem">Inicio</a></li>
+
+					<li class="dropdown" role="none">
+						<button class="dropdown-toggle"
+										role="menuitem"
+										aria-haspopup="true"
+										aria-expanded="false"
+										aria-controls="submenu-quienes-somos"
+										tabindex="0">
+							Quienes somos
+							<svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+								<polyline points="2 4 6 8 10 4"></polyline>
+							</svg>
+						</button>
+
+						<ul class="dropdown-menu"
+								id="submenu-quienes-somos"
+								role="menu"
+								aria-label="Submenu de Quienes somos">
+							<li role="none">
+								<a href="por-que-existe.html" role="menuitem" tabindex="-1">Por que existe INCLUSIA?</a>
+							</li>
+							<li role="none">
+								<a href="personas-apoyando.html" role="menuitem" tabindex="-1">Personas apoyando INCLUSIA</a>
+							</li>
+							<li role="none">
+								<a href="nosotros.html" role="menuitem" tabindex="-1">Nosotros</a>
+							</li>
+							<li role="none">
+								<a href="lo-que-queremos.html" role="menuitem" tabindex="-1">Lo que queremos cambiar</a>
+							</li>
+							<li role="none">
+								<a href="futuro.html" role="menuitem" tabindex="-1" aria-current="page">Hoy y futuro</a>
+							</li>
+						</ul>
+					</li>
+
+					<li role="none"><a href="../index.html#proposito" role="menuitem">Proposito</a></li>
+					<li role="none"><a href="../index.html#donaciones" role="menuitem">Donaciones</a></li>
+					<li role="none"><a href="../index.html#contacto" role="menuitem">Contactanos</a></li>
+				</ul>
+
+				<div class="menu-content" role="complementary" aria-label="Eslogan de INCLUSIA">
+					<p class="menu-phrase">INCLUSION no es caridad, es dignidad.</p>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<main id="main-content" role="main">
+		<section id="hoy-futuro" class="section if-about-section" aria-labelledby="if-about-title">
+			<div class="if-about-bg" aria-hidden="true"></div>
+
+			<div class="if-about-shell">
+				<header class="if-about-header">
+					<h1 id="if-about-title" class="if-about-visually-hidden">Quienes somos</h1>
+					<p class="if-about-kicker">INCLUSIA</p>
+					<p id="if-about-subtitle" class="if-about-subtitle">Construyendo un mundo accesible, hoy y para el futuro</p>
+				</header>
+
+				<div class="if-about-controls">
+					<div class="if-about-tablist" role="tablist" aria-label="Cambiar entre Hoy y Futuro">
+						<span class="if-about-indicator" aria-hidden="true"></span>
+
+						<button
+							type="button"
+							id="if-tab-hoy"
+							class="if-about-tab is-active"
+							role="tab"
+							aria-selected="true"
+							aria-controls="if-panel-hoy"
+							tabindex="0"
+							data-tab="hoy"
+						>
+							Hoy
+						</button>
+
+						<button
+							type="button"
+							id="if-tab-futuro"
+							class="if-about-tab"
+							role="tab"
+							aria-selected="false"
+							aria-controls="if-panel-futuro"
+							tabindex="-1"
+							data-tab="futuro"
+						>
+							Futuro
+						</button>
+					</div>
+
+					<div class="if-about-progress-wrap">
+						<div
+							class="if-about-progress"
+							role="progressbar"
+							aria-label="Progreso de la vision de INCLUSIA"
+							aria-valuemin="0"
+							aria-valuemax="100"
+							aria-valuenow="45"
+						>
+							<span class="if-about-progress-fill"></span>
+						</div>
+						<p class="if-about-progress-text" aria-live="polite">Enfoque activo: Hoy</p>
+					</div>
+				</div>
+
+				<div class="if-about-panels">
+					<div
+						id="if-panel-hoy"
+						class="if-about-panel is-visible"
+						role="tabpanel"
+						aria-labelledby="if-tab-hoy"
+						tabindex="0"
+						data-panel="hoy"
+					>
+						<h2 class="if-about-panel-title" data-anim>Inclusia hoy</h2>
+						<p data-anim>
+							Inclusia nace como una iniciativa enfocada en resolver una de las mayores barreras invisibles en la sociedad: la accesibilidad.
+						</p>
+						<p data-anim>
+							Fundada por Camilo Botero, una persona con discapacidad que ha vivido de primera mano las limitaciones del entorno.
+						</p>
+
+						<div class="if-about-list-wrap" data-anim>
+							<p class="if-about-list-title">Actualmente estamos desarrollando soluciones enfocadas en:</p>
+							<ul class="if-about-list" aria-label="Soluciones actuales de INCLUSIA">
+								<li>Evaluacion de accesibilidad en espacios turisticos</li>
+								<li>Creacion de estandares accesibles</li>
+								<li>Generacion de conciencia social</li>
+							</ul>
+						</div>
+
+						<p data-anim>
+							Nuestro objetivo hoy es sentar las bases de un cambio real en Colombia.
+						</p>
+
+						<p class="if-about-note" data-anim>
+							Hoy construimos confianza con acciones concretas: medir, mejorar y demostrar que la accesibilidad si puede ser estandar.
+						</p>
+					</div>
+
+					<div
+						id="if-panel-futuro"
+						class="if-about-panel if-about-panel-future"
+						role="tabpanel"
+						aria-labelledby="if-tab-futuro"
+						tabindex="0"
+						data-panel="futuro"
+						hidden
+					>
+						<h2 class="if-about-panel-title" data-anim>Inclusia futuro</h2>
+						<p data-anim>
+							Visualizamos un mundo donde la accesibilidad no sea una excepcion, sino la norma.
+						</p>
+						<p data-anim>
+							Inclusia se convertira en una plataforma tecnologica que conecte personas con espacios realmente accesibles.
+						</p>
+
+						<div class="if-about-list-wrap" data-anim>
+							<p class="if-about-list-title">Proyectos futuros:</p>
+							<ul class="if-about-list" aria-label="Proyectos futuros de INCLUSIA">
+								<li>Soluciones tecnológicas para la accesibilidad, la tecnologia para personas con discapacidad es un gran aliado que hay que explorar a fondo</li>
+								<li>defensa por derechos de discapacidad</li>
+								<li>Expansion y fomentacion de inclusion a nivel colombiano</li>
+							</ul>
+						</div>
+
+						<p data-anim>
+							Queremos transformar ciudades completas en entornos inclusivos.
+						</p>
+
+						<p class="if-about-note if-about-note-future" data-anim>
+							Nuestro norte es claro: tecnologia con impacto humano para que la inclusion deje de ser promesa y se vuelva infraestructura diaria.
+						</p>
+					  </div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<footer class="footer">
+		<div class="footer-container">
+
+			<div class="footer-brand">
+				<img src="../assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" />
+				<h3>INCLUSIA</h3>
+				<p>
+					Iniciativa por la inclusion, la accesibilidad y la independencia
+					de las personas con discapacidad.
+				</p>
+			</div>
+
+			<div class="footer-nav" role="group" aria-label="Accion de navegacion">
+				<h4>Volver arriba</h4>
+				<div class="social-links-footer" role="list" aria-label="Volver al inicio de la pagina">
+					<a href="#" aria-label="Volver arriba" title="Volver arriba">↑</a>
+				</div>
+			</div>
+
+			<div class="footer-contact">
+				<h4>Contacto</h4>
+				<p>inclusia.contacto@gmail.com</p>
+				<p>Colombia - Proyecto en construccion</p>
+			</div>
+
+			<div class="footer-socials">
+				<h4>Siguenos</h4>
+				<div class="social-links-footer">
+					<a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+						<img src="../assets/img/facebook-brands-solid-full.svg" alt="Facebook" width="18" height="18" />
+					</a>
+					<a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+						<img src="../assets/img/instagram-brands-solid-full.svg" alt="Instagram" width="18" height="18" />
+					</a>
+					<a href="https://x.com" target="_blank" rel="noopener noreferrer" aria-label="X">
+						<img src="../assets/img/x-solid-full.svg" alt="X" width="18" height="18" />
+					</a>
+					<a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+						<img src="../assets/img/tiktok-brands-solid-full.svg" alt="TikTok" width="18" height="18" />
+					</a>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="footer-bottom">
+			<p>2026 INCLUSIA · Inclusion y Accesibilidad</p>
+		</div>
+	</footer>
+
+	<div class="floating-accessibility-wrapper">
+		<button
+			id="floating-accessibility-btn"
+			class="floating-accessibility-btn"
+			aria-haspopup="true"
+			aria-expanded="false"
+			aria-label="Opciones de accesibilidad visual"
+			title="Opciones de accesibilidad">
+			<img src="../assets/img/logo-accesibilidad-web-azul.png" alt="Accesibilidad" width="54" height="54" />
+		</button>
+
+		<ul id="floating-accessibility-menu" class="floating-accessibility-menu" hidden>
+			<li data-theme="default">
+				<button>Predeterminado</button>
+			</li>
+			<li data-theme="soft">
+				<button>Colores suaves</button>
+			</li>
+			<li data-theme="dark">
+				<button>Modo oscuro</button>
+			</li>
+			<li data-theme="colorblind">
+				<button>Daltonismo</button>
+			</li>
+			<li data-theme="high-contrast">
+				<button>Alto Contraste</button>
+			</li>
+			<li class="tts-separator"></li>
+			<li class="tts-button-container">
+				<button
+					id="toggle-text-to-speech-btn"
+					aria-label="Leer pagina en voz alta"
+					aria-pressed="false"
+					title="Leer pagina en voz alta">
+					Leer pagina
+				</button>
+			</li>
+		</ul>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+	<script src="../assets/JS/quienes-futuro.js" defer></script>
+	<script type="module" src="../assets/JS/main.js"></script>
+</body>
+</html>
