@@ -513,10 +513,10 @@ body.theme-dark .hero-carousel__indicator[aria-selected="true"] {
   background: rgba(155, 140, 255, 0.26);
 }
 
-/* Fondos de slides en oscuro */
-body.theme-dark .hero-carousel__slide:nth-child(1) { --slide-bg: linear-gradient(135deg, #1a1a2e, #16213e); }
-body.theme-dark .hero-carousel__slide:nth-child(2) { --slide-bg: linear-gradient(135deg, #0d2416, #0a1f1e); }
-body.theme-dark .hero-carousel__slide:nth-child(3) { --slide-bg: linear-gradient(135deg, #2a0e1e, #1a0d2e); }
+/* Fondo uniforme en oscuro para evitar tintes de color en las imagenes */
+body.theme-dark .hero-carousel__slide {
+  --slide-bg: #121212;
+}
 
 body.theme-dark .hero-carousel-intro h1 { color: var(--purple); }
 body.theme-dark .hero-carousel-intro p  { color: #e6e6e6; }

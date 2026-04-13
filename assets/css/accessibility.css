@@ -30,7 +30,19 @@ body.theme-dark h2,
 body.theme-dark h3,
 body.theme-dark h4,
 body.theme-dark h5,
-body.theme-dark h6,
+body.theme-dark h6 {
+  color: var(--purple);
+}
+
+body.theme-dark .footer h1,
+body.theme-dark .footer h2,
+body.theme-dark .footer h3,
+body.theme-dark .footer h4,
+body.theme-dark .footer h5,
+body.theme-dark .footer h6 {
+  color: #ffffff;
+}
+
 body.theme-dark p,
 body.theme-dark li,
 body.theme-dark a,
