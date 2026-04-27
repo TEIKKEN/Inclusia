@@ -1,0 +1,344 @@
+﻿INCLUSIA
+Propuesta de reestructuración de textos para página web
+Versión estratégica para comunicar propósito, confianza, donaciones y alianzas
+
+
+Objetivo
+Este documento no intenta llenar espacios vacíos con frases bonitas. Reorganiza la narrativa de INCLUSIA para que la página explique con claridad qué problema atiende, cómo trabaja, por qué merece apoyo y qué pueden hacer donantes, aliados e instituciones para sumarse.
+	
+
+Preparado con base en la información compartida sobre la organización y las capturas actuales del sitio web.
+________________
+
+
+1. Diagnóstico crítico de la página actual
+La página ya tiene una identidad visual coherente, pero el texto todavía no vende bien la idea. El principal problema no es estético: es narrativo.
+Punto evaluado
+	Lectura crítica
+	Lo que sí funciona
+	La paleta visual es amable, moderna y coherente con inclusión. La página ya comunica un tema humano y evita, en general, caer en un tono agresivo o lastimero.
+	El problema principal
+	Muchos textos son genéricos. Podrían servir para casi cualquier ONG. Falta una tesis clara: qué barrera concreta quieren cambiar, cómo lo harán y por qué alguien debería confiar en ustedes.
+	Riesgo frente a donantes
+	Si el texto habla mucho de propósito pero poco de acciones, uso de recursos, transparencia y líneas de trabajo, una persona puede sentir empatía pero no donar.
+	Riesgo frente a organizaciones
+	Las empresas, universidades o instituciones no solo necesitan emoción; necesitan entender capacidad, método, seriedad, posibles formas de alianza y beneficios sociales medibles.
+	Riesgo de sobrepromesa
+	Algunas frases como 'plataforma tecnológica' o 'transformar ciudades completas' suenan potentes, pero si aún no existe un producto o programa estructurado, pueden parecer promesas demasiado grandes.
+	Riesgo con viajes internacionales
+	No conviene comunicarlo como 'viajar a otros países'. Para donantes puede sonar a gasto difícil de justificar. Debe expresarse como cooperación, intercambio técnico y misiones de aprendizaje con resultados aplicables a Colombia.
+	
+
+Tesis estratégica de comunicación
+INCLUSIA debe comunicar tres cosas en este orden: 1) existe una barrera real que afecta vidas concretas; 2) la organización tiene un método serio para documentarla y transformarla; 3) cualquier persona, empresa o institución puede participar en esa transformación.
+	
+
+2. Enfoque editorial recomendado
+* Hablar desde la dignidad, no desde la lástima.
+* Mostrar la discapacidad como una realidad humana y social, no como una tragedia individual.
+* Presentar a INCLUSIA como una organización que investiga, comunica, propone y conecta actores; no como una entidad que promete resolverlo todo sola.
+* Evitar frases demasiado abstractas como 'generar impacto positivo' sin explicar cómo.
+* Usar lenguaje claro para donantes: qué se financia, qué se hará con el apoyo y qué avances se podrán comunicar.
+* Usar lenguaje claro para aliados institucionales: qué tipo de cooperación se busca y qué problemas concretos se pueden trabajar juntos.
+Precisión estratégica
+Un ajuste clave: cuando hablen con empresas o instituciones, es mejor decir 'financiar, patrocinar, apoyar o ser aliados' que 'invertir', porque en una entidad sin ánimo de lucro la palabra inversión puede generar la idea equivocada de retorno económico.
+	
+
+3. Estructura recomendada del sitio
+La estructura actual se puede conservar parcialmente, pero conviene ordenar mejor las páginas para que el visitante avance de forma lógica: problema, identidad, acción y apoyo.
+Página o sección
+	Función dentro de la narrativa
+	Inicio
+	Impacto rápido: qué problema atienden, qué hacen y cómo apoyar.
+	Quiénes somos
+	Identidad, origen, propósito, enfoque y valores.
+	Por qué existe
+	Narrativa humana del problema: barreras, ejemplos y punto de vista.
+	Qué hacemos
+	Líneas de acción concretas: investigación, campañas, incidencia, transporte, educación, cooperación y tecnología.
+	Hoy y futuro
+	Separar lo que ya están construyendo de lo que quieren desarrollar. Esto evita sobreprometer.
+	Donaciones / Apóyanos
+	Explicar por qué donar, en qué se usa el apoyo, formas de apoyar y transparencia.
+	Contáctanos
+	Formulario claro para donantes, voluntarios, aliados, medios e instituciones.
+	
+
+4. Textos propuestos para la página web
+A continuación están los textos reestructurados, listos para adaptar a la página. Dejé campos entre corchetes cuando falta información real y no conviene inventarla.
+4.1 Inicio
+TEXTO RECOMENDADO
+Hero principal
+Movilidad accesible para que nadie tenga que vivir limitado por una barrera.
+INCLUSIA trabaja para visibilizar, estudiar y transformar las barreras que enfrentan las personas con discapacidad física en Colombia. Convertimos experiencias reales en evidencia, campañas, alianzas y propuestas para impulsar entornos más accesibles, seguros y dignos.
+Botones sugeridos:
+- Apoyar INCLUSIA
+- Conocer qué hacemos
+SECCIÓN SUGERIDA
+Bloque de propósito breve
+La accesibilidad no es un favor. Es una condición para vivir con dignidad.
+Para muchas personas con discapacidad física, salir de casa, estudiar, movilizarse o entrar a un edificio todavía exige planear alrededor de obstáculos que no deberían existir. INCLUSIA nace para cambiar esa realidad desde la conciencia social, la investigación aplicada y la construcción de soluciones con aliados.
+VERSIÓN CLARA
+Bloque: qué hacemos
+Trabajamos en cuatro frentes:
+1. Escuchar y documentar barreras reales.
+Recogemos experiencias, testimonios y diagnósticos sobre movilidad, transporte, educación, espacio público y accesibilidad.
+2. Convertir la experiencia en evidencia.
+Realizamos estudios, análisis y recomendaciones que permitan comprender el problema más allá de casos aislados.
+3. Comunicar para cambiar la cultura.
+Creamos campañas y contenidos que ayuden a que la sociedad entienda la accesibilidad como un derecho, no como una excepción.
+4. Conectar actores para impulsar soluciones.
+Buscamos alianzas con instituciones, empresas, universidades, organizaciones y comunidades para proponer cambios viables y sostenibles.
+PARA CONVERSIÓN
+Bloque de donación en inicio
+Tu apoyo ayuda a transformar barreras invisibles en cambios visibles.
+Con una donación, alianza o aporte profesional puedes ayudarnos a financiar diagnósticos, campañas de sensibilización, encuentros comunitarios, producción de contenidos, investigación aplicada y propuestas para mejorar la accesibilidad en Colombia.
+Botones sugeridos:
+- Quiero donar
+- Quiero ser aliado
+- Quiero sumarme como voluntario
+4.2 Quiénes somos
+H1 SUGERIDO
+Título de página
+Somos una corporación que trabaja para que la accesibilidad deje de ser una excepción.
+CUERPO RECOMENDADO
+Texto principal
+INCLUSIA es una organización sin ánimo de lucro [registrada / en proceso de constitución] que promueve la inclusión, la accesibilidad y la movilidad digna de las personas con discapacidad física en Colombia.
+Nacimos de una pregunta simple, pero urgente: ¿por qué tantas personas deben planear su vida alrededor de escaleras, andenes rotos, rutas inaccesibles, baños mal diseñados o espacios que nunca las tuvieron en cuenta?
+Trabajamos desde la experiencia real de las personas con discapacidad física, pero también desde el análisis técnico, la comunicación estratégica y el diálogo con instituciones. No buscamos hablar por las personas; buscamos crear espacios para que sus experiencias orienten decisiones públicas, privadas y comunitarias.
+Nuestro propósito es ayudar a que Colombia avance hacia entornos donde moverse, estudiar, participar y vivir con autonomía no dependa de la suerte, sino de derechos que se cumplen.
+RESUMEN BREVE
+Versión corta para tarjetas o resumen
+INCLUSIA visibiliza barreras, genera conciencia, produce conocimiento y conecta aliados para mejorar la accesibilidad y la movilidad de las personas con discapacidad física en Colombia.
+BLOQUE OPCIONAL
+Valores institucionales
+Dignidad: no trabajamos desde la lástima, sino desde el reconocimiento pleno de derechos.
+Accesibilidad real: no nos basta que algo exista en el papel; debe funcionar en la vida cotidiana.
+Evidencia: queremos que las decisiones se basen en experiencias, datos, diagnósticos y análisis serios.
+Autonomía: defendemos entornos que permitan decidir, moverse y participar sin depender siempre de otros.
+Cooperación: el cambio requiere comunidad, instituciones, empresas, universidades y ciudadanía trabajando juntas.
+4.3 Por qué existe INCLUSIA
+H1 Y BAJADA
+Hero de la página
+Porque todavía hay personas que tienen que calcular si el mundo les va a permitir salir.
+Para muchas personas con discapacidad física, salir de casa no empieza con elegir un destino. Empieza con una pregunta: ¿habrá una ruta accesible?, ¿podré entrar?, ¿habrá baño adecuado?, ¿alguien pensó en mí cuando diseñó este lugar?
+CUERPO RECOMENDADO
+Texto narrativo principal
+El problema no empieza en el cuerpo. Empieza cuando el entorno se diseña como si todas las personas se movieran igual.
+Una rampa demasiado inclinada, un andén roto, una estación sin acceso, una universidad con rutas internas imposibles o un baño que solo cumple en apariencia no son detalles menores. Son decisiones que pueden definir si una persona estudia, trabaja, participa, se desplaza o se queda por fuera.
+INCLUSIA existe para mirar esas barreras de frente. Queremos pasar de la queja a la transformación: documentar lo que ocurre, comunicarlo con claridad, proponer mejoras y conectar a quienes pueden hacerlas posibles.
+CARDS
+Tarjetas: barreras reales
+Rampa que existe, pero no sirve.
+Cuando una solución está mal diseñada, deja de ser accesibilidad y se convierte en un obstáculo con apariencia de inclusión.
+Andenes sin continuidad.
+Un trayecto puede volverse imposible cuando cada cuadra obliga a improvisar, pedir ayuda o tomar riesgos.
+Transporte que no conecta.
+Sin rutas, paraderos, estaciones o vehículos accesibles, estudiar y trabajar se vuelve más difícil de lo que debería.
+Espacios y baños no funcionales.
+No basta con tener un símbolo de accesibilidad. El espacio debe poder usarse con seguridad, autonomía y dignidad.
+FRASES DE IMPACTO
+Bloque de postura
+No es la silla de ruedas. Es la escalera sin alternativa.
+No es pedir apoyo. Es no tener información clara para decidir.
+No es la diferencia. Es el diseño que sigue excluyendo.
+Nota crítica
+Este bloque está bien encaminado en la página actual. Lo mantendría, pero con frases más precisas y menos repetición. La idea fuerte debe ser: el problema no es la persona, es el entorno que no fue pensado para todas las formas de movilidad.
+	
+
+4.4 Qué hacemos
+H1 Y BAJADA
+Hero de página
+De la experiencia real a la acción concreta.
+INCLUSIA trabaja para que las barreras que viven las personas con discapacidad física no se queden en anécdotas aisladas. Las escuchamos, las documentamos, las comunicamos y las convertimos en propuestas, campañas y alianzas.
+LÍNEAS ESTRATÉGICAS
+Líneas de acción
+1. Investigación y diagnóstico de accesibilidad.
+Realizamos estudios, recorridos, análisis y ejercicios de escucha para identificar barreras en movilidad, transporte, educación, espacio público e infraestructura.
+2. Campañas de conciencia social.
+Creamos contenidos, campañas digitales y acciones pedagógicas para que más personas entiendan la accesibilidad como un derecho y una responsabilidad colectiva.
+3. Incidencia y propuestas institucionales.
+Construimos recomendaciones y propuestas para dialogar con autoridades, universidades, empresas, operadores de transporte y entidades que puedan mejorar condiciones reales de accesibilidad.
+4. Movilidad y acceso a educación superior.
+Promovemos iniciativas que faciliten el desplazamiento de personas con discapacidad física hacia instituciones educativas, especialmente mediante rutas, información accesible, alianzas y mejoras en el entorno.
+5. Cooperación y aprendizaje internacional.
+Buscamos aprender de países, ciudades y organizaciones con avances en accesibilidad. No se trata de viajar por viajar, sino de identificar buenas prácticas, crear enlaces y adaptar soluciones útiles para Colombia.
+6. Herramientas digitales y tecnología con propósito.
+Exploramos el uso de plataformas, mapas, contenidos y recursos digitales que ayuden a conectar información, experiencias y soluciones de accesibilidad.
+Límite sano del discurso
+Recomendación de realismo: no prometan operar rutas, construir infraestructura o reemplazar funciones del Estado. La narrativa más sólida es que INCLUSIA identifica necesidades, genera evidencia, impulsa alianzas y acompaña soluciones viables.
+	
+
+4.5 INCLUSIA hoy y futuro
+H1 SUGERIDO
+Título general
+Construyendo un mundo accesible, hoy y para el futuro.
+PESTAÑA HOY
+INCLUSIA hoy
+Hoy estamos construyendo las bases de una organización seria, humana y útil para Colombia.
+Nuestra etapa actual se concentra en escuchar a personas con discapacidad física, identificar barreras reales, fortalecer nuestra presencia digital, estructurar campañas de sensibilización, reunir aliados y preparar estudios que puedan convertirse en propuestas concretas.
+Actualmente enfocamos nuestros esfuerzos en:
+- Crear comunidad alrededor de la accesibilidad.
+- Recoger experiencias y problemáticas reales.
+- Desarrollar contenidos educativos y campañas.
+- Diseñar metodologías para diagnósticos de movilidad y accesibilidad.
+- Buscar alianzas con universidades, organizaciones, empresas e instituciones.
+- Consolidar canales para recibir apoyo, voluntariado y cooperación.
+Hoy construimos confianza con acciones concretas: escuchar, medir, comunicar y proponer.
+PESTAÑA FUTURO
+INCLUSIA futuro
+Visualizamos una Colombia donde la accesibilidad no sea una excepción, sino una condición básica del diseño urbano, institucional y social.
+A futuro queremos consolidar a INCLUSIA como una plataforma de conocimiento, incidencia y cooperación para mejorar la movilidad de las personas con discapacidad física en el país.
+Nuestros proyectos futuros incluyen:
+- Crear estudios y diagnósticos periódicos sobre accesibilidad.
+- Impulsar pilotos de movilidad accesible para educación superior.
+- Desarrollar campañas nacionales de sensibilización.
+- Construir alianzas con instituciones públicas, privadas y académicas.
+- Explorar herramientas tecnológicas para mapear, informar y mejorar experiencias de accesibilidad.
+- Participar en intercambios técnicos internacionales para traer aprendizajes aplicables a Colombia.
+Nuestro norte es claro: que la inclusión deje de ser una promesa y se convierta en infraestructura, cultura y decisiones cotidianas.
+4.6 Comunidad / Personas apoyando INCLUSIA
+NOTA CRÍTICA
+Nuevo enfoque de la sección
+La sección actual titulada 'Personas apoyando INCLUSIA' puede funcionar, pero necesita más intención. No debería sonar como un carrusel decorativo; debe mostrar que el cambio necesita comunidad.
+CUERPO RECOMENDADO
+Texto recomendado
+Una causa no avanza sola. La accesibilidad se construye cuando se encuentran quienes viven las barreras, quienes pueden estudiarlas, quienes tienen capacidad de decisión y quienes deciden apoyar.
+En INCLUSIA queremos reunir a personas con discapacidad física, familias, profesionales, estudiantes, universidades, empresas, instituciones, voluntarios y donantes alrededor de un propósito común: hacer que moverse, estudiar y participar sea más fácil, seguro y digno.
+Cada apoyo suma. Una historia ayuda a visibilizar. Un estudio ayuda a proponer. Una donación ayuda a sostener. Una alianza ayuda a transformar.
+CARDS SUGERIDAS
+Tarjetas sugeridas para esta sección
+Personas con discapacidad física.
+Sus experiencias orientan nuestro trabajo y nos recuerdan que la accesibilidad debe funcionar en la vida real.
+Familias y cuidadores.
+Aportan una mirada cercana sobre las barreras cotidianas y las redes de apoyo necesarias.
+Profesionales y voluntarios.
+Diseñadores, abogados, comunicadores, investigadores, arquitectos, estudiantes y especialistas pueden aportar conocimiento técnico y humano.
+Universidades.
+Son aliadas clave para investigación, educación, voluntariado, diagnósticos y pilotos de movilidad accesible.
+Empresas.
+Pueden apoyar campañas, financiar proyectos, mejorar sus propios espacios y participar en iniciativas de responsabilidad social.
+Instituciones públicas.
+Son actores esenciales para convertir evidencia y propuestas en cambios de ciudad, transporte, educación y espacio público.
+4.7 Donaciones / Apoyar INCLUSIA
+H1 Y BAJADA
+Hero de donaciones
+Ayúdanos a convertir barreras invisibles en cambios visibles.
+Tu apoyo permite que INCLUSIA escuche, investigue, comunique y proponga soluciones para mejorar la accesibilidad y la movilidad de las personas con discapacidad física en Colombia.
+CUERPO RECOMENDADO
+Texto persuasivo principal
+Una donación a INCLUSIA no es solo un aporte económico. Es una forma de financiar conciencia, evidencia y acción.
+Con tu apoyo podemos desarrollar campañas de sensibilización, recoger testimonios, realizar diagnósticos, producir contenidos educativos, organizar espacios de conversación, construir propuestas y buscar alianzas que acerquen a Colombia a entornos más accesibles.
+Queremos que cada peso, cada alianza y cada hora de voluntariado tenga un propósito claro: ayudar a que la accesibilidad deje de depender de la buena voluntad y empiece a convertirse en una realidad cotidiana.
+OPCIONES
+Formas de apoyar
+Puedes apoyar de varias maneras:
+Donación económica.
+Aporta recursos para campañas, diagnósticos, contenidos, encuentros, investigación y gestión de alianzas.
+Alianza institucional.
+Si representas una universidad, empresa, organización o entidad pública, podemos explorar proyectos conjuntos.
+Voluntariado profesional.
+Puedes aportar tiempo y conocimiento en comunicación, derecho, diseño, arquitectura, investigación, tecnología, gestión social o producción audiovisual.
+Patrocinio de campañas.
+Tu marca u organización puede apoyar campañas de concientización sobre movilidad, accesibilidad e inclusión.
+Testimonios y experiencias.
+Si has vivido barreras de accesibilidad, tu historia puede ayudar a visibilizar problemas que muchas veces pasan desapercibidos.
+TRANSPARENCIA
+Bloque de transparencia
+Apoyar una causa también exige confianza.
+Por eso, INCLUSIA debe comprometerse a comunicar con claridad en qué se usan los recursos, qué actividades fueron posibles gracias al apoyo recibido y qué aprendizajes o avances se lograron. La transparencia no debe ser un detalle administrativo; debe ser parte de la identidad de la organización.
+ALIADOS
+Para empresas y organizaciones
+No buscamos aliados que solo quieran aparecer junto a una causa. Buscamos organizaciones que quieran participar en soluciones.
+Si tu empresa, universidad o institución quiere apoyar proyectos de accesibilidad, campañas de sensibilización, diagnósticos o iniciativas de movilidad inclusiva, podemos construir una ruta de trabajo conjunta con objetivos claros, alcance definido y resultados comunicables.
+CTA
+Botones sugeridos
+- Hacer una donación
+- Quiero ser aliado
+- Quiero aportar como voluntario
+- Quiero compartir una experiencia
+4.8 Contáctanos
+H1 Y BAJADA
+Texto principal
+Hablemos de cómo construir accesibilidad.
+Escríbenos si quieres donar, proponer una alianza, compartir una experiencia, solicitar una conversación institucional, sumarte como voluntario o conocer más sobre INCLUSIA.
+Cada mensaje puede abrir una posibilidad: una campaña, un diagnóstico, una alianza, una historia visibilizada o una solución que todavía no existe.
+FORMULARIO
+Campos del formulario
+Nombre completo
+Placeholder: Tu nombre
+Correo electrónico
+Placeholder: correo@ejemplo.com
+¿Cómo quieres apoyar?
+Opciones sugeridas:
+- Quiero donar
+- Quiero ser aliado institucional
+- Quiero hacer voluntariado
+- Quiero compartir una experiencia
+- Quiero recibir información
+- Otro
+Mensaje
+Placeholder: Cuéntanos cómo te gustaría apoyar, qué barrera quieres visibilizar o qué idea quieres proponer.
+Texto inferior:
+Responderemos tu mensaje lo antes posible. Gracias por querer construir un país más accesible.
+4.9 Footer
+TEXTO RECOMENDADO
+Descripción corta
+INCLUSIA trabaja por la inclusión, la accesibilidad y la movilidad digna de las personas con discapacidad física en Colombia.
+IMPORTANTE
+Línea legal según estado real
+Si ya está registrada:
+INCLUSIA - Corporación sin ánimo de lucro registrada en la Cámara de Comercio de [ciudad], Colombia.
+Si todavía está en proceso:
+INCLUSIA - Proyecto social en proceso de constitución como corporación sin ánimo de lucro en Colombia.
+Alerta de confianza
+No usen 'registrada en Cámara de Comercio' si todavía no lo está. Es una frase pequeña, pero puede afectar confianza si alguien la verifica y no coincide.
+	
+
+5. Microcopy y frases cortas para botones
+* Apoyar INCLUSIA
+* Conocer qué hacemos
+* Ver líneas de acción
+* Quiero donar
+* Quiero ser aliado
+* Sumarme como voluntario
+* Compartir una barrera
+* Construyamos accesibilidad
+* Hablemos de una alianza
+* Conoce por qué existe INCLUSIA
+* Ayuda a transformar barreras
+6. Frases que conviene cambiar o evitar
+Evitar
+	Reemplazar por
+	'Viajar a otros países'
+	Usar: 'misiones de aprendizaje, cooperación e intercambio técnico internacional con resultados aplicables a Colombia'.
+	'Invertir en nosotros'
+	Usar: 'financiar, patrocinar, apoyar o construir una alianza'.
+	'Dar voz a las personas con discapacidad'
+	Usar: 'amplificar sus experiencias y abrir espacios para que sean escuchadas'.
+	'La tecnología resolverá la accesibilidad'
+	Usar: 'herramientas digitales al servicio de la accesibilidad'.
+	'Ayudar a discapacitados'
+	Usar: 'promover la movilidad digna de las personas con discapacidad física'.
+	'Transformar ciudades completas' sin plan
+	Usar: 'impulsar cambios progresivos, medibles y sostenibles en entornos concretos'.
+	
+
+7. Datos que faltan para cerrar la versión final
+No conviene inventar esta información. Cuando la tengan clara, se puede ajustar el texto final en minutos.
+* Estado legal real: registrada, en trámite o solo proyecto.
+* Nombre oficial completo de la corporación y NIT, si ya existe.
+* Ciudad de registro y cobertura territorial inicial.
+* Equipo fundador: nombres, roles y si desean contarlos públicamente.
+* Canales reales de donación: cuenta bancaria, Nequi, Wompi, PayPal, botón de pago u otro.
+* Primeros proyectos concretos: campaña, estudio, mapeo, piloto o alianza inicial.
+* Política de transparencia: cada cuánto publicarán avances o reportes.
+* Tipo de voluntariado que sí pueden gestionar en esta etapa.
+* Redes sociales activas y tono de contenido.
+* Si la organización trabajará solo discapacidad física o también otras formas de discapacidad en el futuro.
+8. Recomendación final
+Conclusión
+La página debe dejar de sonar como una ONG genérica y empezar a sonar como una organización con una causa concreta: movilidad, accesibilidad y discapacidad física en Colombia. La emoción ya está; ahora falta método, claridad y confianza. Eso es lo que convierte una visita en una donación, una alianza o una conversación seria.
+	
+
+INCLUSIA - Propuesta de textos web
