@@ -11,6 +11,13 @@
   background-size: 140% 140%;
 }
 
+body.theme-dark #main-content .section:not(#hero) {
+  background-color: #1a1a1a;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(111, 168, 255, 0.12), transparent 55%),
+    radial-gradient(circle at 86% 8%, rgba(155, 140, 255, 0.12), transparent 58%);
+}
+
 #main-content .section:not(#hero) .reveal {
   --reveal-distance: 36px;
   --reveal-duration: 700ms;
@@ -43,6 +50,36 @@
 #contacto form {
   margin-left: auto;
   margin-right: auto;
+}
+
+body.theme-dark #contacto .form-group label {
+  color: #e6e6e6;
+}
+
+body.theme-dark #contacto .form-group input,
+body.theme-dark #contacto .form-group select,
+body.theme-dark #contacto .form-group textarea {
+  background-color: #252525;
+  border-color: #3f3f3f;
+  color: #e6e6e6;
+}
+
+body.theme-dark #contacto .form-group input:focus,
+body.theme-dark #contacto .form-group select:focus,
+body.theme-dark #contacto .form-group textarea:focus {
+  background-color: #252525;
+  border-color: #6fa8ff;
+  box-shadow: 0 0 0 3px rgba(111, 168, 255, 0.2);
+}
+
+body.theme-dark #contacto .form-group input::placeholder,
+body.theme-dark #contacto .form-group select::placeholder,
+body.theme-dark #contacto .form-group textarea::placeholder {
+  color: #b5bdcc;
+}
+
+body.theme-dark #contacto .form-help {
+  color: #c9d3f2;
 }
 
 @media (max-width: 768px) {

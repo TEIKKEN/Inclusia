@@ -7,16 +7,26 @@
   justify-content: center;
   background-image: url('../img/Hero-inclusia.png');
   background-size: cover;
-  background-position: center;
+  background-position: 50% 50%;
   background-repeat: no-repeat;
+  background-color: #0b1024;
+  --hero-overlay-strong: rgba(10, 12, 30, 0.62);
+  --hero-overlay-deep: rgba(10, 12, 30, 0.88);
+  --hero-overlay-accent-a: rgba(74, 144, 226, 0.16);
+  --hero-overlay-accent-b: rgba(123, 97, 255, 0.2);
+  --hero-overlay-radial-strong: rgba(10, 12, 30, 0.68);
+  --hero-overlay-radial-soft: rgba(10, 12, 30, 0.25);
   animation: heroBgFloat 14s ease-in-out infinite alternate;
 }
 
 body.theme-dark #hero.section {
   background-image: url('../img/Hero-inclusia.png');
   background-size: cover;
-  background-position: center;
   background-repeat: no-repeat;
+  --hero-overlay-strong: rgba(6, 8, 22, 0.74);
+  --hero-overlay-deep: rgba(6, 8, 22, 0.92);
+  --hero-overlay-radial-strong: rgba(6, 8, 22, 0.8);
+  --hero-overlay-radial-soft: rgba(6, 8, 22, 0.32);
 }
 
 #hero.section::before {
@@ -24,8 +34,8 @@ body.theme-dark #hero.section {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(rgba(10, 10, 30, 0.72), rgba(10, 10, 30, 0.92)),
-    linear-gradient(135deg, rgba(74, 144, 226, 0.14), rgba(123, 97, 255, 0.18));
+    linear-gradient(var(--hero-overlay-strong), var(--hero-overlay-deep)),
+    linear-gradient(135deg, var(--hero-overlay-accent-a), var(--hero-overlay-accent-b));
   pointer-events: none;
   z-index: 0;
 }
@@ -36,8 +46,8 @@ body.theme-dark #hero.section {
   inset: 0;
   background: radial-gradient(
     circle at 50% 45%,
-    rgba(10, 10, 30, 0.78),
-    rgba(10, 10, 30, 0.3) 55%,
+    var(--hero-overlay-radial-strong),
+    var(--hero-overlay-radial-soft) 55%,
     rgba(10, 10, 30, 0) 72%
   );
   pointer-events: none;
@@ -127,21 +137,31 @@ body.theme-dark #hero.section {
 
 @keyframes heroBgFloat {
   0% {
-    background-size: 100%;
+    background-position: 50% 50%;
   }
   100% {
-    background-size: 105%;
+    background-position: 50% 44%;
   }
 }
 
 @media (max-width: 768px) {
+  #hero.section {
+    background-position: 50% 35%;
+    animation: none;
+  }
+
   #hero .hero-content {
     gap: 1.1rem;
     max-width: 100%;
+    padding-inline: 0.5rem;
   }
 
   #hero .hero-content p {
     max-width: 42ch;
+  }
+
+  #hero .hero-actions {
+    margin-top: 1.4rem;
   }
 }
 
