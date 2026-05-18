@@ -18,9 +18,41 @@
   will-change: opacity, transform;
 }
 
+#donaciones,
+#contacto {
+  --section-rail: 780px;
+}
+
+#donaciones > h2,
+#donaciones > p,
+#donaciones > .highlight,
+#donaciones > .donation-actions,
+#contacto > h2,
+#contacto > p,
+#contacto > form {
+  max-width: var(--section-rail);
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#donaciones .donation-actions {
+  justify-content: flex-start;
+}
+
+#contacto form {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media (max-width: 768px) {
   #main-content .section:not(#hero) .reveal {
     --reveal-distance: 28px;
+  }
+
+  #donaciones,
+  #contacto {
+    --section-rail: 100%;
   }
 }
 
