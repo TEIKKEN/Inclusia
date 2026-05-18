@@ -1,0 +1,35 @@
+#main-content .section:not(#hero) {
+  position: relative;
+  background-color: var(--white);
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(74, 144, 226, 0.08), transparent 55%),
+    radial-gradient(circle at 86% 8%, rgba(123, 97, 255, 0.07), transparent 58%);
+  background-repeat: no-repeat;
+  background-position:
+    18% calc(12% + var(--story-parallax, 0px)),
+    86% calc(8% + var(--story-parallax, 0px));
+  background-size: 140% 140%;
+}
+
+#main-content .section:not(#hero) .reveal {
+  --reveal-distance: 36px;
+  --reveal-duration: 700ms;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+@media (max-width: 768px) {
+  #main-content .section:not(#hero) .reveal {
+    --reveal-distance: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #main-content .section:not(#hero) {
+    background-position: 18% 12%, 86% 8%;
+  }
+
+  #main-content .section:not(#hero) .reveal {
+    transition: none;
+  }
+}
