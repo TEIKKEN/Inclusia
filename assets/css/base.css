@@ -1222,6 +1222,25 @@ body.theme-high-contrast :focus-visible {
 }
 
 /* FLOATING ACCESSIBILITY BUTTON */
+html.interface-zoom-active {
+  zoom: var(--interface-zoom-factor, 1);
+}
+
+html.interface-zoom-active .floating-accessibility-wrapper {
+  zoom: var(--interface-zoom-inverse, 1);
+}
+
+@supports not (zoom: 1) {
+  html.interface-zoom-active {
+    font-size: calc(100% * var(--interface-zoom-factor, 1));
+  }
+
+  html.interface-zoom-active .floating-accessibility-menu button,
+  html.interface-zoom-active .interface-zoom-control {
+    font-size: 15px;
+  }
+}
+
 .floating-accessibility-wrapper {
   position: fixed !important;
   bottom: 2rem;
@@ -1314,6 +1333,118 @@ body.theme-high-contrast :focus-visible {
 .floating-accessibility-menu button:focus-visible {
   outline: 3px solid var(--purple);
   background-color: rgba(107, 107, 255, 0.15);
+}
+
+/* INTERFACE ZOOM CONTROL */
+.interface-zoom-container {
+  min-width: 260px;
+  padding: 0.85rem 1rem !important;
+  border-top: 1px solid #e5e7eb;
+}
+
+.interface-zoom-control {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.interface-zoom-heading,
+.interface-zoom-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.interface-zoom-heading {
+  justify-content: space-between;
+  margin-bottom: 0.45rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+#interface-zoom-value {
+  min-width: 4rem;
+  color: var(--purple);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#interface-zoom-slider {
+  width: 100%;
+  min-width: 0;
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+#interface-zoom-slider::-webkit-slider-runnable-track {
+  height: 7px;
+  border-radius: 999px;
+  background: linear-gradient(
+    to right,
+    var(--purple) 0 var(--interface-zoom-progress, 23.08%),
+    #d8dce5 var(--interface-zoom-progress, 23.08%) 100%
+  );
+}
+
+#interface-zoom-slider::-webkit-slider-thumb {
+  width: 20px;
+  height: 20px;
+  margin-top: -6.5px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  background: var(--purple);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+#interface-zoom-slider::-moz-range-track {
+  height: 7px;
+  border-radius: 999px;
+  background: #d8dce5;
+}
+
+#interface-zoom-slider::-moz-range-progress {
+  height: 7px;
+  border-radius: 999px;
+  background: var(--purple);
+}
+
+#interface-zoom-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 3px solid var(--white);
+  border-radius: 50%;
+  background: var(--purple);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+#interface-zoom-slider:focus-visible {
+  outline: 3px solid var(--purple);
+  outline-offset: 1px;
+  border-radius: 6px;
+}
+
+.floating-accessibility-menu .interface-zoom-reset {
+  width: auto;
+  min-height: 32px;
+  padding: 0.35rem 0.55rem;
+  border: 1px solid var(--purple);
+  border-radius: 6px;
+  color: var(--purple);
+  font-size: 0.78rem;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.floating-accessibility-menu .interface-zoom-reset:hover,
+.floating-accessibility-menu .interface-zoom-reset:focus-visible {
+  background: rgba(107, 107, 255, 0.12);
+  color: var(--purple);
 }
 
 @keyframes slideUp {
@@ -1494,6 +1625,31 @@ body.theme-dark .floating-accessibility-menu button:hover {
   color: #9b8cff;
 }
 
+body.theme-dark .interface-zoom-container {
+  border-top-color: #4b5563;
+}
+
+body.theme-dark .interface-zoom-control,
+body.theme-dark #interface-zoom-value {
+  color: #e6e6e6;
+}
+
+body.theme-dark #interface-zoom-slider::-webkit-slider-runnable-track {
+  background: linear-gradient(
+    to right,
+    #9b8cff 0 var(--interface-zoom-progress, 23.08%),
+    #596170 var(--interface-zoom-progress, 23.08%) 100%
+  );
+}
+
+body.theme-dark #interface-zoom-slider::-moz-range-track {
+  background: #596170;
+}
+
+body.theme-dark #interface-zoom-slider::-moz-range-progress {
+  background: #9b8cff;
+}
+
 body.theme-dark .floating-accessibility-btn {
   background: linear-gradient(135deg, #6fa8ff, #9b8cff);
 }
@@ -1528,6 +1684,19 @@ body.theme-high-contrast .floating-accessibility-menu button {
 
 body.theme-high-contrast .floating-accessibility-menu button:hover {
   background-color: #f0f0f0;
+}
+
+body.theme-high-contrast .interface-zoom-container {
+  border-top: 2px solid #000000;
+}
+
+body.theme-high-contrast .interface-zoom-control,
+body.theme-high-contrast #interface-zoom-value {
+  color: #000000;
+}
+
+body.theme-high-contrast #interface-zoom-slider {
+  accent-color: #000000;
 }
 
 .custom-modal {

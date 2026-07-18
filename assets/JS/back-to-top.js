@@ -1,3 +1,5 @@
+import { isMotionReduced } from './reduce-motion.js';
+
 document.addEventListener("DOMContentLoaded", () => {
   const backToTopLinks = document.querySelectorAll('.footer-nav a[aria-label="Volver arriba"]');
 
@@ -36,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
   backToTopLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: 0, behavior: isMotionReduced() ? "auto" : "smooth" });
     });
   });
 });

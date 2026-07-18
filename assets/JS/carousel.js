@@ -7,8 +7,10 @@
    - Sin dependencias externas. Soporta mÃºltiples carruseles.
    ===================================================== */
 
+import { isMotionReduced } from './reduce-motion.js';
+
 function prefersReducedMotion() {
-  return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  return isMotionReduced();
 }
 
 function clampIndex(index, total) {
@@ -41,8 +43,7 @@ function initCarousel(root) {
   let isManuallyPaused  = false; // botÃ³n explÃ­cito
 
   const total           = slides.length;
-  const autoplayEnabled = (root.dataset.autoplay || '').toLowerCase() === 'true'
-                          && !prefersReducedMotion();
+  const autoplayEnabled = (root.dataset.autoplay || '').toLowerCase() === 'true';
   const interval        = Math.max(2500, Number(root.dataset.interval || 6000));
 
   // Inyectar la duraciÃ³n de progreso como variable CSS en cada indicador
@@ -146,7 +147,7 @@ function initCarousel(root) {
   // Autoplay
   // ----------------------------
   function startAutoplay() {
-    if (!autoplayEnabled || autoplayTimer || isManuallyPaused) return;
+    if (!autoplayEnabled || prefersReducedMotion() || autoplayTimer || isManuallyPaused) return;
     autoplayTimer = window.setInterval(() => {
       if (isPausedByContext || isManuallyPaused) return;
       update(currentIndex + 1, { announce: false });
@@ -171,6 +172,14 @@ function initCarousel(root) {
 
   // En tÃ¡ctil: pausa al iniciar interacciÃ³n
   root.addEventListener('pointerdown', pauseByContext);
+
+  window.addEventListener('inclusia:motion-preference-change', event => {
+    if (event.detail?.reducedMotion) {
+      stopAutoplay();
+    } else {
+      startAutoplay();
+    }
+  });
 
   // ----------------------------
   // Touch / Swipe

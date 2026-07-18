@@ -1,3 +1,4 @@
+import "./reduce-motion.js";
 import "./page-transitions.js";
 import "./smooth-scroll-global.js";
 import "./navbar.js";
@@ -6,6 +7,7 @@ import "./form.js";
 import "./donate.js";
 import "./accessibility.js";
 import "./floating-accessibility.js";
+import "./interface-zoom.js";
 import "./text-to-speech.js";
 import "./keyboard-navigation.js";
 import "./back-to-top.js";

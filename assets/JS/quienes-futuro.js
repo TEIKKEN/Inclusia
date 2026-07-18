@@ -14,7 +14,23 @@
     futuro: section.querySelector('[data-panel="futuro"]')
   };
 
-  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function shouldReduceMotion() {
+    const rootPreference = document.documentElement.dataset.reduceMotion;
+    if (rootPreference === "true" || rootPreference === "false") {
+      return rootPreference === "true";
+    }
+
+    try {
+      const savedPreference = localStorage.getItem("inclusiaReduceMotion");
+      if (savedPreference === "true" || savedPreference === "false") {
+        return savedPreference === "true";
+      }
+    } catch {
+      // Fall back to the operating system preference.
+    }
+
+    return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  }
   const hasGsap = typeof window.gsap !== "undefined";
 
   let active = "hoy";
@@ -68,7 +84,7 @@
     const x = targetTab.offsetLeft;
     const width = targetTab.offsetWidth;
 
-    if (immediate || prefersReducedMotion || !hasGsap) {
+    if (immediate || shouldReduceMotion() || !hasGsap) {
       indicator.style.transform = `translateX(${x}px)`;
       indicator.style.width = `${width}px`;
       return;
@@ -99,7 +115,7 @@
 
     section.classList.toggle("is-future", next === "futuro");
 
-    if (prefersReducedMotion || !hasGsap || immediate) {
+    if (shouldReduceMotion() || !hasGsap || immediate) {
       progressFill.style.width = `${val}%`;
       return;
     }
@@ -129,7 +145,7 @@
       busy = false;
     };
 
-    if (prefersReducedMotion || !hasGsap) {
+    if (shouldReduceMotion() || !hasGsap) {
       currentPanel.hidden = true;
       currentPanel.classList.remove("is-visible");
       nextPanel.hidden = false;
@@ -266,7 +282,7 @@
     });
   });
 
-  if (prefersReducedMotion || !hasGsap) {
+  if (shouldReduceMotion() || !hasGsap) {
     updateState(active, true);
     return;
   }

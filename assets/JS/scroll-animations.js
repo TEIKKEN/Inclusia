@@ -1,3 +1,5 @@
+import { isMotionReduced } from './reduce-motion.js';
+
 const REVEAL_SELECTOR = ".section.hidden, .reveal, [data-reveal]";
 const STAGGER_GROUP_SELECTOR = [
   ".fundadores-grid",
@@ -7,14 +9,12 @@ const STAGGER_GROUP_SELECTOR = [
   ".principles-grid"
 ].join(", ");
 
-const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
-
 function supportsIntersectionObserver() {
   return "IntersectionObserver" in window;
 }
 
 function shouldReduceMotion() {
-  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+  return isMotionReduced();
 }
 
 function markAsVisible(element) {
@@ -184,3 +184,6 @@ if (document.readyState === "loading") {
 
 window.addEventListener("load", initScrollAnimations, { once: true });
 window.addEventListener("pageshow", initScrollAnimations);
+window.addEventListener("inclusia:motion-preference-change", event => {
+  if (event.detail?.reducedMotion) initScrollAnimations();
+});

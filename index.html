@@ -12,6 +12,7 @@
   <meta name="keywords" content="inclusión, accesibilidad, discapacidad, derechos, independencia, dignidad" />
   <meta name="author" content="INCLUSIA" />
   <meta name="robots" content="index, follow" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
   
   <!-- Open Graph para redes sociales -->
   <meta property="og:title" content="INCLUSIA - Inclusión no es caridad, es dignidad" />
@@ -38,6 +39,7 @@
   <link rel="stylesheet" href="assets/css/forms.css" />
   <link rel="stylesheet" href="assets/css/home-hero.css" />
   <link rel="stylesheet" href="assets/css/home-storytelling.css" />
+  <link rel="stylesheet" href="assets/css/reduce-motion.css" />
   
   <!-- SweetAlert2 CDN -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -256,6 +258,8 @@
     aria-labelledby="contacto-heading"
     action="https://formspree.io/f/xzbywokn"
     method="POST"
+    accept-charset="UTF-8"
+    autocomplete="on"
     novalidate>
 
     <div class="form-group">
@@ -266,6 +270,12 @@
         name="nombre"
         placeholder="Tu nombre"
         required
+        minlength="3"
+        maxlength="80"
+        pattern="[A-Za-zÁÉÍÓÚáéíóúÑñÜü\s]{3,80}"
+        autocomplete="name"
+        inputmode="text"
+        spellcheck="false"
         aria-required="true"
         aria-describedby="error-nombre"
         aria-invalid="false"
@@ -281,6 +291,10 @@
         name="correo"
         placeholder="correo@ejemplo.com"
         required
+        maxlength="120"
+        autocomplete="email"
+        inputmode="email"
+        spellcheck="false"
         aria-required="true"
         aria-describedby="error-correo"
         aria-invalid="false"
@@ -310,6 +324,10 @@
         rows="4"
         placeholder="Cuéntanos cómo te gustaría apoyar, qué barrera quieres visibilizar o qué idea quieres proponer."
         required
+        minlength="10"
+        maxlength="500"
+        autocomplete="off"
+        spellcheck="true"
         aria-required="true"
         aria-describedby="error-mensaje mensaje-help"
         aria-invalid="false"
@@ -320,6 +338,7 @@
 
     <button type="submit" 
             class="btn-primary"
+            data-submit-label="Construyamos accesibilidad"
             aria-describedby="form-status">
       Construyamos accesibilidad
     </button>
@@ -353,8 +372,8 @@
 
     <div class="footer-contact">
       <h4>Contacto</h4>
-      <p>📧 inclusia.contacto@gmail.com</p>
-      <p>🌍 Colombia · Proyecto en construcción</p>
+      <p>📧 inclusiacorporacion@gmail.com</p>
+      <p>NIT 902084900 - 6</p>
     </div>
 
     <div class="footer-socials">
@@ -391,7 +410,7 @@
 
   <div class="footer-bottom">
     <p>© 2026 INCLUSIA · Inclusión y Accesibilidad</p>
-    <p class="footer-legal">INCLUSIA - Proyecto social en proceso de constitución como corporación sin ánimo de lucro en Colombia.</p>
+    <p class="footer-legal">INCLUSIA - Proyecto constituido como corporación sin ánimo de lucro con sede en Colombia.</p>
   </div>
 </footer>
 

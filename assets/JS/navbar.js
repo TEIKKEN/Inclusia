@@ -2,6 +2,8 @@
 // NAVBAR - INCLUSIA
 // ============================================
 
+import { isMotionReduced } from './reduce-motion.js';
+
 const hamburgerBtn = document.getElementById("hamburger-menu");
 const navMenu      = document.getElementById("nav-menu");
 const navRight     = document.getElementById("nav-right");
@@ -94,7 +96,17 @@ function smoothScrollTo(target, duration = 900) {
   const distance = target.getBoundingClientRect().top + start;
   let startTime  = null;
 
+  if (isMotionReduced()) {
+    window.scrollTo(0, distance);
+    return;
+  }
+
   function step(now) {
+    if (isMotionReduced()) {
+      window.scrollTo(0, distance);
+      return;
+    }
+
     if (!startTime) startTime = now;
     const t = Math.min((now - startTime) / duration, 1);
     const ease = t < 0.5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2)/2;

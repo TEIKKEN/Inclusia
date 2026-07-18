@@ -1,4 +1,6 @@
 // Función global de smooth scroll reutilizable
+import { isMotionReduced } from './reduce-motion.js';
+
 export function smoothScrollTo(target, duration = 900) {
   const targetElement = typeof target === 'string' ? document.querySelector(target) : target;
   
@@ -9,7 +11,17 @@ export function smoothScrollTo(target, duration = 900) {
   const distance = targetPosition - startPosition;
   let startTime = null;
 
+  if (isMotionReduced()) {
+    window.scrollTo(0, targetPosition);
+    return;
+  }
+
   function animation(currentTime) {
+    if (isMotionReduced()) {
+      window.scrollTo(0, targetPosition);
+      return;
+    }
+
     if (!startTime) startTime = currentTime;
     const timeElapsed = currentTime - startTime;
     const progress = Math.min(timeElapsed / duration, 1);
