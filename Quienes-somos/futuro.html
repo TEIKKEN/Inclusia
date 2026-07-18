@@ -97,132 +97,37 @@
 	</nav>
 
 	<main id="main-content" role="main">
-		<section id="hoy-futuro" class="section if-about-section" aria-labelledby="if-about-title">
+		<section
+			id="hoy-futuro"
+			class="section if-about-section"
+			aria-labelledby="if-about-title"
+			aria-describedby="if-about-subtitle"
+		>
 			<div class="if-about-bg" aria-hidden="true"></div>
 
 			<div class="if-about-shell">
 				<header class="if-about-header">
-					<h1 id="if-about-title" class="if-about-visually-hidden">Hoy y futuro</h1>
 					<p class="if-about-kicker">INCLUSIA</p>
-					<p id="if-about-subtitle" class="if-about-subtitle">Construyendo un mundo accesible, hoy y para el futuro.</p>
+					<h1 id="if-about-title" class="if-about-title">Hoy y futuro</h1>
+					<p id="if-about-subtitle" class="if-about-subtitle">
+						Una ruta viva de los proyectos, etapas y aprendizajes que construyen nuestra visión.
+					</p>
 				</header>
 
-				<div class="if-about-controls">
-					<div class="if-about-tablist" role="tablist" aria-label="Cambiar entre Hoy y Futuro">
-						<span class="if-about-indicator" aria-hidden="true"></span>
+				<p id="project-timeline-note" class="project-timeline-note">
+					<strong>Contenido de ejemplo:</strong> estos hitos sirven como guía y pueden reemplazarse con la información definitiva de cada proyecto.
+				</p>
 
-						<button
-							type="button"
-							id="if-tab-hoy"
-							class="if-about-tab is-active"
-							role="tab"
-							aria-selected="true"
-							aria-controls="if-panel-hoy"
-							tabindex="0"
-							data-tab="hoy"
-						>
-							Hoy
-						</button>
+				<ol
+					id="project-timeline"
+					class="project-timeline"
+					aria-label="Línea de tiempo de proyectos de INCLUSIA"
+					aria-describedby="project-timeline-note"
+				></ol>
 
-						<button
-							type="button"
-							id="if-tab-futuro"
-							class="if-about-tab"
-							role="tab"
-							aria-selected="false"
-							aria-controls="if-panel-futuro"
-							tabindex="-1"
-							data-tab="futuro"
-						>
-							Futuro
-						</button>
-					</div>
-
-					<div class="if-about-progress-wrap">
-						<div
-							class="if-about-progress"
-							role="progressbar"
-							aria-label="Progreso de la visión de INCLUSIA"
-							aria-valuemin="0"
-							aria-valuemax="100"
-							aria-valuenow="45"
-						>
-							<span class="if-about-progress-fill"></span>
-						</div>
-						<p class="if-about-progress-text" aria-live="polite">Enfoque activo: Hoy</p>
-					</div>
-				</div>
-
-				<div class="if-about-panels">
-					<div
-						id="if-panel-hoy"
-						class="if-about-panel is-visible"
-						role="tabpanel"
-						aria-labelledby="if-tab-hoy"
-						tabindex="0"
-						data-panel="hoy"
-					>
-						<h2 class="if-about-panel-title" data-anim>INCLUSIA hoy</h2>
-						<p data-anim>
-							Hoy estamos construyendo las bases de una organización seria, humana y útil para Colombia.
-						</p>
-						<p data-anim>
-							Nuestra etapa actual se concentra en escuchar a personas con discapacidad física, identificar barreras reales, fortalecer nuestra presencia digital, estructurar campañas de sensibilización, reunir aliados y preparar estudios que puedan convertirse en propuestas concretas.
-						</p>
-
-						<div class="if-about-list-wrap" data-anim>
-							<p class="if-about-list-title">Actualmente enfocamos nuestros esfuerzos en:</p>
-							<ul class="if-about-list" aria-label="Soluciones actuales de INCLUSIA">
-								<li>Recoger experiencias y problemáticas reales.</li>
-								<li>Desarrollar contenidos educativos y campañas. Diseñar metodologías para diagnósticos de movilidad y accesibilidad.</li>
-								<li>Buscar alianzas con universidades, organizaciones, empresas e instituciones. Consolidar canales para recibir apoyo, voluntariado y cooperación.</li>
-							</ul>
-						</div>
-
-						<p data-anim>
-							Crear comunidad alrededor de la accesibilidad.
-						</p>
-
-						<p class="if-about-note" data-anim>
-							Hoy construimos confianza con acciones concretas: escuchar, medir, comunicar y proponer.
-						</p>
-					</div>
-
-					<div
-						id="if-panel-futuro"
-						class="if-about-panel if-about-panel-future"
-						role="tabpanel"
-						aria-labelledby="if-tab-futuro"
-						tabindex="0"
-						data-panel="futuro"
-						hidden
-					>
-						<h2 class="if-about-panel-title" data-anim>INCLUSIA futuro</h2>
-						<p data-anim>
-							Visualizamos una Colombia donde la accesibilidad no sea una excepción, sino una condición básica del diseño urbano, institucional y social.
-						</p>
-						<p data-anim>
-							A futuro queremos consolidar a INCLUSIA como una plataforma de conocimiento, incidencia y cooperación para mejorar la movilidad de las personas con discapacidad física en el país.
-						</p>
-
-						<div class="if-about-list-wrap" data-anim>
-							<p class="if-about-list-title">Nuestros proyectos futuros incluyen:</p>
-							<ul class="if-about-list" aria-label="Proyectos futuros de INCLUSIA">
-								<li>Crear estudios y diagnósticos periódicos sobre accesibilidad. Impulsar pilotos de movilidad accesible para educación superior.</li>
-								<li>Desarrollar campañas nacionales de sensibilización. Construir alianzas con instituciones públicas, privadas y académicas.</li>
-								<li>Participar en intercambios técnicos internacionales para traer aprendizajes aplicables a Colombia.</li>
-							</ul>
-						</div>
-
-						<p data-anim>
-							Explorar herramientas tecnológicas para mapear, informar y mejorar experiencias de accesibilidad.
-						</p>
-
-						<p class="if-about-note if-about-note-future" data-anim>
-							Nuestro norte es claro: que la inclusión deje de ser una promesa y se convierta en infraestructura, cultura y decisiones cotidianas.
-						</p>
-					  </div>
-				</div>
+				<noscript>
+					<p class="project-timeline-noscript">Activa JavaScript para consultar los detalles de la línea de tiempo.</p>
+				</noscript>
 			</div>
 		</section>
 	</main>
@@ -315,8 +220,7 @@
 		</ul>
 	</div>
 
-	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-	<script src="../assets/JS/quienes-futuro.js" defer></script>
+	<script type="module" src="../assets/JS/quienes-futuro.js"></script>
 	<script type="module" src="../assets/JS/main.js"></script>
 </body>
 </html>
