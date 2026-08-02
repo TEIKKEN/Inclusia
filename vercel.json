@@ -3,5 +3,39 @@
   "framework": null,
   "buildCommand": "",
   "installCommand": "",
-  "outputDirectory": "."
+  "outputDirectory": ".",
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/components/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, nosnippet" }]
+    },
+    {
+      "source": "/forms/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, nosnippet" }]
+    },
+    {
+      "source": "/pages/:path*",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, nosnippet" }]
+    },
+    {
+      "source": "/ACCESIBILIDAD-AVANZADA.md",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, nosnippet" }]
+    },
+    {
+      "source": "/SECURITY_NOTES.md",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, nosnippet" }]
+    },
+    {
+      "source": "/Propuesta_textos_web_INCLUSIA.txt",
+      "headers": [{ "key": "X-Robots-Tag", "value": "noindex, nofollow, nosnippet" }]
+    }
+  ]
 }

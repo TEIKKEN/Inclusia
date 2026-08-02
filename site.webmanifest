@@ -1,0 +1,19 @@
+{
+  "name": "INCLUSIA",
+  "short_name": "INCLUSIA",
+  "description": "Corporación colombiana por la accesibilidad, la inclusión y la movilidad digna de las personas con discapacidad física.",
+  "lang": "es-CO",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#6366f1",
+  "icons": [
+    {
+      "src": "/assets/img/logo-inclusia.png",
+      "sizes": "451x451",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
