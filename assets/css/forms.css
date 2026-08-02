@@ -70,6 +70,114 @@ form {
   background-color: #fff5f5;
 }
 
+/* Consentimiento para tratamiento de datos */
+.privacy-consent {
+  padding: 1rem;
+  border: 2px solid #d8deea;
+  border-radius: 12px;
+  background: #f8faff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.privacy-consent:hover {
+  border-color: var(--primary-color, #0066cc);
+}
+
+.privacy-consent:focus-within {
+  border-color: var(--primary-color, #0066cc);
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.14);
+}
+
+.privacy-consent-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+}
+
+.form-group.privacy-consent input[type="checkbox"] {
+  width: 1.35rem;
+  height: 1.35rem;
+  min-width: 1.35rem;
+  margin: 0.18rem 0 0;
+  padding: 0;
+  border-radius: 4px;
+  accent-color: var(--primary-color, #0066cc);
+  cursor: pointer;
+}
+
+.form-group.privacy-consent input[type="checkbox"]:hover {
+  filter: brightness(0.94);
+}
+
+.form-group.privacy-consent input[type="checkbox"]:focus,
+.form-group.privacy-consent input[type="checkbox"]:focus-visible {
+  outline: 3px solid var(--primary-color, #0066cc);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.privacy-consent-copy {
+  min-width: 0;
+}
+
+.form-group .privacy-consent-copy label {
+  display: inline;
+  margin: 0;
+  color: var(--text-primary, #333);
+  font-size: 0.94rem;
+  font-weight: var(--font-weight-regular, 400);
+  line-height: 1.6;
+  cursor: pointer;
+}
+
+.privacy-consent-copy p {
+  margin: 0.45rem 0 0;
+  color: var(--text-secondary, #555);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.privacy-consent-copy a {
+  color: var(--primary-color, #005eb8);
+  font-weight: var(--font-weight-semibold, 600);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.privacy-consent-copy a:hover {
+  text-decoration-thickness: 2px;
+}
+
+.privacy-consent-copy a:focus-visible {
+  outline: 3px solid var(--primary-color, #0066cc);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.privacy-consent.is-invalid {
+  border-color: #d32f2f;
+  background: #fff5f5;
+}
+
+.privacy-consent.is-invalid:focus-within {
+  border-color: #d32f2f;
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.16);
+}
+
+body.theme-dark .privacy-consent {
+  border-color: rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+body.theme-dark .privacy-consent.is-invalid {
+  border-color: #ff6b6b;
+  background: rgba(211, 47, 47, 0.18);
+}
+
+body.theme-dark .privacy-consent-copy a {
+  color: #8fc8ff;
+}
+
 /* Mensaje de error */
 .error-message {
   display: none;
@@ -280,11 +388,25 @@ body.swal2-height-auto {
   .form-group label {
     font-size: 0.95rem;
   }
+
+  .privacy-consent {
+    padding: 0.9rem;
+  }
+
+  .privacy-consent-row {
+    gap: 0.7rem;
+  }
   
   /* SweetAlert mobile fixes */
   .swal2-popup {
     width: 90% !important;
     margin: 0 5% !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .privacy-consent {
+    transition: none;
   }
 }
 

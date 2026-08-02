@@ -1,3 +1,5 @@
+import { createPrivacyConsentValidation } from './privacy-consent.js';
+
 function initForm() {
   const form = document.querySelector('form[action*="formspree"]');
 
@@ -27,6 +29,7 @@ function initForm() {
   ]);
   const endpointUrl = new URL(form.action, window.location.href);
   const expectedEndpoint = 'https://formspree.io/f/xzbywokn';
+  const privacyConsentValidation = createPrivacyConsentValidation(form);
   let isSubmitting = false;
 
   function cleanSwalClasses() {
@@ -109,7 +112,10 @@ function initForm() {
   function focusFirstInvalidField() {
     const invalidField = Object.keys(validations)
       .map((fieldName) => form[fieldName])
-      .find((field) => field && field.classList.contains('input-error'));
+      .find((field) => field && field.classList.contains('input-error')) ||
+      (privacyConsentValidation.field?.getAttribute('aria-invalid') === 'true'
+        ? privacyConsentValidation.field
+        : null);
 
     invalidField?.focus();
   }
@@ -225,6 +231,8 @@ function initForm() {
       safeFormData.append('tipo', values.tipo);
     }
 
+    privacyConsentValidation.appendToFormData(safeFormData);
+
     return safeFormData;
   }
 
@@ -265,6 +273,8 @@ function initForm() {
       return;
     }
 
+    const isConsentValid = privacyConsentValidation.validate();
+
     if (endpointUrl.href !== expectedEndpoint || endpointUrl.origin !== 'https://formspree.io') {
       setStatus("No pudimos conectar con el servidor. Por favor intenta más tarde.");
       if (typeof Swal !== 'undefined') {
@@ -297,7 +307,8 @@ function initForm() {
     const normalizedValues = getNormalizedValues();
     syncNormalizedValues(normalizedValues);
 
-    const isValid = validateForm(normalizedValues);
+    const areFieldsValid = validateForm(normalizedValues);
+    const isValid = areFieldsValid && isConsentValid;
 
     if (!isValid) {
       setStatus("Por favor revisa los campos y completa la información correctamente.");
@@ -363,6 +374,7 @@ function initForm() {
                 Object.keys(validations).forEach((fieldName) => {
                   showError(fieldName, "");
                 });
+                privacyConsentValidation.reset();
                 setSubmittingState(false);
               }
             });
@@ -372,6 +384,7 @@ function initForm() {
             Object.keys(validations).forEach((fieldName) => {
               showError(fieldName, "");
             });
+            privacyConsentValidation.reset();
             setSubmittingState(false);
           }
         } else {

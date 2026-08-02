@@ -408,6 +408,38 @@
       <span class="error-message" id="error-mensaje" role="alert" aria-live="polite"></span>
     </div>
 
+    <div class="form-group privacy-consent" id="privacy-consent-group">
+      <div class="privacy-consent-row">
+        <input
+          type="checkbox"
+          id="autorizacion-datos"
+          name="autorizacion_tratamiento_datos"
+          value="autorizado"
+          required
+          aria-required="true"
+          aria-invalid="false"
+          aria-describedby="privacy-consent-details error-autorizacion-datos"
+          data-policy-url="politica-tratamiento-datos.html"
+        />
+        <div class="privacy-consent-copy">
+          <label for="autorizacion-datos">
+            Autorizo de manera previa, expresa e informada a INCLUSIA para recolectar, almacenar, usar, circular y suprimir
+            los datos personales que envío, con el fin de gestionar y responder mi solicitud, conforme a la
+            <strong>Ley 1581 de 2012</strong> de Colombia.
+          </label>
+          <p id="privacy-consent-details">
+            He leído la
+            <a href="politica-tratamiento-datos.html" target="_blank" rel="noopener noreferrer">
+              Política de Tratamiento de Datos Personales
+              <span class="sr-only">(se abre en una pestaña nueva)</span>
+            </a>.
+            No incluyas datos sensibles en el mensaje.
+          </p>
+        </div>
+      </div>
+      <span class="error-message" id="error-autorizacion-datos" role="alert" aria-live="polite"></span>
+    </div>
+
     <button type="submit" 
             class="btn-primary"
             data-submit-label="Construyamos accesibilidad"
