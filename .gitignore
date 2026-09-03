@@ -1,0 +1,12 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Configuración local de editor (no compartida)
+.vscode/
+
+# Dependencias (si se instala algo con npm para testing local)
+node_modules/
+
+# Artefactos de depuración de Playwright MCP (logs/snapshots de pruebas)
+.playwright-mcp/

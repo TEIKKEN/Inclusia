@@ -1,0 +1,147 @@
+/* ============================================
+   PROPÓSITO DE INCLUSIA — home
+   Mismo patrón de encabezado (eyebrow + h2) que "Qué puedes reportar"/
+   "Cómo funciona" en reporta-una-barrera.css, y mismo patrón de tarjeta
+   numerada que .change-card/.card-icon/.rb-card-number (ya usado en
+   Quienes-somos/lo-que-queremos.html y reporta-una-barrera/index.html)
+   — el sitio no tiene componentes compartidos, así que se replica el
+   valor, no la clase.
+   ============================================ */
+
+.proposito-eyebrow {
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--theme-color-strong);
+}
+
+#proposito-heading {
+  margin: 0 0 2rem;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  line-height: 1.2;
+}
+
+/* Cancela la barra con degradado que .section h2::after (animations.css)
+   agrega a TODO h2 de sección — se lee como subrayado de markdown sin
+   estilizar, no como un heading diseñado. */
+#proposito-heading::after {
+  display: none;
+}
+
+.proposito-intro {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 62ch;
+  margin: 0 0 2.5rem;
+}
+
+.proposito-intro p {
+  margin: 0;
+  line-height: 1.7;
+}
+
+.proposito-frentes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0 0 2.5rem;
+  padding: 0;
+}
+
+/* .section li trae un `animation: fadeIn ... both` genérico (para listas
+   de texto corrido) que, con fill-mode "both", bloquea el transform de
+   hover para siempre: una animación CSS le gana a una transición CSS
+   en la misma propiedad sin importar especificidad. Estas tarjetas ya
+   tienen su propia entrada vía .reveal-stagger/.stagger-item. */
+.proposito-frentes .proposito-card {
+  animation: none;
+}
+
+.proposito-card {
+  border: 1px solid rgba(31, 41, 51, 0.1);
+  border-radius: 16px;
+  padding: 1.5rem;
+  background: var(--white);
+  box-shadow: 0 10px 24px rgba(31, 41, 51, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+/* .proposito-frentes.reveal-stagger duplicado en el selector, no por
+   estilo: .reveal-stagger.stagger-visible .stagger-item (animations.css,
+   3 clases) le gana a un simple ":hover" de 3 clases y deja el
+   transform de hover muerto una vez la tarjeta ya se reveló — mismo
+   bug real en .change-card/.rb-kind sitewide, fuera de alcance de esta
+   fase, señalado en SITIO_CONTEXT.md. */
+.proposito-frentes.reveal-stagger .proposito-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(35, 45, 90, 0.15);
+  border-color: rgba(107, 107, 255, 0.35);
+}
+
+.proposito-card-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-bottom: 0.9rem;
+  background: rgba(var(--purple-rgb), 0.16);
+  color: var(--theme-color-strong);
+  font-size: 0.92rem;
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+}
+
+.proposito-card h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1.1rem;
+}
+
+.proposito-card p {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(var(--text-rgb), 0.72);
+}
+
+@media (max-width: 768px) {
+  .proposito-frentes {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- TEMAS ---- */
+body.theme-dark .proposito-card {
+  background: rgba(33, 33, 40, 0.92);
+  border-color: rgba(155, 140, 255, 0.3);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+body.theme-dark .proposito-card-number {
+  color: #A9B0FF;
+}
+
+body.theme-high-contrast .proposito-card {
+  border: 2px solid #000000;
+  box-shadow: none;
+}
+
+body.theme-high-contrast .proposito-card-number {
+  border: 2px solid #000000;
+}
+
+/* ---- MOVIMIENTO REDUCIDO ---- */
+@media (prefers-reduced-motion: reduce) {
+  .proposito-card {
+    transition: none;
+  }
+}
+
+:root.reduce-motion .proposito-card {
+  transition: none;
+}

@@ -59,13 +59,6 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
-// ---------- RESIZE: cierra en desktop ----------
-window.addEventListener("resize", () => {
-  if (navRight?.classList.contains("active") && window.innerWidth > 768) {
-    closeMenu();
-  }
-});
-
 // ---------- LINKS NORMALES CIERRAN EL MENU ----------
 navMenu?.querySelectorAll("a").forEach(link => {
   link.addEventListener("click", () => closeMenu());
@@ -187,6 +180,110 @@ document.addEventListener("click", e => {
       d.querySelector(".dropdown-toggle")?.setAttribute("aria-expanded", "false");
     });
   }
+});
+
+// ============================================
+// MEGA-MENÚ DE ESCRITORIO (≥1024px) — "Quiénes somos"
+// Patrón "disclosure" (no menu/menuitem, a diferencia del acordeón
+// móvil de arriba): el trigger es un botón con aria-expanded, el
+// panel es contenido normal alcanzable con Tab en orden de documento
+// — el brief pide explícitamente Tab, no navegación con flechas tipo
+// menú. aria-expanded es el único origen de verdad de "abierto"; el
+// CSS (ver layout.css) solo lee ese atributo, no :hover/:focus-within
+// por su cuenta, para que hover, foco y Escape nunca queden
+// desincronizados entre sí.
+// ============================================
+
+// "Hover intent": cerrar recién después de este retraso, no al
+// instante. Sin esto, el mouseleave del trigger cierra el panel en
+// cuanto el cursor sale del botón — y como el panel empieza más abajo
+// (al ras de la barra, no del botón), casi cualquier trayectoria real
+// hacia él cruza un par de píxeles que no son ni trigger ni panel, y
+// el menú se cierra antes de llegar. Si el mouse reentra (al trigger
+// o al panel) dentro de este margen, el cierre se cancela.
+const MEGAMENU_CLOSE_DELAY = 300;
+
+document.querySelectorAll(".megamenu-item").forEach(item => {
+  const trigger = item.querySelector(".megamenu-trigger");
+  const panel = item.querySelector(".megamenu-panel");
+  if (!trigger || !panel) return;
+
+  const open  = () => trigger.setAttribute("aria-expanded", "true");
+  const close = () => trigger.setAttribute("aria-expanded", "false");
+
+  // Evita que el refoco al trigger que hace Escape (más abajo) dispare
+  // "focusin" y reabra el panel que Escape acaba de cerrar.
+  let suppressReopen = false;
+  let closeTimer = null;
+
+  const cancelClose = () => {
+    if (closeTimer === null) return;
+    clearTimeout(closeTimer);
+    closeTimer = null;
+  };
+
+  const scheduleClose = () => {
+    cancelClose();
+    closeTimer = setTimeout(close, MEGAMENU_CLOSE_DELAY);
+  };
+
+  item.addEventListener("mouseenter", () => {
+    cancelClose();
+    open();
+  });
+  item.addEventListener("mouseleave", scheduleClose);
+
+  item.addEventListener("focusin", () => {
+    cancelClose();
+    if (!suppressReopen) open();
+  });
+  item.addEventListener("focusout", e => {
+    // El foco sí sale de forma precisa (no hay "gap" que cruzar como
+    // con el mouse), así que aquí cierra al instante — solo el hover
+    // necesita el margen de gracia.
+    if (!item.contains(e.relatedTarget)) close();
+  });
+
+  // No es un toggle: mouseenter ya abre el panel antes de que el click
+  // llegue a dispararse, así que un toggle aquí lo cerraría de
+  // inmediato en cuanto un usuario con mouse hace clic. Clic siempre
+  // abre (idempotente); cerrar es cosa de mouseleave/focusout/Escape.
+  trigger.addEventListener("click", e => {
+    e.preventDefault();
+    cancelClose();
+    open();
+  });
+
+  item.addEventListener("keydown", e => {
+    if (e.key === "Escape") {
+      cancelClose();
+      suppressReopen = true;
+      close();
+      trigger.focus();
+      setTimeout(() => { suppressReopen = false; }, 0);
+    }
+  });
+});
+
+document.addEventListener("click", e => {
+  if (!e.target.closest(".megamenu-item")) {
+    document.querySelectorAll(".megamenu-trigger[aria-expanded='true']").forEach(t => {
+      t.setAttribute("aria-expanded", "false");
+    });
+  }
+});
+
+// Si la ventana cruza el breakpoint de 1024px, cierra tanto el panel
+// off-canvas como cualquier mega-menú abierto: a un lado del cruce el
+// panel queda display:none (ver layout.css) y a foco atrapado dentro
+// de un elemento invisible; al otro lado el trigger del mega-menú
+// deja de existir en la barra.
+const desktopBreakpoint = window.matchMedia("(min-width: 1024px)");
+desktopBreakpoint.addEventListener("change", () => {
+  closeMenu();
+  document.querySelectorAll(".megamenu-trigger[aria-expanded='true']").forEach(t => {
+    t.setAttribute("aria-expanded", "false");
+  });
 });
 
 console.log("INCLUSIA navbar.js listo");

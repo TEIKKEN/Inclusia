@@ -149,6 +149,16 @@ body {
   background: #eef3ff;
 }
 
+/* Esta página nunca tuvo el botón flotante de accesibilidad en su
+   HTML (bug real, corregido aparte) — así que sus temas nunca se
+   habían probado en navegador. .policy-reference era la única caja
+   con fondo fijo sin contraparte oscura: el texto (heredado de las
+   reglas genéricas de accessibility.css) quedaba claro sobre un
+   fondo que seguía siendo claro. */
+body.theme-dark .policy-reference {
+  background: rgba(33, 33, 40, 0.92);
+}
+
 .policy-footer {
   padding: 2rem 1rem;
   color: #e9efff;

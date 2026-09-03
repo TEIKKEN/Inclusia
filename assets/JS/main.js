@@ -2,6 +2,7 @@ import "./reduce-motion.js";
 import "./page-transitions.js";
 import "./smooth-scroll-global.js";
 import "./navbar.js";
+import "./nav-enhance.js";
 import "./scroll-animations.js";
 import "./form.js";
 import "./donate.js";

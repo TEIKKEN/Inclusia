@@ -29,7 +29,6 @@ class AccessibilityTextToSpeech {
     // Test if we can create a SpeechUtterance
     try {
       new SpeechSynthesisUtterance('test');
-      console.log('✅ Web Speech API está disponible');
       return true;
     } catch (e) {
       console.error('Error al crear SpeechUtterance:', e);
@@ -43,7 +42,6 @@ class AccessibilityTextToSpeech {
       ttsButton.addEventListener('click', () => this.toggleTextToSpeech());
       // Doble clic para cambiar de modo
       ttsButton.addEventListener('dblclick', () => this.toggleReadingMode());
-      console.log('✅ TTS button listener agregado');
     } else {
       console.warn('⚠️ TTS button no encontrado');
     }
@@ -56,7 +54,6 @@ class AccessibilityTextToSpeech {
     
     // Also reload voices when they change (Chrome specific)
     this.synth.addEventListener('voiceschanged', () => {
-      console.log('🔊 Voces actualizadas');
       this.loadVoices();
     });
 
@@ -77,12 +74,10 @@ class AccessibilityTextToSpeech {
 
   loadVoices() {
     const voices = this.synth.getVoices();
-    console.log(`📢 Voces disponibles: ${voices.length}`);
-    
+
     if (voices.length > 0) {
       // Try Spanish voice first, fallback to any voice
       this.selectedVoice = voices.find(v => v.lang.startsWith('es')) || voices[0];
-      console.log(`✅ Voz seleccionada: "${this.selectedVoice.name}" (${this.selectedVoice.lang})`);
     } else {
       console.warn('⚠️ No hay voces disponibles aún');
       // Retry after a delay
@@ -234,7 +229,6 @@ class AccessibilityTextToSpeech {
 
     // If no voice is selected, try to load voices first
     if (!this.selectedVoice) {
-      console.log('⏳ Esperando a que las voces se carguen...');
       this.loadVoices();
       
       if (!this.selectedVoice) {
@@ -253,7 +247,6 @@ class AccessibilityTextToSpeech {
       }
     } else {
       // Modo página completa (comportamiento original)
-      console.log('🔄 Toggle TTS, isSpeaking:', this.isSpeakingOnPage);
 
       if (this.isSpeakingOnPage) {
         this.stopSpeaking();
@@ -274,7 +267,6 @@ class AccessibilityTextToSpeech {
       return;
     }
 
-    console.log('📖 Iniciando lectura de texto...');
     this.allText = textToRead;
     this.isSpeakingOnPage = true;
 
@@ -283,7 +275,6 @@ class AccessibilityTextToSpeech {
 
     // Split text into chunks for better handling of long texts
     const chunks = this.splitTextIntoChunks(textToRead, 500);
-    console.log(`📚 Dividido en ${chunks.length} fragmentos`);
     this.speakChunks(chunks);
   }
 
@@ -333,7 +324,6 @@ class AccessibilityTextToSpeech {
       };
 
       this.currentUtterance = utterance;
-      console.log(`🔊 Hablando chunk ${index + 1} de ${chunks.length}`);
       this.synth.speak(utterance);
     } catch (error) {
       console.error('❌ Error al crear utterance:', error);
@@ -347,8 +337,6 @@ class AccessibilityTextToSpeech {
 
     // Update button state
     this.updateButtonState();
-
-    console.log('⏸ Lectura pausada');
   }
 
   updateButtonState() {
@@ -393,17 +381,14 @@ class AccessibilityTextToSpeech {
         }, 50);
       }
     });
-
-    console.log('✅ Focus reading listeners agregados');
   }
 
   toggleReadingMode() {
     this.isFocusMode = !this.isFocusMode;
     this.stopSpeaking(); // Parar cualquier lectura actual
-    
+
     const mode = this.isFocusMode ? 'lectura por foco' : 'página completa';
-    console.log(`🔄 Cambiando a modo: ${mode}`);
-    
+
     this.updateButtonState();
 
     // Anunciar el cambio de modo
@@ -450,7 +435,6 @@ class AccessibilityTextToSpeech {
     const elementText = this.getElementText(element);
     
     if (elementText) {
-      console.log(`🔍 Leyendo elemento enfocado: ${elementText.substring(0, 50)}...`);
       this.speakText(elementText);
     }
   }
@@ -566,7 +550,6 @@ class AccessibilityTextToSpeech {
 // Initialize when the class is loaded
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', () => {
-    console.log('📱 DOM cargado, inicializando Text-to-Speech...');
     window.accessibilityTTS = new AccessibilityTextToSpeech();
     // Inicializar estado del botón
     setTimeout(() => {
@@ -576,7 +559,6 @@ if (document.readyState === 'loading') {
     }, 100);
   });
 } else {
-  console.log('📱 Inicializando Text-to-Speech inmediatamente...');
   window.accessibilityTTS = new AccessibilityTextToSpeech();
   // Inicializar estado del botón
   setTimeout(() => {

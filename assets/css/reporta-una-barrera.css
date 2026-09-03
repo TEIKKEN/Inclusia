@@ -1,0 +1,1651 @@
+/* ============================================
+   REPORTA UNA BARRERA
+   Tipografía: Poppins, heredada del sitio (variables.css).
+   La personalidad sale de escala, peso y tracking — no de
+   una fuente nueva.
+   ============================================ */
+
+.rb-hero,
+.rb-journey,
+.rb-map,
+.rb-kinds,
+.rb-cta {
+  font-family: var(--font-primary);
+  line-height: 1.6;
+}
+
+/* Encabezados de sección: mismo patrón en toda la página */
+.rb-section-head {
+  max-width: 46ch;
+  margin: 0 0 2.5rem;
+}
+
+.rb-section-head h2 {
+  margin: 0;
+  font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.rb-kinds-intro {
+  margin: 1rem 0 0;
+  max-width: 56ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(var(--text-rgb), 0.72);
+}
+
+.rb-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin: 0 0 0.75rem;
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--theme-color-strong);
+}
+
+/* ============================================
+   HERO
+   Misma construcción que el hero del home: imagen a sangre
+   completa + overlay + acciones. Lo propio de esta página es que
+   la imagen es una pareja día/noche de la misma ciudad accesible
+   isométrica, con los pines de reporte encendidos, y cambia con el
+   tema. Los pines riman con los anillos del atlas de la sección de
+   mapa: el hero enseña, en el primer segundo, lo que la página
+   promete.
+
+   El texto se apoya en un telón que solo cubre la columna
+   izquierda y se disuelve antes de la mitad derecha, para que la
+   ilustración se lea a plena luz en vez de quedar apagada.
+
+   ⚠️ ESPECIFICIDAD: base.css define `#hero.section` (1,1,0). Un
+   selector `.rb-hero` (0,1,0) NO le gana; todo lo que deba
+   imponerse va con `#hero.rb-hero`, igual que hace home-hero.css.
+   ============================================ */
+#hero.rb-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  min-height: clamp(560px, 86vh, 820px);
+  padding: 6rem 2rem;
+  overflow: hidden;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: #0B0D20;
+  /* Declaración doble: la primera es el fallback real para navegadores
+     sin soporte de image-set() (ignoran la regla siguiente por completo,
+     al no reconocer la función, y se quedan con esta); los que sí la
+     soportan la sobreescriben con la variante WebP, más liviana. */
+  background-image: url('../img/hero-reporta-barrera-dia.jpg');
+  background-image: image-set(
+    url('../img/hero-reporta-barrera-dia.webp') type('image/webp'),
+    url('../img/hero-reporta-barrera-dia.jpg') type('image/jpeg')
+  );
+  background-size: cover;
+  background-position: var(--rb-hero-focus);
+  background-repeat: no-repeat;
+
+  /* Puntos de encuadre. Viven en variables para que el ajuste móvil
+     siga valiendo aunque un tema tenga que volver a declarar el fondo
+     entero (ver bloque de temas). */
+  --rb-hero-focus: 50% 48%;
+  --rb-hero-focus-dark: 50% 45%;
+
+  /* La sección no se desplaza al revelarse: la imagen se queda
+     quieta y son las palabras las que llegan (cascada más abajo).
+     `.section.hidden` de animations.css lee esta variable. */
+  --reveal-distance: 0px;
+
+  /* Tinta y telón. En claro es de día de verdad: telón casi blanco y
+     tinta oscura, para que la ilustración conserve su luz. El tema
+     oscuro invierte los dos valores (ver bloque de TEMAS). */
+  --rb-hero-ink: #14172E;
+  --rb-hero-ink-soft: rgba(20, 23, 46, 0.82);
+  --rb-hero-accent: var(--theme-color-strong);
+  --rb-hero-veil-strong: rgba(248, 250, 255, 0.95);
+  --rb-hero-veil-mid: rgba(248, 250, 255, 0.62);
+  --rb-hero-veil-soft: rgba(248, 250, 255, 0);
+  --rb-hero-tint-a: rgba(var(--blue-rgb), 0.05);
+  --rb-hero-tint-b: rgba(var(--purple-rgb), 0.06);
+  --rb-hero-shadow: none;
+  --rb-hero-ring: var(--theme-color-strong);
+  --rb-rule-ink: var(--rb-hero-accent);
+}
+
+/* Telón del texto. Cubre la columna izquierda con la densidad que
+   necesita el contraste (blanco sobre el telón queda por encima de
+   12:1) y se disuelve pasada la mitad, para que la ciudad se vea a
+   plena luz y los pines conserven su color. Los cortes están
+   calculados sobre el ancho real del texto: la línea más larga del
+   subtítulo termina cerca del 58%. */
+#hero.rb-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      100deg,
+      var(--rb-hero-veil-strong) 0%,
+      var(--rb-hero-veil-strong) 48%,
+      var(--rb-hero-veil-mid) 62%,
+      var(--rb-hero-veil-soft) 82%
+    ),
+    linear-gradient(160deg, var(--rb-hero-tint-a), var(--rb-hero-tint-b));
+}
+
+/* #hero.section es a sangre completa (max-width:none en base.css).
+   Este contenedor devuelve el texto a la misma columna de 1000px que
+   usan las secciones siguientes, para que todo arranque en el mismo eje. */
+#hero.rb-hero .rb-hero-content {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 1000px);
+  margin-inline: auto;
+}
+
+#hero.rb-hero .rb-hero-content > * {
+  max-width: 46ch;
+}
+
+#hero.rb-hero .rb-eyebrow {
+  color: var(--rb-hero-accent);
+}
+
+/* Regla con un corte: el motivo de "andén sin continuidad"
+   que estructura toda la página, presentado en pequeño. */
+.rb-rule {
+  display: block;
+  width: 5.5rem;
+  height: 2px;
+  margin: 0 0 1.5rem;
+  background-image: linear-gradient(
+    90deg,
+    var(--rb-rule-ink, var(--theme-color-strong)) 0 2.25rem,
+    transparent 2.25rem 3.25rem,
+    var(--rb-rule-ink, var(--theme-color-strong)) 3.25rem 5.5rem
+  );
+}
+
+/* Misma jerarquía tipográfica que el h1 del hero del home:
+   Poppins 700, tope de 2.4rem, line-height 1.14, tracking -0.01em.
+   Por debajo de 768px manda `#hero h1 { font-size: 1.8rem !important }`
+   de base.css — que es justo el tamaño móvil del hero del home. */
+#hero.rb-hero h1 {
+  margin: 0 0 1.15rem;
+  font-size: clamp(2rem, 4.6vw, 2.4rem);
+  line-height: 1.14;
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.01em;
+  color: var(--rb-hero-ink);
+  text-shadow: var(--rb-hero-shadow);
+  text-wrap: balance;
+}
+
+/* 44ch mantiene la línea más larga dentro de la zona densa del
+   telón, que es lo que sostiene el contraste sobre la ilustración. */
+#hero.rb-hero .rb-subtitle {
+  margin: 0;
+  max-width: 44ch;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: var(--rb-hero-ink-soft);
+  text-shadow: var(--rb-hero-shadow);
+}
+
+#hero.rb-hero .hero-actions {
+  max-width: none;
+  margin-top: 2.25rem;
+}
+
+#hero.rb-hero .btn-primary {
+  box-shadow: 0 12px 28px rgba(6, 9, 20, 0.4), 0 6px 18px rgba(var(--purple-alt-rgb), 0.35);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+}
+
+#hero.rb-hero .btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.06);
+  box-shadow: 0 16px 34px rgba(6, 9, 20, 0.45), 0 8px 22px rgba(var(--purple-alt-rgb), 0.42);
+}
+
+/* El morado global del botón secundario da ~3.8:1 sobre el telón
+   claro. Aquí usa el índigo profundo de marca (8.6:1), el mismo
+   criterio que `.rb-btn-strong`, y sigue siendo local a esta página. */
+#hero.rb-hero .btn-secondary {
+  color: var(--theme-color-strong);
+  border-color: var(--theme-color-strong);
+  background: rgba(255, 255, 255, 0.55);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  transition: transform var(--transition-fast), background var(--transition-fast), border-color var(--transition-fast);
+}
+
+#hero.rb-hero .btn-secondary:hover {
+  transform: translateY(-2px);
+}
+
+#hero.rb-hero .btn-primary:focus-visible,
+#hero.rb-hero .btn-secondary:focus-visible {
+  outline: 3px solid var(--rb-hero-ring);
+  outline-offset: 3px;
+}
+
+/* Entrada orquestada, con los mismos tiempos del hero del home
+   (0.15 / 0.28 / 0.42) corridos para dejar entrar el eyebrow y la
+   regla. La regla se dibuja de izquierda a derecha: es el único
+   movimiento que dice algo — el trazo que la página usa como motivo. */
+@keyframes rbHeroRise {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rbHeroDrawRule {
+  from { opacity: 0; transform: scaleX(0); }
+  to   { opacity: 1; transform: scaleX(1); }
+}
+
+#hero.rb-hero .rb-eyebrow,
+#hero.rb-hero h1,
+#hero.rb-hero .rb-subtitle,
+#hero.rb-hero .hero-actions {
+  opacity: 0;
+  animation: rbHeroRise 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+#hero.rb-hero .rb-eyebrow    { animation-delay: 0.1s; }
+#hero.rb-hero h1             { animation-delay: 0.28s; }
+#hero.rb-hero .rb-subtitle   { animation-delay: 0.4s; }
+#hero.rb-hero .hero-actions  { animation-delay: 0.52s; }
+
+#hero.rb-hero .rb-rule {
+  opacity: 0;
+  transform-origin: left center;
+  animation: rbHeroDrawRule 0.55s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
+}
+
+/* Los destinos de los botones reciben el foco al terminar el scroll
+   (ver reporta-una-barrera.js). El foco programático no dispara
+   :focus-visible, así que no se dibuja un contorno gigante; el
+   usuario de teclado sí conserva el suyo. */
+#mapa-impacto:focus:not(:focus-visible),
+#reportar:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* ============================================
+   QUÉ HACEMOS CON LO QUE REPORTAS
+
+   Usa la MISMA tarjeta que las "líneas de acción" de
+   Quienes-somos/lo-que-queremos.html: `.change-grid` >
+   `.change-card` > `.card-icon`, con el mismo markup
+   (`role="list"` / `role="listitem"`). Las reglas están copiadas
+   literalmente de `quienes-lo-que-queremos.css` porque el sitio no
+   tiene sistema de componentes compartidos (§1.4 de SITIO_CONTEXT):
+   cada página duplica su CSS. Si esas tarjetas cambian allá, hay
+   que replicar el cambio aquí.
+
+   Conservar el nombre `.change-grid` no es cosmético: ese selector
+   está en la lista de STAGGER_GROUP_SELECTOR de scroll-animations.js,
+   así que las tarjetas heredan gratis el mismo revelado escalonado
+   que en el resto del sitio.
+
+   Lo único añadido es `.rb-card-number`: el número ocupa la casilla
+   del ícono en vez de un SVG, porque estos cuatro pasos SÍ son una
+   secuencia causal y el orden informa.
+   ============================================ */
+.change-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.change-card {
+  position: relative;
+  border: 1px solid rgba(31, 41, 51, 0.1);
+  border-radius: 16px;
+  padding: 1rem;
+  background: rgba(252, 253, 255, 0.94);
+  box-shadow: 0 10px 24px rgba(31, 41, 51, 0.08);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.change-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 32px rgba(35, 45, 90, 0.15);
+  border-color: rgba(107, 107, 255, 0.35);
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(var(--purple-rgb), 0.18);
+  margin-bottom: 0.8rem;
+}
+
+.change-card h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+}
+
+.change-card p {
+  margin: 0;
+  font-size: 0.97rem;
+  line-height: 1.55;
+}
+
+/* El número, en la casilla del ícono. Índigo profundo y no
+   `--purple`: sobre el fondo claro de la casilla, el morado global
+   da ~4:1 y este da 8.6:1 (mismo criterio que `.rb-btn-strong`). */
+.rb-card-number {
+  color: var(--theme-color-strong);
+  font-size: 1.05rem;
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.rb-journey-lead {
+  margin: 1rem 0 0;
+  max-width: 56ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(var(--text-rgb), 0.72);
+}
+
+.rb-journey-note {
+  margin: 1.75rem 0 0;
+  max-width: 62ch;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(var(--text-rgb), 0.68);
+  border-left: 2px solid rgba(var(--purple-alt-rgb), 0.45);
+  padding-left: 1rem;
+}
+
+/* ============================================
+   MAPA DE IMPACTO — la pieza central
+   Única superficie oscura del sitio: se lee como la capa
+   de evidencia, y hace que los anillos vacíos resalten.
+   ============================================ */
+.rb-map {
+  /* Texto y tarjetas ahora son claros — la sección dejó de ser la
+     superficie oscura de la página (ver SITIO_CONTEXT.md §6.8) y
+     pasó al mismo lenguaje visual claro/tarjeta que .rb-kinds. Los
+     nombres --rb-ink/--rb-ink-soft reemplazan a los antiguos
+     --rb-onDark/--rb-onDark-soft en todo el bloque de abajo. */
+  --rb-ink: var(--text);
+  --rb-ink-soft: rgba(var(--text-rgb), 0.62);
+
+  /* Acento de "líder" — la ciudad con más reportes se distingue por
+     color, no solo por tamaño: el marcador y la fila #1 de la tabla
+     usan este mismo tono. --theme-color-strong-soft (no un magenta
+     fuera de la paleta): mismo índigo de marca, solo más claro que
+     --theme-color-strong para diferenciarse del marcador normal, y
+     sigue dando 5.4:1 con texto blanco encima. */
+  --rb-lead-accent: var(--theme-color-strong-soft);
+
+  --rb-hairline: rgba(var(--text-rgb), 0.1);
+  --rb-card-bg: rgba(252, 253, 255, 0.94);
+  --rb-card-shadow: 0 10px 24px rgba(31, 41, 51, 0.08);
+  --rb-glass-bg: rgba(var(--purple-alt-rgb), 0.07);
+  --rb-glass-border: rgba(var(--purple-alt-rgb), 0.22);
+
+  position: relative;
+  color: var(--rb-ink);
+}
+
+.rb-map h2 {
+  color: var(--rb-ink);
+}
+
+.rb-section-status {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+}
+
+/* Insignia ambiental "en vivo": decorativa (aria-hidden), el estado
+   real y anunciable sigue siendo el texto en .rb-readout. */
+.rb-live-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.3rem 0.7rem 0.3rem 0.55rem;
+  border-radius: 999px;
+  border: 1px solid var(--rb-glass-border);
+  background: var(--rb-glass-bg);
+  font-size: 0.68rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--rb-ink-soft);
+}
+
+.rb-live-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: rgba(var(--purple-rgb), 0.4);
+}
+
+.rb-live-indicator[data-state="live"] .rb-live-dot {
+  background: var(--purple-alt);
+  animation: rb-status-pulse 2s ease-out infinite;
+}
+
+.rb-live-indicator[data-state="error"] .rb-live-dot {
+  background: var(--error);
+}
+
+.rb-map-intro {
+  margin: 1rem 0 0;
+  max-width: 56ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(var(--text-rgb), 0.72);
+}
+
+/* Un solo flujo vertical: el mapa es el elemento hero, centrado, y
+   todo lo demás (cifras, ticker, pista, tabla) va apilado debajo,
+   a un único ancho de columna. La versión con 2 columnas de altura
+   independiente dejaba un vacío enorme cuando la tabla crecía; una
+   versión posterior probó cifras flotando ENCIMA del mapa, pero
+   tapaban marcadores reales (datos geográficos: no hay una esquina
+   que se pueda garantizar siempre vacía). Esta queda fuera del
+   mapa por completo — nunca compite por espacio ni lo tapa. */
+.rb-atlas {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  margin: 0;
+}
+
+.rb-map-stage {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ---- Cifras como 3 tarjetas claras independientes — mismo
+   lenguaje que .change-card/.rb-kind, en vez de la franja de
+   dashboard con hairlines que tenía la versión oscura. ---- */
+.rb-readout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.rb-readout-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 1rem 1.15rem;
+  background: var(--rb-card-bg);
+  border: 1px solid rgba(31, 41, 51, 0.1);
+  border-radius: 14px;
+  box-shadow: var(--rb-card-shadow);
+}
+
+.rb-readout-label {
+  font-size: 0.72rem;
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--rb-ink-soft);
+}
+
+.rb-readout-value {
+  font-size: 1.6rem;
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: var(--theme-color-strong);
+}
+
+.rb-readout-value--muted {
+  font-size: 0.9rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0;
+  color: var(--rb-ink);
+}
+
+/* Punto de estado: reutiliza el mismo nodo de texto que ya
+   pinta "Mapa actualizado" / "No disponible" — el color y el pulso
+   los decide data-state, sin inventar un elemento nuevo. */
+.rb-readout-value--muted[data-map-field="status"] {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.rb-readout-value--muted[data-map-field="status"]::before {
+  content: '';
+  width: 0.5em;
+  height: 0.5em;
+  flex: none;
+  border-radius: 50%;
+  background: rgba(var(--purple-rgb), 0.4);
+}
+
+.rb-readout-value--muted[data-state="live"]::before {
+  background: var(--purple-alt);
+  box-shadow: 0 0 0 0 rgba(var(--purple-alt-rgb), 0.6);
+  animation: rb-status-pulse 2s ease-out infinite;
+}
+
+.rb-readout-value--muted[data-state="error"]::before {
+  background: var(--error);
+}
+
+/* ---- El atlas ---- */
+.rb-atlas-canvas {
+  width: 100%;
+}
+
+/* ---- Mapa Leaflet en vivo (Fase 8) ----
+   .rb-map-frame es una tarjeta clara, mismo lenguaje que
+   .rb-kind/.change-card — reemplaza el bisel oscuro con marcas de
+   mira de la versión "panel de instrumento" anterior. */
+.rb-map-frame {
+  position: relative;
+  padding: 10px;
+  border-radius: 20px;
+  background: var(--rb-card-bg);
+  border: 1px solid rgba(31, 41, 51, 0.1);
+  box-shadow: var(--rb-card-shadow);
+}
+
+.rb-atlas-canvas[data-map-status="error"] .rb-map-frame {
+  display: none;
+}
+
+.rb-leaflet-map {
+  width: 100%;
+  height: 380px;
+  border-radius: 14px;
+  overflow: hidden;
+  cursor: default;
+  background-color: var(--background);
+  background-image: linear-gradient(100deg, rgba(31, 41, 51, 0.05) 0%, rgba(31, 41, 51, 0.1) 50%, rgba(31, 41, 51, 0.05) 100%);
+  background-size: 200% 100%;
+}
+
+@media (min-width: 760px) {
+  .rb-leaflet-map {
+    height: 460px;
+  }
+}
+
+.rb-atlas-canvas[data-map-status="pending"] .rb-leaflet-map {
+  animation: rb-map-skeleton 1.6s ease-in-out infinite;
+}
+
+@keyframes rb-map-skeleton {
+  0% { background-position: 0% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Leaflet trae su propia caja de atribución clara por defecto —
+   con los tiles OSM encaja bien, solo se afina para que quede
+   discreta sobre la tarjeta (ver SITIO_CONTEXT.md §6.8). */
+.rb-leaflet-map .leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.82);
+  color: rgba(var(--text-rgb), 0.6);
+  font-size: 9px;
+  padding: 1px 6px;
+  border-radius: 6px 0 0 0;
+}
+
+.rb-leaflet-map .leaflet-control-attribution a {
+  color: var(--theme-color-strong);
+}
+
+/* divIcon de cada ciudad: núcleo con el número + anillo tipo radar
+   que se expande y se desvanece — "impacto en vivo", no un pin
+   genérico. Solo lectura: sin popup, sin cursor de mano. */
+.rb-marker {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.4);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rb-marker.is-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.rb-marker-count {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 68%;
+  height: 68%;
+  border-radius: 50%;
+  background: var(--theme-color-strong);
+  color: #fff;
+  font-family: var(--font-primary);
+  font-weight: var(--font-weight-bold);
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.95), 0 3px 10px rgba(31, 41, 51, 0.35);
+}
+
+/* La ciudad con más reportes se distingue por color, no solo por
+   tamaño — mismo acento que la fila #1 de la tabla (--rb-lead-accent). */
+.rb-marker--lead .rb-marker-count {
+  background: var(--rb-lead-accent);
+}
+
+.rb-marker--lead .rb-marker-ring {
+  border-color: rgba(91, 84, 232, 0.85);
+}
+
+.rb-marker-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid rgba(var(--purple-alt-rgb), 0.85);
+  animation: rb-marker-ping 2.6s cubic-bezier(0.2, 0.7, 0.3, 1) infinite;
+}
+
+.rb-marker.is-visible .rb-marker-ring {
+  animation-play-state: running;
+}
+
+@keyframes rb-marker-ping {
+  0% { transform: scale(0.75); opacity: 0.9; }
+  75%, 100% { transform: scale(1.85); opacity: 0; }
+}
+
+@keyframes rb-status-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(var(--purple-alt-rgb), 0.55); }
+  100% { box-shadow: 0 0 0 7px rgba(var(--purple-alt-rgb), 0); }
+}
+
+.rb-atlas-hint {
+  max-width: 640px;
+  margin: 1rem auto 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--rb-ink-soft);
+  text-align: center;
+}
+
+.rb-atlas-hint--error {
+  color: var(--error);
+  font-weight: var(--font-weight-medium);
+}
+
+/* ---- Tabla accesible alternativa al mapa: un ranking, no una
+   tabla suelta — la misma información que el mapa, ordenada de
+   mayor a menor porque ahí el orden sí dice algo. ---- */
+.rb-map-table-toggle {
+  max-width: 640px;
+  margin: 1.1rem auto 0;
+  padding: 0.15rem 0;
+  color: var(--rb-ink-soft);
+  border-top: 1px solid var(--rb-hairline);
+}
+
+.rb-map-table-toggle summary {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.1rem;
+  cursor: pointer;
+  list-style: none;
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.02em;
+  color: var(--rb-ink);
+}
+
+.rb-map-table-toggle summary::-webkit-details-marker {
+  display: none;
+}
+
+.rb-map-table-toggle summary::before {
+  content: '';
+  flex: none;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 1.5px solid rgba(var(--purple-alt-rgb), 0.75);
+  border-bottom: 1.5px solid rgba(var(--purple-alt-rgb), 0.75);
+  transform: rotate(-45deg);
+  transition: transform 0.2s ease;
+}
+
+.rb-map-table-toggle[open] summary::before {
+  transform: rotate(45deg);
+}
+
+.rb-map-table-toggle summary:focus-visible {
+  outline: 2px solid rgba(var(--purple-alt-rgb), 0.9);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Tabla-ranking de 2 columnas: la ciudad+departamento van como
+   encabezado de fila (th) y la cifra vive en una sola celda de
+   datos con una barra que usa TODO el ancho disponible. Con 4
+   columnas fijas (rango/ciudad/depto/reportes) la barra se cortaba
+   en móvil porque competía por espacio; con una sola celda flexible
+   no hay ancho fijo que se quede corto en ningún viewport. */
+.rb-map-table {
+  width: 100%;
+  margin-top: 0.4rem;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+
+.rb-map-table th,
+.rb-map-table td {
+  padding: 0.7rem 0;
+  text-align: left;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--rb-hairline);
+}
+
+.rb-map-table thead th {
+  font-size: 0.66rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--rb-ink-soft);
+}
+
+.rb-map-table thead th:last-child {
+  text-align: right;
+  width: 40%;
+}
+
+.rb-map-table tbody th {
+  font-weight: var(--font-weight-medium);
+  color: var(--rb-ink);
+}
+
+.rb-map-table-rank {
+  display: inline-block;
+  margin-right: 0.55em;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85em;
+  font-weight: var(--font-weight-semibold);
+  color: rgba(var(--purple-rgb), 0.7);
+}
+
+.rb-map-table tbody tr:first-child .rb-map-table-rank {
+  color: var(--rb-lead-accent);
+}
+
+.rb-map-table tbody tr:first-child .rb-map-table-bar::after {
+  background: var(--rb-lead-accent);
+}
+
+.rb-map-table-city {
+  font-weight: var(--font-weight-semibold);
+}
+
+.rb-map-table-dept {
+  display: block;
+  margin-top: 0.2em;
+  margin-left: 1.45em;
+  font-size: 0.78em;
+  font-weight: var(--font-weight-normal);
+  color: var(--rb-ink-soft);
+}
+
+.rb-map-table-count {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.rb-map-table-bar {
+  flex: 1 1 auto;
+  min-width: 1.75rem;
+  height: 7px;
+  border-radius: 999px;
+  background: rgba(31, 41, 51, 0.08);
+  overflow: hidden;
+}
+
+.rb-map-table-bar::after {
+  content: '';
+  display: block;
+  height: 100%;
+  min-width: 4px;
+  width: calc(var(--bar-scale, 0) * 100%);
+  border-radius: inherit;
+  background: var(--theme-color-strong);
+}
+
+.rb-map-table-value {
+  flex: none;
+  min-width: 1.6em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--font-weight-semibold);
+  color: var(--rb-ink);
+}
+
+/* Se lee como una línea de registro de sistema, no como una cita:
+   un prefijo tipo prompt ("›") en vez de solo una barra de color. */
+.rb-atlas-caption {
+  display: flex;
+  gap: 0.6rem;
+  max-width: 640px;
+  margin: 1.5rem auto 0;
+  padding: 1rem 1.1rem;
+  border-left: 2px solid var(--purple-alt);
+  background: var(--rb-glass-bg);
+  border-radius: 0 8px 8px 0;
+  font-size: 0.92rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--rb-ink-soft);
+}
+
+.rb-atlas-caption::before {
+  content: '\203A';
+  flex: none;
+  color: var(--purple-alt);
+  font-weight: var(--font-weight-bold);
+}
+
+.rb-atlas-caption[data-map-status="error"] {
+  border-left-color: var(--error);
+  color: var(--error);
+}
+
+.rb-atlas-caption[data-map-status="error"]::before {
+  color: var(--error);
+}
+
+/* ============================================
+   QUÉ PUEDES REPORTAR
+   Grid tipo bento: Movilidad es la protagonista (2 columnas x 2
+   filas), las otras 4 categorías se distribuyen alrededor en un
+   grid base de 4 columnas. Con las columnas/filas fijas de abajo,
+   el orden del DOM ya coloca todo donde debe ir por auto-placement
+   (Movilidad ocupa 1-2/1-2, las siguientes 4 llenan 3 y 4 en orden)
+   — no hace falta grid-template-areas explícito.
+   ============================================ */
+.rb-kind-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(180px, auto);
+  gap: 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rb-kind--featured {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+@media (max-width: 1024px) and (min-width: 769px) {
+  .rb-kind--featured {
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .rb-kind-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rb-kind--featured {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+}
+
+.rb-kind {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(var(--text-rgb), 0.12);
+  border-radius: 14px;
+  background: var(--white);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
+}
+
+.rb-kind:hover {
+  transform: translateY(-3px);
+  border-color: rgba(var(--purple-alt-rgb), 0.4);
+  box-shadow: 0 14px 28px rgba(var(--text-rgb), 0.12);
+}
+
+/* Reserva el espacio exacto de la foto real (aún no entregada) con
+   la proporción final ya fijada, para que no haya salto de layout
+   cuando llegue — solo hay que sustituir el <svg> por un <img>. */
+.rb-kind-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 4 / 3;
+  background: rgba(var(--purple-rgb), 0.08);
+}
+
+/* La protagonista ocupa 2 filas del grid: su alto lo termina
+   marcando lo que midan las 4 tarjetas chicas apiladas al lado, casi
+   siempre más que el contenido propio de Movilidad. flex-grow deja
+   que el placeholder (y su futura foto) absorba ese sobrante en vez
+   de dejarlo como hueco en blanco bajo el texto — el aspect-ratio
+   sigue siendo el alto mínimo, nunca se encoge por debajo de él. */
+.rb-kind--featured {
+  display: flex;
+  flex-direction: column;
+}
+
+.rb-kind--featured .rb-kind-placeholder {
+  flex: 1 1 auto;
+  aspect-ratio: 16 / 10;
+}
+
+@media (max-width: 768px) {
+  .rb-kind-placeholder {
+    aspect-ratio: 16 / 9;
+  }
+
+  .rb-kind--featured .rb-kind-placeholder {
+    flex: none;
+    aspect-ratio: 4 / 3;
+  }
+}
+
+.rb-kind-icon {
+  width: 25%;
+  max-width: 56px;
+  color: var(--theme-color-strong);
+  opacity: 0.32;
+}
+
+.rb-kind--featured .rb-kind-icon {
+  max-width: 88px;
+}
+
+.rb-kind-body {
+  padding: 1rem 1.1rem 1.2rem;
+}
+
+.rb-kind-body h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  color: var(--theme-color-strong);
+}
+
+.rb-kind--featured .rb-kind-body h3 {
+  font-size: 1.15rem;
+}
+
+.rb-kind-tag-icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.rb-kind-body p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(var(--text-rgb), 0.78);
+}
+
+.rb-kind--featured .rb-kind-body p {
+  max-width: 46ch;
+}
+
+/* ============================================
+   CÓMO FUNCIONA — guía conceptual de los 6 pasos del formulario
+   real, no una réplica de sus pantallas. Horizontal en desktop (6
+   columnas fijas, línea conectora en la fracción exacta entre el
+   centro del primer y el último círculo: 1/12 a 11/12 de 6
+   columnas iguales); vertical en móvil (un riel por tarjeta, sin
+   gap entre <li> para que los segmentos se vean como una sola
+   línea continua).
+   ============================================ */
+.rb-how-intro {
+  margin: 1rem 0 0;
+  max-width: 56ch;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(var(--text-rgb), 0.72);
+}
+
+.rb-stepper {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.rb-stepper::before {
+  content: '';
+  position: absolute;
+  top: 22px;
+  left: calc(100% / 12);
+  right: calc(100% / 12);
+  height: 2px;
+  background: rgba(var(--text-rgb), 0.14);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 900ms ease;
+}
+
+.rb-stepper.stagger-visible::before {
+  transform: scaleX(1);
+}
+
+.rb-stepper-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.rb-stepper-marker {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  margin-bottom: 0.9rem;
+  background: var(--theme-color-strong);
+}
+
+.rb-stepper-number {
+  font-weight: var(--font-weight-bold);
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+.rb-stepper-icon {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 0.6rem;
+  color: var(--purple-alt);
+}
+
+.rb-stepper-body h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.94rem;
+  color: rgba(var(--text-rgb), 0.92);
+}
+
+.rb-stepper-body p {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: rgba(var(--text-rgb), 0.7);
+}
+
+@media (max-width: 768px) {
+  .rb-stepper {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .rb-stepper::before {
+    display: none;
+  }
+
+  .rb-stepper-item {
+    position: relative;
+    flex-direction: row;
+    align-items: flex-start;
+    text-align: left;
+    gap: 1rem;
+    padding-bottom: 1.75rem;
+  }
+
+  .rb-stepper-item:last-child {
+    padding-bottom: 0;
+  }
+
+  .rb-stepper-item:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 44px;
+    bottom: 0;
+    left: 21px;
+    width: 2px;
+    background: rgba(var(--text-rgb), 0.14);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 500ms ease;
+    transition-delay: calc(var(--stagger-index, 0) * 90ms);
+  }
+
+  .rb-stepper.stagger-visible .rb-stepper-item:not(:last-child)::after {
+    transform: scaleY(1);
+  }
+
+  .rb-stepper-marker {
+    flex-shrink: 0;
+    margin-bottom: 0;
+  }
+}
+
+.rb-trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem 1.75rem;
+  margin: 2.5rem 0 0;
+  padding: 1.1rem 1.5rem;
+  list-style: none;
+  border-top: 1px solid rgba(var(--text-rgb), 0.1);
+  border-bottom: 1px solid rgba(var(--text-rgb), 0.1);
+}
+
+.rb-trust-row li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-medium);
+  color: rgba(var(--text-rgb), 0.78);
+}
+
+.rb-trust-row svg {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: var(--purple-alt);
+}
+
+/* ============================================
+   CTA FINAL — el último momento antes de que la persona actúe.
+   Se centra a propósito: es el único "punto final" compositivo de
+   la página, distinto del ritmo alineado a la izquierda del resto
+   de secciones — la pausa antes del salto, no un trámite más. */
+.rb-cta {
+  padding-block: 5rem;
+  text-align: center;
+}
+
+.rb-cta h2 {
+  max-width: 26ch;
+  margin: 0 auto 1.1rem;
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  line-height: 1.18;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.rb-cta p {
+  max-width: 52ch;
+  margin: 0 auto;
+  color: rgba(var(--text-rgb), 0.82);
+}
+
+.rb-cta-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.rb-cta-note {
+  max-width: 42ch;
+  margin: 1.1rem auto 0 !important;
+  font-size: 0.85rem;
+  color: rgba(var(--text-rgb), 0.6) !important;
+}
+
+/* Variante de .btn-primary con contraste suficiente. El global de
+   base.css ya es sólido (--theme-color-strong, ver ahí), pero esta
+   página lo mantiene como clase propia por si el global vuelve a
+   cambiar — local a esta página, no altera .btn-primary del resto
+   del sitio. */
+.rb-btn-strong {
+  background: var(--theme-color-strong);
+  box-shadow: 0 4px 16px rgba(var(--purple-alt-rgb), 0.35);
+}
+
+.rb-btn-strong:focus-visible {
+  outline: 3px solid var(--theme-color-strong);
+  outline-offset: 3px;
+}
+
+/* El botón de cierre es el de mayor peso visual de todo el sitio:
+   más grande que el .btn-primary del hero (ver #hero.rb-hero
+   .btn-primary), con el mismo lenguaje de hover (elevación + brillo)
+   para que se sienta de la misma familia, pero más contundente
+   porque es la única acción que queda por tomar. */
+.rb-cta .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.2rem 2.5rem;
+  font-size: 1.08rem;
+  font-weight: var(--font-weight-semibold);
+  border-radius: 14px;
+  box-shadow:
+    0 14px 32px rgba(20, 14, 60, 0.16),
+    0 6px 18px rgba(var(--purple-alt-rgb), 0.38);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+}
+
+.rb-cta .btn-primary:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.05);
+  box-shadow:
+    0 20px 42px rgba(20, 14, 60, 0.2),
+    0 9px 24px rgba(var(--purple-alt-rgb), 0.46);
+}
+
+.rb-cta .btn-primary:focus-visible {
+  outline-offset: 4px;
+}
+
+/* En móvil, el padding/tamaño pensado para el botón "más grande
+   del sitio" se sentía sobredimensionado frente al resto de la
+   página — se reduce sin perder que siga siendo el botón principal. */
+@media (max-width: 600px) {
+  .rb-cta .btn-primary {
+    width: 100%;
+    justify-content: center;
+    padding: 0.95rem 1.5rem;
+    font-size: 0.95rem;
+    border-radius: 12px;
+  }
+}
+
+.rb-cta-btn-arrow {
+  display: inline-block;
+  transition: transform var(--transition-fast);
+}
+
+.rb-cta .btn-primary:hover .rb-cta-btn-arrow {
+  transform: translateX(5px);
+}
+
+/* ============================================
+   TEMAS
+   ============================================ */
+/* En tema oscuro entra la misma ciudad, de noche: los pines siguen
+   ahí y las rutas accesibles se encienden. Es el par día/noche, no
+   una foto oscurecida. El cambio es inmediato porque depende solo
+   de la clase `body.theme-dark`.
+
+   Hay que repetir aquí las cuatro propiedades de fondo porque
+   `body.theme-dark #hero.section` de accessibility.css usa el atajo
+   `background`, que resetea background-image; empata en especificidad
+   (1,2,0) y solo se gana porque este archivo carga después. */
+body.theme-dark #hero.rb-hero {
+  background-image: url('../img/hero-reporta-barrera-oscuro.jpg');
+  background-image: image-set(
+    url('../img/hero-reporta-barrera-oscuro.webp') type('image/webp'),
+    url('../img/hero-reporta-barrera-oscuro.jpg') type('image/jpeg')
+  );
+  background-size: cover;
+  background-position: var(--rb-hero-focus-dark);
+  background-repeat: no-repeat;
+
+  /* Se invierte el par tinta/telón: de noche el telón es oscuro y la
+     tinta clara, y hace falta menos densidad para el mismo contraste,
+     así que los pines siguen encendidos. */
+  --rb-hero-ink: #F5F7FF;
+  --rb-hero-ink-soft: rgba(245, 247, 255, 0.88);
+  --rb-hero-accent: #A7B4FF;
+  --rb-hero-veil-strong: rgba(6, 8, 24, 0.84);
+  --rb-hero-veil-mid: rgba(6, 8, 24, 0.52);
+  --rb-hero-veil-soft: rgba(6, 8, 24, 0.14);
+  --rb-hero-tint-a: rgba(111, 168, 255, 0.1);
+  --rb-hero-tint-b: rgba(155, 140, 255, 0.14);
+  --rb-hero-shadow: 0 8px 22px rgba(4, 6, 18, 0.55);
+  --rb-hero-ring: #FFFFFF;
+}
+
+/* De noche el morado del botón secundario global cae a ~4.3:1 sobre
+   la ilustración; aquí se invierte a blanco (14:1 contra el telón). */
+body.theme-dark #hero.rb-hero .btn-secondary {
+  color: var(--rb-hero-ink);
+  border-color: rgba(245, 247, 255, 0.7);
+  background: rgba(245, 247, 255, 0.08);
+  box-shadow: 0 10px 22px rgba(6, 9, 20, 0.3);
+}
+
+body.theme-dark #hero.rb-hero .btn-secondary:hover {
+  background: rgba(245, 247, 255, 0.16);
+  border-color: var(--rb-hero-ink);
+}
+
+body.theme-dark .rb-subtitle,
+body.theme-dark .rb-journey-lead,
+body.theme-dark .rb-journey-note,
+body.theme-dark .rb-kind-body p,
+body.theme-dark .rb-cta p {
+  color: rgba(230, 230, 230, 0.82);
+}
+
+/* `.rb-cta-note` fuerza su propio color con !important (necesario
+   para ganarle a la regla genérica `.rb-cta p`) — en tema oscuro
+   eso significa texto oscuro sobre fondo oscuro si no se sobreescribe
+   aquí también. */
+body.theme-dark .rb-cta-note {
+  color: rgba(230, 230, 230, 0.6) !important;
+}
+
+body.theme-dark .rb-eyebrow,
+body.theme-dark .rb-kind-body h3 {
+  color: #A9B0FF;
+}
+
+/* La tarjeta no lleva reglas propias de tinta en oscuro: hereda las
+   globales de accessibility.css (`h3` → --purple, `p` → #e6e6e6),
+   exactamente como en lo-que-queremos.html. Copiada de allí. */
+body.theme-dark .change-card {
+  background: rgba(33, 33, 40, 0.92);
+  border-color: rgba(155, 140, 255, 0.3);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+}
+
+body.theme-dark .rb-card-number {
+  color: #A9B0FF;
+}
+
+/* En tema oscuro, `body.theme-dark .btn-primary` de accessibility.css
+   pinta el CTA en lavanda claro con texto blanco: ~2.5:1. Sobre fondo
+   oscuro la lectura correcta es la inversa — lavanda de fondo y tinta
+   oscura encima (~10:1). Local a esta página, como `.rb-btn-strong`. */
+body.theme-dark .rb-btn-strong {
+  background: #A9B0FF;
+  color: #10122B;
+  box-shadow: 0 4px 18px rgba(10, 12, 35, 0.55);
+}
+
+body.theme-dark .rb-kind {
+  background: rgba(33, 33, 40, 0.94);
+  border-color: rgba(155, 140, 255, 0.28);
+}
+
+body.theme-dark .rb-kind-placeholder {
+  background: rgba(155, 140, 255, 0.12);
+}
+
+body.theme-dark .rb-kind-icon {
+  color: #A9B0FF;
+}
+
+/* El mapa dejó de ser la única superficie oscura del sitio (ver
+   SITIO_CONTEXT.md §6.8): en tema oscuro ahora hereda el mismo
+   tratamiento de tarjeta que ya usan .rb-kind/.change-card, en vez
+   de forzar su propio fondo índigo. Solo hace falta redefinir los
+   tokens que --text-rgb no actualiza por tema (ver nota en
+   SITIO_CONTEXT §2.1: los tripletes RGB no se redefinen por tema,
+   hay que repetir los rgba() literales del tema oscuro). */
+body.theme-dark .rb-map {
+  --rb-ink-soft: rgba(230, 230, 230, 0.72);
+  --rb-hairline: rgba(230, 230, 230, 0.14);
+  --rb-card-bg: rgba(33, 33, 40, 0.94);
+  --rb-card-shadow: 0 16px 36px rgba(0, 0, 0, 0.35);
+  --rb-glass-bg: rgba(155, 140, 255, 0.12);
+  --rb-glass-border: rgba(155, 140, 255, 0.3);
+}
+
+body.theme-dark .rb-map-frame,
+body.theme-dark .rb-readout-item {
+  border-color: rgba(155, 140, 255, 0.28);
+}
+
+/* --theme-color-strong (fijo, no varía por tema) da bajo contraste
+   sobre una tarjeta oscura — mismo criterio que .rb-eyebrow/
+   .rb-card-number en tema oscuro en esta misma página. */
+body.theme-dark .rb-readout-value {
+  color: #A9B0FF;
+}
+
+body.theme-dark .rb-leaflet-map {
+  background-image: linear-gradient(100deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.12) 50%, rgba(255, 255, 255, 0.05) 100%);
+}
+
+/* El marcador es blanco-sobre-índigo por defecto; en tarjeta oscura
+   pasa a índigo-sobre-blanco para no perder separación del fondo. */
+body.theme-dark .rb-marker-count {
+  box-shadow: 0 0 0 3px rgba(20, 22, 30, 0.9), 0 3px 10px rgba(0, 0, 0, 0.45);
+}
+
+/* accessibility.css fuerza `body.theme-high-contrast { background:
+   #fff; color:#000 }` a nivel global — sin una regla propia, .rb-map
+   ya hereda blanco/negro como cualquier otra sección, igual que
+   .rb-kind/.change-card (que tampoco fuerzan fondo, solo borde). */
+body.theme-high-contrast .rb-live-indicator {
+  border-color: #fff;
+  background: #000;
+  color: #fff;
+}
+
+body.theme-high-contrast .rb-live-dot {
+  background: #fff;
+}
+
+body.theme-high-contrast .rb-marker-count {
+  background: #000;
+  color: #fff;
+  box-shadow: 0 0 0 3px #fff;
+}
+
+body.theme-high-contrast .rb-map-table tbody tr:first-child .rb-map-table-bar::after {
+  background: #000;
+}
+
+body.theme-high-contrast .rb-marker-ring {
+  border-color: #000;
+}
+
+body.theme-high-contrast .rb-map-table-bar {
+  background: #ccc;
+}
+
+body.theme-high-contrast .rb-map-table-bar::after {
+  background: #000;
+}
+
+/* accessibility.css ya fuerza `h1..h6, p, li, span { color:#000;
+   background:#fff }` en TODO el sitio para alto contraste. figcaption/
+   details/th/td no están cubiertos por esa regla genérica, así que
+   necesitan su propio color explícito — ahora negro sobre blanco,
+   como el resto de la sección (antes era blanco sobre negro, cuando
+   el fondo de la sección se forzaba a negro). */
+body.theme-high-contrast .rb-atlas-caption,
+body.theme-high-contrast .rb-map-table-toggle,
+body.theme-high-contrast .rb-map-table th,
+body.theme-high-contrast .rb-map-table td {
+  background: none;
+  color: #000;
+  fill: #000;
+}
+
+body.theme-high-contrast .rb-kind,
+body.theme-high-contrast .change-card,
+body.theme-high-contrast .rb-map-frame,
+body.theme-high-contrast .rb-readout-item {
+  border: 2px solid #000;
+  box-shadow: none;
+}
+
+body.theme-high-contrast .rb-kind-placeholder {
+  background: #fff;
+  border-bottom: 2px solid #000;
+}
+
+body.theme-high-contrast .rb-kind-icon {
+  color: #000;
+  opacity: 1;
+}
+
+/* La marca circular no la cubre ninguna regla genérica (no es un
+   h1-h6/p/li/span) — sin esto se queda con el índigo fijo detrás y
+   un cuadro blanco de `body.theme-high-contrast span` encima del
+   número, ilegible. Mismo criterio invertido que .rb-marker-count
+   en .rb-map. */
+body.theme-high-contrast .rb-stepper-marker {
+  background: #000;
+}
+
+body.theme-high-contrast .rb-stepper-number {
+  background: none;
+  color: #fff;
+}
+
+body.theme-high-contrast .rb-stepper-icon,
+body.theme-high-contrast .rb-trust-row svg {
+  color: #000;
+}
+
+body.theme-high-contrast .rb-stepper::before,
+body.theme-high-contrast .rb-stepper-item::after {
+  background: #000;
+}
+
+/* En alto contraste la foto se retira entera: negro plano, texto
+   blanco puro, sin velos ni retícula que bajen el ratio. */
+body.theme-high-contrast #hero.rb-hero {
+  background-image: none;
+  background-color: #000;
+  border-bottom: 2px solid #fff;
+  box-shadow: none;
+}
+
+body.theme-high-contrast #hero.rb-hero::before,
+body.theme-high-contrast #hero.rb-hero::after {
+  display: none;
+}
+
+body.theme-high-contrast #hero.rb-hero .rb-eyebrow,
+body.theme-high-contrast #hero.rb-hero h1,
+body.theme-high-contrast #hero.rb-hero .rb-subtitle {
+  color: #fff;
+  text-shadow: none;
+}
+
+body.theme-high-contrast #hero.rb-hero .rb-rule {
+  --rb-rule-ink: #fff;
+}
+
+body.theme-high-contrast .rb-btn-strong {
+  background: #000;
+  border: 2px solid #000;
+  box-shadow: none;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  /* base.css ajusta `#hero.section` en este mismo breakpoint, pero
+     `#hero.rb-hero` empata en especificidad y carga después: hay que
+     volver a declarar el hero móvil aquí. */
+  #hero.rb-hero {
+    min-height: clamp(460px, 74vh, 640px);
+    padding: 4.5rem 1.5rem;
+    --rb-hero-focus: 52% 44%;
+    --rb-hero-focus-dark: 58% 42%;
+
+    /* En vertical el texto ocupa todo el ancho, así que el telón deja
+       de ser una columna y pasa a cubrir el cuadro entero. */
+    --rb-hero-veil-mid: rgba(248, 250, 255, 0.9);
+    --rb-hero-veil-soft: rgba(248, 250, 255, 0.76);
+  }
+
+  #hero.rb-hero .rb-subtitle {
+    font-size: 1rem;
+    max-width: 42ch;
+  }
+
+  #hero.rb-hero .hero-actions {
+    margin-top: 1.85rem;
+  }
+
+  /* El bloque de tema (1,2,0) gana a la media query (1,1,0), así que
+     el telón móvil del modo oscuro se declara aparte. */
+  body.theme-dark #hero.rb-hero {
+    --rb-hero-veil-mid: rgba(6, 8, 24, 0.82);
+    --rb-hero-veil-soft: rgba(6, 8, 24, 0.66);
+  }
+
+  /* Copiada de quienes-lo-que-queremos.css, igual que la tarjeta. */
+  .change-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .rb-readout-value {
+    font-size: 1.35rem;
+  }
+}
+
+/* ============================================
+   MOVIMIENTO REDUCIDO
+   La página no depende de animación para comunicar nada: con el
+   movimiento apagado, el hero aparece completo y en su sitio.
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  #hero.rb-hero .rb-eyebrow,
+  #hero.rb-hero .rb-rule,
+  #hero.rb-hero h1,
+  #hero.rb-hero .rb-subtitle,
+  #hero.rb-hero .hero-actions {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  #hero.rb-hero .btn-primary,
+  #hero.rb-hero .btn-secondary,
+  .rb-kind,
+  .change-card {
+    transition: none;
+  }
+
+  #hero.rb-hero .btn-primary:hover,
+  #hero.rb-hero .btn-secondary:hover,
+  .rb-kind:hover,
+  .change-card:hover {
+    transform: none;
+  }
+}
+
+/* El sitio también tiene un interruptor propio de movimiento en el
+   menú de accesibilidad, que marca `.reduce-motion` en <html>.
+   reduce-motion.css cubre el hero del home; este hero usa otras
+   clases, así que se cubre aquí con el mismo patrón. */
+:root.reduce-motion #hero.rb-hero .rb-eyebrow,
+:root.reduce-motion #hero.rb-hero .rb-rule,
+:root.reduce-motion #hero.rb-hero h1,
+:root.reduce-motion #hero.rb-hero .rb-subtitle,
+:root.reduce-motion #hero.rb-hero .hero-actions {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+}

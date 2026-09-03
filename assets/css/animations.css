@@ -246,10 +246,6 @@
 .hero-content h1 {
   animation: slideInLeft 0.8s ease-out 0.5s both;
   font-size: 2.5rem;
-  background: linear-gradient(135deg, var(--purple), var(--blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
   letter-spacing: -0.5px;
 }
 
@@ -423,7 +419,7 @@
 
 /* Highlight */
 .highlight {
-  background: linear-gradient(135deg, rgba(107, 107, 255, 0.1), rgba(74, 144, 226, 0.1));
+  background: rgba(var(--purple-rgb), 0.08);
   border-left: 4px solid var(--purple);
   padding: 1.5rem;
   border-radius: 8px;
@@ -434,7 +430,7 @@
 }
 
 .highlight:hover {
-  background: linear-gradient(135deg, rgba(107, 107, 255, 0.15), rgba(74, 144, 226, 0.15));
+  background: rgba(var(--purple-rgb), 0.13);
   border-left-width: 6px;
   transform: translateX(10px);
   box-shadow: 0 4px 15px rgba(107, 107, 255, 0.2);
@@ -501,69 +497,6 @@ select:focus ~ label {
   font-weight: var(--font-weight-semibold);
 }
 
-/* Page Section */
-.page-section {
-  animation: fadeIn 0.8s ease-out 0.3s both;
-}
-
-.page-section h1 {
-  animation: slideInDown 0.8s ease-out;
-  background: linear-gradient(135deg, var(--purple), var(--blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: 2.2rem;
-  margin-bottom: 1.5rem;
-}
-
-.page-section p {
-  animation: fadeIn 0.8s ease-out 0.1s both;
-  font-size: 1rem;
-  line-height: 1.8;
-  color: var(--text);
-}
-
-.page-section p:hover {
-  color: var(--purple);
-  transform: translateX(5px);
-}
-
-/* Dropdown Link Animation */
-.dropdown > a {
-  transition: all 0.3s ease;
-}
-
-.dropdown > a:hover {
-  color: var(--purple);
-}
-
-.dropdown.active > a {
-  color: var(--purple);
-  border-bottom: 2px solid var(--purple);
-}
-
-/* Separator Line Animation */
-hr {
-  border: none;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--purple), transparent);
-  animation: expandWidth 0.6s ease-out;
-}
-
-/* Stagger Animation Helper */
-.stagger > * {
-  animation: fadeIn 0.6s ease-out backwards;
-}
-
-.stagger > *:nth-child(1) { animation-delay: 0.1s; }
-.stagger > *:nth-child(2) { animation-delay: 0.2s; }
-.stagger > *:nth-child(3) { animation-delay: 0.3s; }
-.stagger > *:nth-child(4) { animation-delay: 0.4s; }
-.stagger > *:nth-child(5) { animation-delay: 0.5s; }
-.stagger > *:nth-child(6) { animation-delay: 0.6s; }
-.stagger > *:nth-child(7) { animation-delay: 0.7s; }
-.stagger > *:nth-child(8) { animation-delay: 0.8s; }
-
 /* Progressive card appearance */
 .reveal-stagger .stagger-item {
   opacity: 0;
@@ -622,7 +555,11 @@ html {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #fff;
+  /* var(--background), no #fff: fijo no reaccionaba al tema — el
+     texto del loader (color: var(--purple), pensado para fondo claro
+     u oscuro según el tema) podía quedar sobre un fondo blanco que
+     nunca cambiaba, fallando contraste en tema oscuro/alto contraste. */
+  background: var(--background);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -669,10 +606,7 @@ html {
   font-size: 1.55rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, var(--purple), var(--blue));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--purple);
 }
 
 .loader-bar-track {
@@ -687,7 +621,7 @@ html {
 .loader-bar-fill {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, var(--purple), var(--blue));
+  background: var(--purple);
   border-radius: 99px;
   animation: loaderFill 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.15s forwards;
 }

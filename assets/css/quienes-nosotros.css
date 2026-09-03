@@ -39,7 +39,10 @@
   letter-spacing: 0.08em;
   font-size: 0.82rem;
   font-weight: var(--font-weight-semibold);
-  color: var(--purple);
+  /* --theme-color-strong, no --purple: a este tamaño, var(--purple)
+     da ~4.2:1 en claro/suave — por debajo del mínimo AA 4.5:1
+     (falla real, confirmada con axe-core en tema "colores suaves"). */
+  color: var(--theme-color-strong);
   margin-bottom: 0.7rem;
 }
 

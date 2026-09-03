@@ -6,7 +6,11 @@ const STAGGER_GROUP_SELECTOR = [
   ".barriers-grid",
   ".change-grid",
   ".change-pillars",
-  ".principles-grid"
+  ".principles-grid",
+  ".iniciativa-grid",
+  ".proposito-frentes",
+  ".rb-kind-grid",
+  ".rb-stepper"
 ].join(", ");
 
 function supportsIntersectionObserver() {

@@ -3,7 +3,10 @@
   position: absolute;
   top: -40px;
   left: 6px;
-  background: var(--purple);
+  /* --theme-color-strong, no --purple: blanco sobre --purple da 4.2:1,
+     por debajo del mínimo AA 4.5:1 (falla real, confirmada con axe-core
+     y Lighthouse). --theme-color-strong da 7.9:1. */
+  background: var(--theme-color-strong);
   color: white;
   padding: 8px;
   text-decoration: none;
@@ -149,7 +152,11 @@ body {
   top: 0;
   background: var(--white);
   border-bottom: 1px solid #e5e7eb;
-  z-index: 1000;
+  /* Por encima de #nav-right (1001, ver layout.css): .nav-right vive
+     fuera de .navbar (ver SITIO_CONTEXT.md §4), así que su z-index ya
+     no se compara solo contra los hijos de .navbar sino contra la
+     barra completa — sin esto, el panel abierto tapaba la hamburguesa/X. */
+  z-index: 1002;
   backdrop-filter: blur(10px);
   background: rgba(255, 255, 255, 0.95);
   width: 100%;
@@ -169,7 +176,11 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    /* Por encima de #nav-right (1001, ver layout.css): .nav-right vive
+     fuera de .navbar (ver SITIO_CONTEXT.md §4), así que su z-index ya
+     no se compara solo contra los hijos de .navbar sino contra la
+     barra completa — sin esto, el panel abierto tapaba la hamburguesa/X. */
+  z-index: 1002;
     background: rgba(255, 255, 255, 0.98);
     backdrop-filter: blur(15px);
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
@@ -243,47 +254,9 @@ body {
   line-height: 1;
 }
 
-/* NAV RIGHT CONTAINER */
-.nav-right {
-  display: flex;
-  align-items: center;
-  gap: 1.5rem;
-  flex: 1;
-  justify-content: center;
-}
-
-/* LINKS */
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  list-style: none;
-}
-
-.nav-links > li {
-  display: flex;
-  align-items: center;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: var(--purple);
-  font-weight: var(--font-weight-medium);
-  padding: 0.6rem 0.8rem;
-  border-radius: 8px;
-  transition: all 0.2s ease;
-  letter-spacing: 0.01em;
-}
-
-.nav-links a:hover {
-  background-color: rgba(107, 107, 255, 0.1);
-}
-
-.nav-links a:focus {
-  outline: none;
-  background-color: rgba(107, 107, 255, 0.15);
-  box-shadow: 0 0 0 2px rgba(107, 107, 255, 0.3);
-}
+/* NAV RIGHT: el panel off-canvas (ver layout.css) — ya no hay una
+   fila horizontal de links en la barra en ningún ancho de pantalla,
+   así que .nav-right/.nav-links no llevan estilos de layout aquí. */
 
 /* SOCIAL LINKS */
 .social-links {
@@ -315,60 +288,11 @@ body {
   outline: 3px solid var(--purple);
 }
 
-/* DROPDOWN */
+/* DROPDOWN "Quiénes somos": el acordeón dentro del panel off-canvas
+   vive por completo en layout.css (ya no hay un flyout de escritorio
+   separado). */
 .dropdown {
   position: relative;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: var(--white);
-  border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  list-style: none;
-  min-width: 230px;
-  padding: 0.5rem 0;
-  margin-top: 0.5rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
-  transition: all 0.3s ease;
-  z-index: 1000;
-  backdrop-filter: blur(10px);
-}
-
-.dropdown.active .dropdown-menu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.dropdown-menu li {
-  padding: 0;
-}
-
-.dropdown-menu a {
-  display: block;
-  padding: 0.7rem 1.2rem;
-  color: var(--text);
-  text-decoration: none;
-  font-weight: var(--font-weight-medium);
-  transition: background-color 0.2s ease;
-}
-
-.dropdown-menu a:hover {
-  background-color: rgba(107, 107, 255, 0.08);
-  /* Removed color change for consistent text appearance */
-}
-
-.dropdown-menu a:focus {
-  outline: none;
-  background-color: rgba(107, 107, 255, 0.12);
-  /* Removed color change for consistent text appearance */
-  box-shadow: inset 0 0 0 2px rgba(107, 107, 255, 0.3);
 }
 
 /* SECCIONES */
@@ -427,7 +351,7 @@ h3, h4, h5, h6 {
 }
 
 button {
-  background: linear-gradient(135deg, var(--blue), var(--purple));
+  background: var(--theme-color-strong);
   color: var(--white);
   border: none;
   padding: 0.8rem 1.4rem;
@@ -507,7 +431,11 @@ footer {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--blue), var(--purple));
+  /* Sólido, no degradado: var(--theme-color-strong) es el mismo índigo
+     de marca ya usado en el nav, elegido ahí por contraste WCAG AA
+     (7.9:1 con texto blanco) — el degradado anterior daba 3.3-4.47:1,
+     por debajo del mínimo 4.5:1. Ver SITIO_CONTEXT.md §2.1. */
+  background: var(--theme-color-strong);
   color: var(--white);
   padding: 0.9rem 1.6rem;
   border-radius: 12px;
@@ -882,49 +810,6 @@ main {
 }
 @media (max-width: 768px) {
 
-  .nav-container {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-  }
-
-  .dropdown-menu {
-    position: static;
-    opacity: 0;
-    visibility: hidden;
-    transform: none;
-    max-height: 0;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: none;
-    border: none;
-    padding: 0;
-    margin: 0;
-  }
-
-  .dropdown.active .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    max-height: 300px;
-    padding: 0.5rem 0;
-    border-top: 1px solid #e5e7eb;
-    margin-top: 0.5rem;
-  }
-
-  .dropdown-menu a {
-    padding: 0.6rem 1rem;
-    font-size: 0.95rem;
-  }
-
-}
-
-@media (max-width: 768px) {
-
   #hero.section {
     padding: 4rem 1.5rem;
     display: flex;
@@ -1261,7 +1146,7 @@ html.interface-zoom-active .floating-accessibility-wrapper {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue), var(--purple));
+  background: var(--theme-color-strong);
   color: var(--white);
   border: none;
   cursor: pointer;
@@ -1501,13 +1386,13 @@ html.interface-zoom-active .floating-accessibility-wrapper {
 
 /* Speaking state - animated pulse */
 .tts-button-container button.speaking {
-  background: linear-gradient(135deg, var(--purple), var(--blue));
+  background: var(--theme-color-strong);
   color: white;
   animation: pulse 1.5s ease-in-out infinite;
 }
 
 .tts-button-container button.speaking:hover {
-  background: linear-gradient(135deg, var(--purple), var(--blue));
+  background: var(--theme-color-strong);
   color: white;
 }
 
@@ -1740,4 +1625,82 @@ body.theme-high-contrast #interface-zoom-slider {
 @keyframes fadeIn {
   from { transform: scale(0.9); opacity: 0; }
   to { transform: scale(1); opacity: 1; }
+}
+
+/* ============================================
+   NAV — MEJORAS ADITIVAS
+   Añadido en la fase "Rediseño del nav".
+   Se apoya en las reglas .navbar / .nav-links ya
+   existentes arriba; aquí solo se agregan estados
+   nuevos (scroll, sección activa, CTA destacado).
+   No se modificó ninguna regla previa.
+   ============================================ */
+
+/* ---- 1. ESTADO AL HACER SCROLL ----
+   En reposo (sobre el hero) el navbar va plano y casi opaco.
+   Al bajar gana blur y una sombra suave. */
+.navbar {
+  box-shadow: none;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease,
+              border-color 0.3s ease;
+}
+
+.navbar.is-scrolled {
+  background: rgba(255, 255, 255, 0.82);
+  border-bottom-color: transparent;
+  box-shadow: 0 4px 24px rgba(var(--text-rgb), 0.1);
+}
+
+/* Fallback sólido donde no hay backdrop-filter (el blur se pierde,
+   pero el nav nunca queda translúcido e ilegible). */
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+  .navbar,
+  .navbar.is-scrolled {
+    background: var(--white);
+  }
+}
+
+/* ---- 1b. FIX: sombra heredada en el toggle del submenú ----
+   La regla genérica `button { box-shadow: 0 4px 15px ... }` de más
+   arriba se aplicaba también a `.dropdown-toggle`, que nunca la
+   reseteaba: el botón "Quiénes somos" arrastraba un halo azul que
+   lo hacía ver como una caja flotante dentro del nav.
+   Defecto previo al rediseño; se corrige aquí sin tocar la regla original. */
+.dropdown-toggle {
+  box-shadow: none;
+  margin-top: 0;
+}
+
+/* ---- 2. SECCIÓN/PÁGINA ACTIVA e ---- 3. CTA "Reporta una barrera" ----
+   Ambos ahora viven en layout.css: el indicador de sección activa se
+   adaptó al panel off-canvas (ya no hay subrayado horizontal porque
+   los links no viven más en la barra), y el CTA es un elemento propio
+   de la barra (.nav-cta-btn), no un <li> dentro de .nav-links. */
+
+/* ---- TEMAS ---- */
+body.theme-dark .navbar.is-scrolled {
+  background: rgba(18, 18, 18, 0.85);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.45);
+}
+
+@supports not ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))) {
+  body.theme-dark .navbar,
+  body.theme-dark .navbar.is-scrolled {
+    background: #121212;
+  }
+}
+
+body.theme-high-contrast .navbar.is-scrolled {
+  background: var(--white);
+  box-shadow: 0 0 0 2px #000;
+}
+
+/* Overrides de .nav-cta-btn por tema: ver layout.css (vive junto al
+   resto de reglas de tema del panel, no aquí). */
+
+/* ---- MOVIMIENTO REDUCIDO ---- */
+@media (prefers-reduced-motion: reduce) {
+  .navbar {
+    transition: none;
+  }
 }

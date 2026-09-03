@@ -48,18 +48,153 @@
   <link rel="stylesheet" href="assets/css/variables.css" />
   <link rel="stylesheet" href="assets/css/base.css" />
   <link rel="stylesheet" href="assets/css/accessibility.css" />
+  <link rel="stylesheet" href="assets/css/animations.css" />
+  <link rel="stylesheet" href="assets/css/layout.css" />
   <link rel="stylesheet" href="assets/css/privacy-policy.css" />
+  <link rel="stylesheet" href="assets/css/reduce-motion.css" />
 </head>
 <body>
   <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+  <a href="#nav-menu" class="skip-link">Saltar a la navegación</a>
 
-  <header class="policy-site-header">
-    <a class="policy-brand" href="./" aria-label="INCLUSIA - Ir al inicio">
-      <img src="assets/img/logo-inclusia.png" alt="" width="451" height="451" aria-hidden="true" />
-      <span>INCLUSIA</span>
-    </a>
-    <a class="policy-home-link" href="./">Volver al sitio</a>
-  </header>
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-container">
+
+      <div class="brand">
+        <a href="./" aria-label="INCLUSIA - Ir al inicio">
+          <img src="assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" width="451" height="451" />
+          <span>INCLUSIA</span>
+        </a>
+      </div>
+
+      <ul class="nav-links-desktop">
+        <li><a href="./">Inicio</a></li>
+
+        <li class="megamenu-item">
+          <button class="megamenu-trigger"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  aria-controls="megamenu-quienes-somos">
+            Quiénes somos
+            <svg class="dropdown-arrow" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="2 4 6 8 10 4"></polyline>
+            </svg>
+          </button>
+
+          <div class="megamenu-panel" id="megamenu-quienes-somos" aria-label="Submenú de Quiénes somos">
+            <a href="Quienes-somos/por-que-existe.html" class="megamenu-link">
+              <span class="megamenu-link-title">¿Por qué existe INCLUSIA?</span>
+              <span class="megamenu-link-desc">Las barreras reales que enfrentan las personas con discapacidad en Colombia.</span>
+            </a>
+            <a href="Quienes-somos/personas-apoyando.html" class="megamenu-link">
+              <span class="megamenu-link-title">Personas apoyando INCLUSIA</span>
+              <span class="megamenu-link-desc">Quiénes se suman a la causa: personas, aliados y voluntarios.</span>
+            </a>
+            <a href="Quienes-somos/nosotros.html" class="megamenu-link">
+              <span class="megamenu-link-title">Nosotros</span>
+              <span class="megamenu-link-desc">Quiénes fundaron INCLUSIA y por qué.</span>
+            </a>
+            <a href="Quienes-somos/lo-que-queremos.html" class="megamenu-link">
+              <span class="megamenu-link-title">Lo que queremos cambiar</span>
+              <span class="megamenu-link-desc">Los frentes de trabajo con los que buscamos transformar la realidad.</span>
+            </a>
+            <a href="Quienes-somos/futuro.html" class="megamenu-link">
+              <span class="megamenu-link-title">Hoy y futuro</span>
+              <span class="megamenu-link-desc">Los proyectos que tenemos hoy y hacia dónde vamos.</span>
+            </a>
+          </div>
+        </li>
+
+        <li><a href="./#proposito">Propósito</a></li>
+        <li><a href="./#donaciones">Donaciones</a></li>
+        <li><a href="./#contacto">Contáctanos</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <a href="reporta-una-barrera/" class="nav-cta-btn">
+          Reporta una barrera
+          <svg class="nav-cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4"></path>
+          </svg>
+        </a>
+
+        <button class="hamburger-btn"
+                id="hamburger-menu"
+                aria-label="Abrir menú de navegación"
+                aria-expanded="false"
+                aria-controls="nav-right">
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+        </button>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- Overlay + panel del menú — fuera de .navbar a propósito, ver
+       SITIO_CONTEXT.md §4 (backdrop-filter en .navbar rompía inset:0
+       y el ancho scrolleable del documento). -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <div class="nav-right" id="nav-right">
+
+    <ul class="nav-links" id="nav-menu" role="menubar">
+      <li role="none"><a href="./" role="menuitem">Inicio</a></li>
+
+      <li class="dropdown" role="none">
+        <button class="dropdown-toggle"
+                role="menuitem"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="submenu-quienes-somos"
+                tabindex="0">
+          Quiénes somos
+          <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="2 4 6 8 10 4"></polyline>
+          </svg>
+        </button>
+
+        <ul class="dropdown-menu"
+            id="submenu-quienes-somos"
+            role="menu"
+            aria-label="Submenú de Quiénes somos">
+          <li role="none">
+            <a href="Quienes-somos/por-que-existe.html" role="menuitem" tabindex="-1">¿Por qué existe INCLUSIA?</a>
+          </li>
+          <li role="none">
+            <a href="Quienes-somos/personas-apoyando.html" role="menuitem" tabindex="-1">Personas apoyando INCLUSIA</a>
+          </li>
+          <li role="none">
+            <a href="Quienes-somos/nosotros.html" role="menuitem" tabindex="-1">Nosotros</a>
+          </li>
+          <li role="none">
+            <a href="Quienes-somos/lo-que-queremos.html" role="menuitem" tabindex="-1">Lo que queremos cambiar</a>
+          </li>
+          <li role="none">
+            <a href="Quienes-somos/futuro.html" role="menuitem" tabindex="-1">Hoy y futuro</a>
+          </li>
+        </ul>
+      </li>
+
+      <li role="none"><a href="./#proposito" role="menuitem">Propósito</a></li>
+      <li role="none"><a href="./#donaciones" role="menuitem">Donaciones</a></li>
+      <li role="none"><a href="./#contacto" role="menuitem">Contáctanos</a></li>
+    </ul>
+
+    <div class="nav-panel-cta">
+      <a href="reporta-una-barrera/" class="nav-cta-btn">
+        Reporta una barrera
+        <svg class="nav-cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4"></path>
+        </svg>
+      </a>
+    </div>
+
+    <div class="menu-content" role="complementary" aria-label="Eslogan de INCLUSIA">
+      <p class="menu-phrase">INCLUSIÓN no es caridad; es dignidad.</p>
+    </div>
+  </div>
 
   <main id="main-content" class="policy-main">
     <article class="policy-document" aria-labelledby="policy-title">
@@ -200,5 +335,54 @@
     <p>INCLUSIA · NIT 902084900-6 · Colombia</p>
     <p><a href="mailto:inclusiacorporacion@gmail.com">inclusiacorporacion@gmail.com</a></p>
   </footer>
+
+  <div class="floating-accessibility-wrapper" role="region" aria-label="Herramientas de accesibilidad">
+    <button
+      id="floating-accessibility-btn"
+      class="floating-accessibility-btn"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="floating-accessibility-menu"
+      aria-label="Opciones de accesibilidad visual - Presiona Enter o Espacio para abrir"
+      title="Opciones de accesibilidad">
+      <img src="assets/img/logo-accesibilidad-web-azul.png"
+           alt=""
+           width="54"
+           height="54"
+           aria-hidden="true" />
+    </button>
+
+    <ul id="floating-accessibility-menu"
+        class="floating-accessibility-menu"
+        role="menu"
+        aria-label="Menú de opciones de accesibilidad"
+        hidden>
+      <li data-theme="default" role="none">
+        <button role="menuitem" tabindex="-1">Predeterminado</button>
+      </li>
+      <li data-theme="soft" role="none">
+        <button role="menuitem" tabindex="-1">Colores suaves</button>
+      </li>
+      <li data-theme="dark" role="none">
+        <button role="menuitem" tabindex="-1">Modo oscuro</button>
+      </li>
+      <li data-theme="colorblind" role="none">
+        <button role="menuitem" tabindex="-1">Daltonismo</button>
+      </li>
+      <li class="tts-separator" role="separator" aria-hidden="true"></li>
+      <li class="tts-button-container" role="none">
+        <button
+          id="toggle-text-to-speech-btn"
+          role="menuitem"
+          tabindex="-1"
+          aria-label="Leer página en voz alta"
+          title="Leer página en voz alta">
+          🔊 Leer página
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <script type="module" src="assets/JS/main.js"></script>
 </body>
 </html>

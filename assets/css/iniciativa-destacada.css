@@ -1,0 +1,243 @@
+/* ============================================
+   NUEVA INICIATIVA — "Reporta una barrera" destacada en el home.
+   Antes era la única superficie oscura del home (fondo sólido fijo
+   en --theme-color-strong, full-bleed) — se abandonó (ver
+   SITIO_CONTEXT.md §6.9): ese fondo no cambiaba con el tema, así
+   que en oscuro/daltonismo la sección se quedaba con el mismo
+   morado mientras el resto de la página sí recoloreaba, y el ancho
+   completo la hacía sentir ajena al resto de secciones centradas.
+
+   Ahora #iniciativa es un `.section` estándar sin overrides de
+   fondo: mismo contenedor de 1000px, misma tarjeta blanca con los
+   degradados radiales sutiles que ya usan #proposito/#donaciones/
+   #contacto (home-storytelling.css) — coherencia total y gratis en
+   los 3 temas, porque esas reglas base ya son conscientes del tema.
+   ============================================ */
+
+.iniciativa-inner {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+.iniciativa-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: start;
+  gap: 3rem;
+}
+
+@media (min-width: 769px) {
+  .iniciativa-grid {
+    grid-template-columns: 11fr 9fr;
+    align-items: center;
+    gap: 4.5rem;
+  }
+}
+
+/* ---- Columna de texto -------------------------------------- */
+
+#iniciativa .iniciativa-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 1.5rem;
+  padding: 0.35rem 0.9rem 0.35rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid rgba(var(--purple-alt-rgb), 0.22);
+  background: rgba(var(--purple-alt-rgb), 0.08);
+  font-size: 0.72rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--theme-color-strong);
+}
+
+.iniciativa-badge-dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--purple-alt);
+  flex-shrink: 0;
+}
+
+#iniciativa .iniciativa-copy h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.4rem, 2.4vw, 1.85rem);
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+/* El sitio agrega un subrayado degradado a todo `.section h2`
+   (animations.css) — es un acento de producto que contradice el
+   tono institucional pedido para esta sección; se desactiva solo
+   aquí. */
+.iniciativa-copy h2::after {
+  display: none;
+}
+
+#iniciativa .iniciativa-copy p {
+  margin: 0 0 1.5rem;
+  font-size: 0.94rem;
+  line-height: 1.65;
+  max-width: 54ch;
+}
+
+.iniciativa-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  margin: 0 0 2.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+#iniciativa .iniciativa-checklist li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.86rem;
+  font-weight: var(--font-weight-medium);
+}
+
+.iniciativa-checklist svg {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+  color: var(--purple-alt);
+}
+
+/* .iniciativa-cta ya trae .btn-primary (base.css) — sin overrides
+   propios de color/fondo, se ve igual al resto de CTAs primarios
+   del sitio (mismo botón que usa #donaciones). Solo el layout del
+   ícono es propio de esta sección. */
+#iniciativa .iniciativa-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+}
+
+.iniciativa-cta-arrow {
+  transition: transform var(--transition-fast);
+}
+
+#iniciativa .iniciativa-cta:hover .iniciativa-cta-arrow {
+  transform: translateX(4px);
+}
+
+/* ---- Tarjeta de cifras en vivo ------------------------------ */
+
+.iniciativa-stats {
+  max-width: 360px;
+  background: var(--white);
+  border-radius: 18px;
+  border: 1px solid rgba(31, 41, 51, 0.1);
+  box-shadow: 0 10px 24px rgba(31, 41, 51, 0.08);
+  padding: 1.6rem 1.5rem;
+}
+
+#iniciativa .iniciativa-stats-title {
+  display: block;
+  margin: 0 0 1.1rem;
+  color: rgba(var(--text-rgb), 0.55);
+  font-size: 0.66rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.iniciativa-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding-bottom: 1rem;
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid rgba(31, 41, 51, 0.1);
+}
+
+.iniciativa-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+/* Prefijo #iniciativa necesario: sin él, `body.theme-dark span`
+   (accessibility.css, especificidad 0-1-1) le gana a una clase sola
+   (0-1-0) y el número queda gris pálido sobre la tarjeta blanca —
+   bug real encontrado verificando esta misma fase en tema oscuro.
+   --theme-color-strong es un índigo fijo (no varía por tema, ver
+   SITIO_CONTEXT §2.1) — sobre la tarjeta de cifras, que siempre es
+   blanca, da buen contraste en cualquier tema una vez gana la
+   cascada. */
+#iniciativa .iniciativa-stat-value {
+  color: var(--theme-color-strong);
+  font-size: clamp(1.5rem, 2.6vw, 1.9rem);
+  font-weight: var(--font-weight-bold);
+  line-height: 1;
+}
+
+#iniciativa .iniciativa-stat-label {
+  color: rgba(var(--text-rgb), 0.72);
+  font-size: 0.76rem;
+  font-weight: var(--font-weight-medium);
+}
+
+#iniciativa .iniciativa-stats-hint {
+  margin: 0;
+  color: rgba(var(--text-rgb), 0.62);
+  font-size: 0.78rem;
+  line-height: 1.5;
+}
+
+.iniciativa-stats[data-stats-status="error"] .iniciativa-stats-hint {
+  color: var(--error);
+}
+
+@media (max-width: 480px) {
+  .iniciativa-stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================
+   TEMAS
+   ============================================ */
+
+/* Tema oscuro: sin reglas propias. #iniciativa ya no tiene fondo ni
+   texto forzados, así que hereda exactamente el mismo tratamiento
+   oscuro que #donaciones/#proposito (home-storytelling.css) y el
+   mismo `--purple`/`--text` recoloreados de accessibility.css. */
+
+/* Alto contraste: h2/p/li/.btn-primary sin color propio ya caen en
+   las reglas genéricas de accessibility.css. Pero .iniciativa-stats-
+   title/-stat-label/-stats-hint SÍ tienen su propio rgba(--text-rgb)
+   con el prefijo `#iniciativa` (1 id), que por especificidad le gana
+   a `body.theme-high-contrast p` (0 ids) — sin este override se
+   quedan en gris atenuado en vez de negro. Verificado en navegador:
+   sin esto, "Mapa de impacto en vivo" y las etiquetas de cifras
+   salían grises sobre la tarjeta blanca en alto contraste. */
+body.theme-high-contrast #iniciativa .iniciativa-stats-title,
+body.theme-high-contrast #iniciativa .iniciativa-stat-label,
+body.theme-high-contrast #iniciativa .iniciativa-stats-hint,
+body.theme-high-contrast #iniciativa .iniciativa-stat-value {
+  color: #000;
+}
+
+/* Píldora del badge y borde de la tarjeta de cifras: mismo criterio
+   que `.rb-live-indicator`/`.change-card` en reporta-una-barrera.css. */
+body.theme-high-contrast #iniciativa .iniciativa-badge {
+  border-color: #000;
+  background: #fff;
+  color: #000;
+}
+
+body.theme-high-contrast #iniciativa .iniciativa-badge-dot {
+  background-color: #000;
+}
+
+body.theme-high-contrast .iniciativa-stats {
+  border: 2px solid #000;
+  box-shadow: none;
+}

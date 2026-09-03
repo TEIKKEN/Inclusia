@@ -11,4 +11,54 @@
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
+
+  /* ============================================
+     Añadidas en la fase "Reporta una barrera".
+     Valores REALES ya en uso en el sitio (theme-color,
+     rgba() repetidos en base.css, color de error de
+     formularios) — no es una paleta nueva en paralelo.
+     ============================================ */
+
+  /* Mismo valor que <meta name="theme-color"> y site.webmanifest.
+     Es un tono distinto a --purple (#7B61FF): ya convivían ambos
+     en el sitio sin estar documentados, así que se nombran por
+     separado en vez de forzarlos a ser el mismo color. */
+  --theme-color: #6366F1;
+
+  /* rgb(107, 107, 255) — variante de púrpura usada docenas de veces
+     en base.css (anillos de foco, sombras de tarjetas y botones,
+     bordes en hover) vía rgba(107, 107, 255, ...) sin variable propia. */
+  --purple-alt: #6B6BFF;
+  --purple-alt-rgb: 107, 107, 255;
+
+  /* Tripletes RGB de --blue/--purple, para poder componer
+     rgba(var(--blue-rgb), alpha) en sombras y estados sin
+     duplicar el valor hexadecimal. */
+  --blue-rgb: 74, 144, 226;
+  --purple-rgb: 123, 97, 255;
+  --text-rgb: 31, 41, 51; /* triplete de --text, para rgba() de texto/borde translúcido */
+
+  /* rgb(220, 38, 38) — usado en validación de formularios
+     (aria-invalid, mensajes de error) vía rgba(220, 38, 38, ...). */
+  --error: #DC2626;
+
+  /* Variantes MÁS OSCURAS del mismo índigo de marca (--theme-color),
+     no un color nuevo: existen solo para cumplir contraste WCAG AA
+     cuando hay texto blanco encima.
+     Referencia: blanco sobre --theme-color (#6366F1) da 4.47:1, justo
+     por debajo del mínimo 4.5:1 para texto normal; sobre --blue (#4A90E2)
+     baja a 3.3:1. Estas dos dan 7.9:1 y 5.4:1 respectivamente. */
+  --theme-color-strong: #4338CA;
+  --theme-color-strong-soft: #5B54E8;
+
+  /* ============================================
+     Añadida en la fase "Animaciones — Reporta una barrera".
+     Timing/easing estándar para transiciones de hover (sombra,
+     transform), alineado a tokens.css de la app React (Fase 3)
+     para que el hover se sienta igual en los dos productos:
+     rápido, sin rebote. No reemplaza duraciones ya elegidas a
+     propósito para otras cosas (p. ej. el "pop" de los marcadores
+     del mapa, o el reveal por scroll), solo estandariza hovers.
+     ============================================ */
+  --transition-fast: 0.2s ease;
 }

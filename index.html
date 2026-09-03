@@ -14,7 +14,7 @@
   <link rel="icon" type="image/png" href="assets/img/logo-inclusia.png" />
   <link rel="apple-touch-icon" href="assets/img/logo-inclusia.png" />
   <link rel="manifest" href="site.webmanifest" />
-  <link rel="preload" as="image" href="assets/img/Hero-inclusia.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="assets/img/Hero-inclusia.webp" type="image/webp" fetchpriority="high" />
 
   <meta property="og:title" content="INCLUSIA | Accesibilidad y discapacidad física en Colombia" />
   <meta property="og:description" content="Corporación colombiana que transforma barreras de accesibilidad en conciencia, evidencia, alianzas y propuestas para una movilidad digna." />
@@ -55,6 +55,7 @@
           "url": "https://inclusia-theta.vercel.app/",
           "email": "inclusiacorporacion@gmail.com",
           "taxID": "902084900-6",
+          "sameAs": ["https://www.instagram.com/inclusiacorporacion/"],
           "description": "Corporación colombiana sin ánimo de lucro dedicada a la inclusión, la accesibilidad y la movilidad digna de las personas con discapacidad física.",
           "logo": {
             "@type": "ImageObject",
@@ -111,10 +112,12 @@
   <link rel="stylesheet" href="assets/css/forms.css" />
   <link rel="stylesheet" href="assets/css/home-hero.css" />
   <link rel="stylesheet" href="assets/css/home-storytelling.css" />
+  <link rel="stylesheet" href="assets/css/iniciativa-destacada.css" />
+  <link rel="stylesheet" href="assets/css/proposito.css" />
   <link rel="stylesheet" href="assets/css/reduce-motion.css" />
-  
+
   <!-- SweetAlert2 CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11" defer></script>
 </head>
 <body>
 
@@ -124,94 +127,161 @@
   <a href="#contacto" class="skip-link">Saltar al formulario de contacto</a>
 
   <!-- NAVBAR -->
- <nav class="navbar" role="navigation" aria-label="Navegación principal">
-  <div class="nav-container">
+  <nav class="navbar" role="navigation" aria-label="Navegación principal">
+    <div class="nav-container">
 
-    <div class="brand">
-      <a href="#hero" aria-label="INCLUSIA - Ir al inicio">
-        <img src="assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" width="451" height="451" />
-        <span>INCLUSIA</span>
-      </a>
-    </div>
+      <div class="brand">
+        <a href="#hero" aria-label="INCLUSIA - Ir al inicio">
+          <img src="assets/img/logo-inclusia.png" alt="Logo de INCLUSIA" width="451" height="451" />
+          <span>INCLUSIA</span>
+        </a>
+      </div>
 
-    <button class="hamburger-btn" 
-            id="hamburger-menu" 
-            aria-label="Abrir menú de navegación" 
-            aria-expanded="false"
-            aria-controls="nav-menu">
-      <span class="hamburger-line" aria-hidden="true"></span>
-      <span class="hamburger-line" aria-hidden="true"></span>
-      <span class="hamburger-line" aria-hidden="true"></span>
-    </button>
+      <ul class="nav-links-desktop">
+        <li><a href="#hero">Inicio</a></li>
 
-    <!-- Overlay de fondo para móvil -->
-    <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
-
-    <div class="nav-right" id="nav-right">
-
-      <ul class="nav-links" id="nav-menu" role="menubar">
-        <li role="none"><a href="#hero" role="menuitem">Inicio</a></li>
-
-        <li class="dropdown" role="none">
-          <button class="dropdown-toggle"
-                  role="menuitem" 
-                  aria-haspopup="true" 
+        <li class="megamenu-item">
+          <button class="megamenu-trigger"
+                  aria-haspopup="true"
                   aria-expanded="false"
-                  aria-controls="submenu-quienes-somos"
-                  tabindex="0">
+                  aria-controls="megamenu-quienes-somos">
             Quiénes somos
-            <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <svg class="dropdown-arrow" width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <polyline points="2 4 6 8 10 4"></polyline>
             </svg>
           </button>
 
-          <ul class="dropdown-menu" 
-              id="submenu-quienes-somos"
-              role="menu" 
-              aria-label="Submenú de Quiénes somos">
-            <li role="none">
-              <a href="Quienes-somos/por-que-existe.html" role="menuitem" tabindex="-1">
-                ¿Por qué existe INCLUSIA?
-              </a>
-            </li>
-            <li role="none">
-              <a href="Quienes-somos/personas-apoyando.html" role="menuitem" tabindex="-1">
-                Personas apoyando INCLUSIA
-              </a>
-            </li>
-            <li role="none">
-              <a href="Quienes-somos/nosotros.html" role="menuitem" tabindex="-1">
-                Nosotros
-              </a>
-            </li>
-            <li role="none">
-              <a href="Quienes-somos/lo-que-queremos.html" role="menuitem" tabindex="-1">
-                Lo que queremos cambiar
-              </a>
-            </li>
-            <li role="none">
-              <a href="Quienes-somos/futuro.html" role="menuitem" tabindex="-1">
-                Hoy y futuro
-              </a>
-            </li>
-          </ul>
+          <div class="megamenu-panel" id="megamenu-quienes-somos" aria-label="Submenú de Quiénes somos">
+            <a href="Quienes-somos/por-que-existe.html" class="megamenu-link">
+              <span class="megamenu-link-title">¿Por qué existe INCLUSIA?</span>
+              <span class="megamenu-link-desc">Las barreras reales que enfrentan las personas con discapacidad en Colombia.</span>
+            </a>
+            <a href="Quienes-somos/personas-apoyando.html" class="megamenu-link">
+              <span class="megamenu-link-title">Personas apoyando INCLUSIA</span>
+              <span class="megamenu-link-desc">Quiénes se suman a la causa: personas, aliados y voluntarios.</span>
+            </a>
+            <a href="Quienes-somos/nosotros.html" class="megamenu-link">
+              <span class="megamenu-link-title">Nosotros</span>
+              <span class="megamenu-link-desc">Quiénes fundaron INCLUSIA y por qué.</span>
+            </a>
+            <a href="Quienes-somos/lo-que-queremos.html" class="megamenu-link">
+              <span class="megamenu-link-title">Lo que queremos cambiar</span>
+              <span class="megamenu-link-desc">Los frentes de trabajo con los que buscamos transformar la realidad.</span>
+            </a>
+            <a href="Quienes-somos/futuro.html" class="megamenu-link">
+              <span class="megamenu-link-title">Hoy y futuro</span>
+              <span class="megamenu-link-desc">Los proyectos que tenemos hoy y hacia dónde vamos.</span>
+            </a>
+          </div>
         </li>
 
-        <li role="none"><a href="#proposito" role="menuitem">Propósito</a></li>
-        <li role="none"><a href="#donaciones" role="menuitem">Donaciones</a></li>
-        <li role="none"><a href="#contacto" role="menuitem">Contáctanos</a></li>
+        <li><a href="#proposito">Propósito</a></li>
+        <li><a href="#donaciones">Donaciones</a></li>
+        <li><a href="#contacto">Contáctanos</a></li>
       </ul>
 
-      <!-- CONTENIDO CENTRAL DEL MENÚ -->
-      <div class="menu-content" role="complementary" aria-label="Eslogan de INCLUSIA">
-        <p class="menu-phrase">
-          INCLUSIÓN no es caridad; es dignidad.
-        </p>
+      <div class="nav-actions">
+        <a href="reporta-una-barrera/" class="nav-cta-btn">
+          Reporta una barrera
+          <svg class="nav-cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 8h10M9 4l4 4-4 4"></path>
+          </svg>
+        </a>
+
+        <button class="hamburger-btn"
+                id="hamburger-menu"
+                aria-label="Abrir menú de navegación"
+                aria-expanded="false"
+                aria-controls="nav-right">
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+          <span class="hamburger-line" aria-hidden="true"></span>
+        </button>
       </div>
+
+    </div>
+  </nav>
+
+  <!-- Overlay + panel del menú — fuera de .navbar a propósito: ese
+       elemento tiene backdrop-filter, que crea un "containing block"
+       para hijos position:fixed. Con el overlay/panel anidados ahí
+       dentro, inset:0 quedaba limitado a la altura de la barra en vez
+       de cubrir toda la pantalla, y el panel (400px, trasladado fuera
+       de pantalla cuando está cerrado) inflaba el ancho scrolleable
+       del documento. Ver SITIO_CONTEXT.md §4. -->
+  <div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+  <div class="nav-right" id="nav-right">
+
+    <ul class="nav-links" id="nav-menu" role="menubar">
+      <li role="none"><a href="#hero" role="menuitem">Inicio</a></li>
+
+      <li class="dropdown" role="none">
+        <button class="dropdown-toggle"
+                role="menuitem"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="submenu-quienes-somos"
+                tabindex="0">
+          Quiénes somos
+          <svg class="dropdown-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="2 4 6 8 10 4"></polyline>
+          </svg>
+        </button>
+
+        <ul class="dropdown-menu"
+            id="submenu-quienes-somos"
+            role="menu"
+            aria-label="Submenú de Quiénes somos">
+          <li role="none">
+            <a href="Quienes-somos/por-que-existe.html" role="menuitem" tabindex="-1">
+              ¿Por qué existe INCLUSIA?
+            </a>
+          </li>
+          <li role="none">
+            <a href="Quienes-somos/personas-apoyando.html" role="menuitem" tabindex="-1">
+              Personas apoyando INCLUSIA
+            </a>
+          </li>
+          <li role="none">
+            <a href="Quienes-somos/nosotros.html" role="menuitem" tabindex="-1">
+              Nosotros
+            </a>
+          </li>
+          <li role="none">
+            <a href="Quienes-somos/lo-que-queremos.html" role="menuitem" tabindex="-1">
+              Lo que queremos cambiar
+            </a>
+          </li>
+          <li role="none">
+            <a href="Quienes-somos/futuro.html" role="menuitem" tabindex="-1">
+              Hoy y futuro
+            </a>
+          </li>
+        </ul>
+      </li>
+
+      <li role="none"><a href="#proposito" role="menuitem">Propósito</a></li>
+      <li role="none"><a href="#donaciones" role="menuitem">Donaciones</a></li>
+      <li role="none"><a href="#contacto" role="menuitem">Contáctanos</a></li>
+    </ul>
+
+    <div class="nav-panel-cta">
+      <a href="reporta-una-barrera/" class="nav-cta-btn">
+        Reporta una barrera
+        <svg class="nav-cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M3 8h10M9 4l4 4-4 4"></path>
+        </svg>
+      </a>
     </div>
 
+    <!-- CONTENIDO CENTRAL DEL MENÚ -->
+    <div class="menu-content" role="complementary" aria-label="Eslogan de INCLUSIA">
+      <p class="menu-phrase">
+        INCLUSIÓN no es caridad; es dignidad.
+      </p>
+    </div>
   </div>
-</nav>
 
 
   <main id="main-content" role="main">
@@ -261,33 +331,118 @@
 
     <!-- PROPÓSITO -->
     <section id="proposito" class="section hidden" role="region" aria-labelledby="proposito-heading">
+      <p class="proposito-eyebrow">Nuestro propósito</p>
       <h2 id="proposito-heading">Propósito de INCLUSIA</h2>
 
-      <p>
-        Para muchas personas con discapacidad física, salir de casa, estudiar, movilizarse o entrar a un edificio
-        todavía exige planear alrededor de obstáculos que no deberían existir.
-      </p>
+      <div class="proposito-intro">
+        <p>
+          Para muchas personas con discapacidad física, salir de casa, estudiar, movilizarse o entrar a un edificio
+          todavía exige planear alrededor de obstáculos que no deberían existir.
+        </p>
+        <p>
+          INCLUSIA nace para cambiar esa realidad desde la conciencia social, la investigación aplicada y la
+          construcción de soluciones con aliados.
+        </p>
+      </div>
 
-      <p>
-        INCLUSIA nace para cambiar esa realidad desde la conciencia social, la investigación aplicada y la
-        construcción de soluciones con aliados.
-      </p>
-
-      <p>
-        Trabajamos en cuatro frentes:<br />
-        1. Escuchar y documentar barreras reales.<br />
-        Recogemos experiencias, testimonios y diagnósticos sobre movilidad, transporte, educación, espacio público y accesibilidad.<br />
-        2. Convertir la experiencia en evidencia.<br />
-        Realizamos estudios, análisis y recomendaciones que permitan comprender el problema más allá de casos aislados.<br />
-        3. Comunicar para cambiar la cultura.<br />
-        Creamos campañas y contenidos que ayuden a que la sociedad entienda la accesibilidad como un derecho, no como una excepción.<br />
-        4. Conectar actores para impulsar soluciones.<br />
-        Buscamos alianzas con instituciones, empresas, universidades, organizaciones y comunidades para proponer cambios viables y sostenibles.
-      </p>
+      <ol class="proposito-frentes">
+        <li class="proposito-card">
+          <span class="proposito-card-number" aria-hidden="true">01</span>
+          <h3>Escuchar y documentar barreras reales</h3>
+          <p>Recogemos experiencias, testimonios y diagnósticos reales sobre movilidad, transporte, educación y espacio público.</p>
+        </li>
+        <li class="proposito-card">
+          <span class="proposito-card-number" aria-hidden="true">02</span>
+          <h3>Convertir la experiencia en evidencia</h3>
+          <p>Realizamos estudios y análisis que muestran el problema más allá de casos aislados.</p>
+        </li>
+        <li class="proposito-card">
+          <span class="proposito-card-number" aria-hidden="true">03</span>
+          <h3>Comunicar para cambiar la cultura</h3>
+          <p>Creamos campañas y contenidos que ayudan a entender la accesibilidad como un derecho, no como una excepción.</p>
+        </li>
+        <li class="proposito-card">
+          <span class="proposito-card-number" aria-hidden="true">04</span>
+          <h3>Conectar actores para impulsar soluciones</h3>
+          <p>Buscamos alianzas con instituciones, empresas y comunidades para proponer cambios viables.</p>
+        </li>
+      </ol>
 
       <p class="highlight">
         La accesibilidad no es un favor. Es una condición para vivir con dignidad.
       </p>
+    </section>
+
+    <!-- NUEVA INICIATIVA: Reporta una barrera. Versión liviana de la
+         "prueba social en vivo" de reporta-una-barrera/#mapa-impacto:
+         mismo endpoint de Supabase, misma animación de conteo, pero sin
+         cargar Leaflet — aquí solo hacen falta los totales agregados. -->
+    <section id="iniciativa" class="section hidden" role="region" aria-labelledby="iniciativa-heading">
+      <div class="iniciativa-inner">
+        <div class="iniciativa-grid reveal-stagger">
+
+          <div class="iniciativa-copy stagger-item">
+            <p class="iniciativa-badge">
+              <span class="iniciativa-badge-dot" aria-hidden="true"></span>
+              Nueva iniciativa
+            </p>
+
+            <h2 id="iniciativa-heading">Cada barrera reportada se convierte en evidencia real.</h2>
+
+            <p>
+              Reporta una barrera es la herramienta con la que cualquier persona en Colombia puede señalar,
+              sin necesidad de crear una cuenta, un obstáculo real de accesibilidad: un andén roto, una rampa
+              que no existe, un baño inaccesible, una ruta de transporte que excluye. Cada reporte entra al
+              mismo proceso que ya usamos para investigar, comunicar y proponer cambios junto a nuestros
+              aliados. Reportar no garantiza una solución inmediata, pero sí construye la evidencia real que
+              necesitamos para exigirla.
+            </p>
+
+            <ul class="iniciativa-checklist">
+              <li>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"></path>
+                </svg>
+                Sin necesidad de crear una cuenta
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M9 16.2l-3.5-3.5L4 14.2l5 5 11-11-1.5-1.5z"></path>
+                </svg>
+                Toma menos de 3 minutos
+              </li>
+            </ul>
+
+            <a href="reporta-una-barrera/" class="btn-primary iniciativa-cta">
+              Reporta una barrera
+              <svg class="iniciativa-cta-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M3 8h10M9 4l4 4-4 4"></path>
+              </svg>
+            </a>
+          </div>
+
+          <div class="iniciativa-stats stagger-item"
+               id="iniciativa-stats"
+               data-stats-status="loading"
+               aria-live="polite">
+            <p class="iniciativa-stats-title">Mapa de impacto en vivo</p>
+
+            <div class="iniciativa-stats-grid">
+              <div class="iniciativa-stat">
+                <span class="iniciativa-stat-value" data-stat-field="total">0</span>
+                <span class="iniciativa-stat-label">Reportes recibidos</span>
+              </div>
+              <div class="iniciativa-stat">
+                <span class="iniciativa-stat-value" data-stat-field="cities">0</span>
+                <span class="iniciativa-stat-label">Ciudades representadas</span>
+              </div>
+            </div>
+
+            <p class="iniciativa-stats-hint" data-stat-field="hint">Cargando datos en vivo del mapa de impacto…</p>
+          </div>
+
+        </div>
+      </div>
     </section>
 
     <!-- DONACIONES -->
@@ -469,7 +624,7 @@
 
     <div class="footer-nav" role="group" aria-label="Acción de navegación">
       <h4>Volver arriba</h4>
-      <div class="social-links-footer" role="list" aria-label="Volver al inicio de la página">
+      <div class="social-links-footer" aria-label="Volver al inicio de la página">
         <a href="#" aria-label="Volver arriba" title="Volver arriba">↑</a>
       </div>
     </div>
@@ -482,30 +637,30 @@
 
     <div class="footer-socials">
       <h4>Síguenos</h4>
-      <div class="social-links-footer" role="list" aria-label="Enlaces a redes sociales">
+      <div class="social-links-footer" aria-label="Enlaces a redes sociales">
         <a href="https://facebook.com" 
            target="_blank" 
            rel="noopener noreferrer" 
            aria-label="Visitar nuestra página de Facebook (se abre en ventana nueva)">
-          <img src="assets/img/facebook-brands-solid-full.svg" alt="Facebook" width="18" height="18" />
+          <img src="assets/img/facebook-brands-solid-full.svg" alt="Facebook" width="18" height="18" loading="lazy" decoding="async" />
         </a>
-        <a href="https://instagram.com" 
+        <a href="https://www.instagram.com/inclusiacorporacion/" 
            target="_blank" 
            rel="noopener noreferrer" 
            aria-label="Visitar nuestro perfil de Instagram (se abre en ventana nueva)">
-          <img src="assets/img/instagram-brands-solid-full.svg" alt="Instagram" width="18" height="18" />
+          <img src="assets/img/instagram-brands-solid-full.svg" alt="Instagram" width="18" height="18" loading="lazy" decoding="async" />
         </a>
         <a href="https://x.com" 
            target="_blank" 
            rel="noopener noreferrer" 
            aria-label="Visitar nuestro perfil de X (se abre en ventana nueva)">
-          <img src="assets/img/x-solid-full.svg" alt="X" width="18" height="18" />
+          <img src="assets/img/x-solid-full.svg" alt="X" width="18" height="18" loading="lazy" decoding="async" />
         </a>
         <a href="https://tiktok.com" 
            target="_blank" 
            rel="noopener noreferrer" 
            aria-label="Visitar nuestro perfil de TikTok (se abre en ventana nueva)">
-          <img src="assets/img/tiktok-brands-solid-full.svg" alt="TikTok" width="18" height="18" />
+          <img src="assets/img/tiktok-brands-solid-full.svg" alt="TikTok" width="18" height="18" loading="lazy" decoding="async" />
         </a>
       </div>
     </div>
@@ -528,10 +683,10 @@
     aria-controls="floating-accessibility-menu"
     aria-label="Opciones de accesibilidad visual - Presiona Enter o Espacio para abrir"
     title="Opciones de accesibilidad">
-    <img src="assets/img/logo-accesibilidad-web-azul.png" 
-         alt="" 
-         width="54" 
-         height="54" 
+    <img src="assets/img/logo-accesibilidad-web-azul.png"
+         alt=""
+         width="54"
+         height="54"
          aria-hidden="true" />
   </button>
 
@@ -568,5 +723,6 @@
 
   <script type="module" src="assets/JS/main.js"></script>
   <script type="module" src="assets/JS/home-storytelling.js"></script>
+  <script type="module" src="assets/JS/iniciativa-impacto.js"></script>
 </body>
 </html>

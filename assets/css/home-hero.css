@@ -5,7 +5,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('../img/Hero-inclusia.png');
+  background-image: url('../img/Hero-inclusia.jpg');
+  background-image: image-set(
+    url('../img/Hero-inclusia.webp') type('image/webp'),
+    url('../img/Hero-inclusia.jpg') type('image/jpeg')
+  );
   background-size: cover;
   background-position: 50% 50%;
   background-repeat: no-repeat;
@@ -20,7 +24,11 @@
 }
 
 body.theme-dark #hero.section {
-  background-image: url('../img/Hero-inclusia.png');
+  background-image: url('../img/Hero-inclusia.jpg');
+  background-image: image-set(
+    url('../img/Hero-inclusia.webp') type('image/webp'),
+    url('../img/Hero-inclusia.jpg') type('image/jpeg')
+  );
   background-size: cover;
   background-repeat: no-repeat;
   --hero-overlay-strong: rgba(6, 8, 22, 0.74);

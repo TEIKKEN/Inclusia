@@ -1,17 +1,125 @@
-﻿/* ============================================
-   RESPONSIVE MENU - INCLUSIA
+/* ============================================
+   NAV — INCLUSIA
+   Fase "Nav de escritorio + mega-menú" (ver SITIO_CONTEXT.md §4):
+   por debajo de 1024px se mantiene intacto el patrón "hamburguesa
+   permanente" de la fase anterior — barra con logo + CTA + hamburguesa,
+   panel off-canvas desde la derecha con overlay y "Quiénes somos" como
+   acordeón. A partir de 1024px ese panel se oculta por completo y
+   aparece en su lugar una fila horizontal de links con "Quiénes somos"
+   como mega-menú (ver el bloque "NAV DE ESCRITORIO" más abajo).
    ============================================ */
 
-/* ---- DESKTOP: Ocultar elementos solo-movil ---- */
-.menu-content,
-.mobile-social-links,
-.nav-overlay {
+.menu-content {
   display: none;
 }
 
-/* ---- HAMBURGER (hidden in desktop, shown in mobile) ---- */
-.hamburger-btn {
+/* Oculto por defecto (patrón móvil); la fila real se activa dentro
+   del bloque "NAV DE ESCRITORIO — ≥1024px" más abajo en este archivo. */
+.nav-links-desktop {
   display: none;
+}
+
+/* ---- BARRA: logo (en .brand, ver base.css) + acciones ---- */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+}
+
+/* La instancia del CTA que vive en la barra (dentro de .nav-actions)
+   es exclusiva de escritorio (≥1024px, ver más abajo) — por debajo
+   de eso el CTA vive dentro del panel off-canvas (.nav-panel-cta),
+   no en la barra. Son dos elementos <a> distintos en el HTML, no el
+   mismo reubicado: ver la nota de "duplicación deliberada" al final
+   de este archivo. */
+.nav-actions .nav-cta-btn {
+  display: none;
+}
+
+/* ---- CTA "Reporta una barrera" — único elemento de acción de la barra ----
+   Único color sólido (--theme-color-strong: el índigo de marca ya
+   corregido a WCAG AA, ver variables.css) — sin degradado, sin doble
+   borde, sombra suave solo en hover. Es, junto al logo, lo único que
+   se ve sin interactuar con nada: el tratamiento que merece la acción
+   más importante del sitio. */
+.nav-cta-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  height: 40px;
+  padding: 0 1.2rem;
+  background: var(--theme-color-strong);
+  color: var(--white);
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: var(--font-weight-semibold);
+  font-size: 0.92rem;
+  white-space: nowrap;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+/* Resplandor ambiental muy tenue detrás del botón — perceptible solo
+   "de reojo", no un efecto llamativo. Mismo color del botón, muy
+   difuminado y a baja opacidad. */
+.nav-cta-btn::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  z-index: -1;
+  border-radius: inherit;
+  background: var(--theme-color-strong);
+  opacity: 0.14;
+  filter: blur(11px);
+  transition: opacity var(--transition-fast);
+}
+
+.nav-cta-btn:hover,
+.nav-cta-btn:focus-visible {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(var(--purple-alt-rgb), 0.25);
+}
+
+.nav-cta-btn:hover::before,
+.nav-cta-btn:focus-visible::before {
+  opacity: 0.24;
+}
+
+.nav-cta-btn:focus-visible {
+  outline: 3px solid var(--theme-color-strong);
+  outline-offset: 3px;
+}
+
+/* Página actual: el pill se mantiene, solo se hunde ligeramente */
+.nav-cta-btn[aria-current="page"] {
+  filter: saturate(1.1);
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.18);
+}
+
+.nav-cta-arrow {
+  flex-shrink: 0;
+  transition: transform var(--transition-fast);
+}
+
+.nav-cta-btn:hover .nav-cta-arrow,
+.nav-cta-btn:focus-visible .nav-cta-arrow {
+  transform: translateX(3px);
+}
+
+@media (max-width: 480px) {
+  .nav-cta-btn {
+    padding: 0 0.85rem;
+    font-size: 0.82rem;
+    gap: 0.35rem;
+  }
+}
+
+/* ---- HAMBURGUESA — patrón permanente del sitio, ya no exclusivo
+   de móvil. Tres líneas que giran a X con CSS transitions sobre cada
+   línea (no un swap de ícono). ---- */
+.hamburger-btn {
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -20,11 +128,13 @@
   border: none;
   cursor: pointer;
   padding: 0.4rem;
+  margin-top: 0;
   z-index: 1002;
   flex-shrink: 0;
   border-radius: 6px;
   width: 40px;
   height: 40px;
+  box-shadow: none;
   transition: background 0.2s ease;
 }
 
@@ -38,7 +148,6 @@
   border-radius: 6px;
 }
 
-/* 3 lineas siempre moradas, con transicion a X */
 .hamburger-btn .hamburger-line {
   width: 20px;
   height: 2px;
@@ -49,7 +158,6 @@
   transition: transform 0.3s ease, opacity 0.2s ease, width 0.2s ease;
 }
 
-/* Animacion a X cuando esta activo */
 .hamburger-btn.active .hamburger-line:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -61,506 +169,838 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* ---- DROPDOWN TOGGLE DESKTOP ---- */
-.dropdown-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.3rem;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: var(--font-weight-medium);
-  color: var(--purple);
-  padding: 0.6rem 0.8rem;
-  border-radius: 8px;
-  line-height: inherit;
-  transition: background-color 0.2s ease;
-  text-decoration: none;
-  vertical-align: middle;   /* alinear con los <a> vecinos */
-  margin: 0;               /* quitar márgenes de navegador en <button> */
-  align-self: center;      /* centrado vertical dentro del li flex */
+/* Con el panel abierto, el botón se desancla de la barra (que en
+   pantallas anchas vive dentro de un .nav-container centrado de
+   max-width:1200px) y se fija a la esquina real del panel — que
+   siempre está pegado al borde derecho del viewport (right:0). Sin
+   esto, en pantallas >1248px la X queda "flotando" a mitad de camino
+   entre el contenido centrado y el borde real del panel, sin verse
+   anclada a nada. */
+.hamburger-btn.active {
+  position: fixed;
+  top: 11px;
+  right: 16px;
 }
 
-.dropdown-toggle:hover {
-  background-color: rgba(107, 107, 255, 0.1);
-}
-
-.dropdown-toggle:focus-visible {
-  outline: 2px solid var(--purple);
-  outline-offset: 2px;
-}
-
+/* ---- "QUIÉNES SOMOS" DENTRO DEL PANEL ----
+   Ya no es un flyout de escritorio: es siempre un acordeón vertical
+   dentro del panel, más simple y más legible en este formato. */
 .dropdown-arrow {
   transition: transform 0.3s ease;
   flex-shrink: 0;
-  color: var(--purple);
+  color: inherit;
 }
 
 .dropdown.active .dropdown-arrow {
   transform: rotate(180deg);
 }
 
-/* Desktop: dropdown abre hacia abajo */
-@media (min-width: 769px) {
-  .dropdown-menu {
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-8px);
-    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
-  }
+/* ============================================
+   PANEL OFF-CANVAS — mismo comportamiento en todos los anchos de
+   pantalla, sale desde la DERECHA. Solo el ancho varía por breakpoint
+   (~400px en desktop/tablet, ancho completo en teléfonos chicos).
+   ============================================ */
 
-  .dropdown.active .dropdown-menu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+.nav-overlay {
+  display: block;
+  position: fixed;
+  /* Empieza DEBAJO de la barra, no detrás de ella: .navbar es semi-
+     transparente con backdrop-filter, así que un overlay oscuro
+     detrás se mezclaba con el blur y dejaba toda la barra (logo
+     incluido) con un tinte gris — no solo "lo de atrás" del panel. */
+  top: 62px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  /* 999, no 1000: .nav-overlay vive fuera de .navbar (ver comentario
+     en el HTML) para evitar el containing-block de su backdrop-filter,
+     pero eso lo vuelve hermano de .navbar en vez de hijo. Con el mismo
+     z-index (1000) que .navbar, y viniendo después en el DOM, el
+     overlay pintaba ENCIMA de toda la barra/panel — cualquier clic
+     dentro del panel (p. ej. abrir el acordeón "Quiénes somos")
+     terminaba cayendo en el overlay y cerraba el menú. Un punto menos
+     lo deja debajo de .navbar (1000) sin dejar de tapar el contenido
+     normal de la página (z-index automático). */
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+  touch-action: none;
+}
+
+.nav-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease;
+}
+
+.nav-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(400px, 92vw);
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  background: var(--background);
+  z-index: 1001;
+  border-radius: 20px 0 0 20px;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: -12px 0 48px rgba(31, 41, 51, 0.18);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  padding: 0;
+  gap: 0;
+}
+
+/* Franja de marca en el borde superior del panel — el mismo degradado
+   de .btn-primary, para que el panel se sienta propio de INCLUSIA. */
+.nav-right::before {
+  content: "";
+  display: block;
+  flex: none;
+  height: 4px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--purple));
+}
+
+.nav-right.active {
+  transform: translateX(0);
+}
+
+/* Teléfonos chicos: un drawer angosto no aporta nada frente a la
+   pantalla completa. */
+@media (max-width: 480px) {
+  .nav-right {
+    width: 100vw;
+    max-width: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 }
 
+/* -----------------------------------------------
+   LINKS: columna, con el aire que se merecen ahora que no compiten
+   por espacio horizontal.
+----------------------------------------------- */
+.nav-links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  list-style: none;
+  /* 64px despeja la barra fija (62px en desktop, menos en breakpoints
+     angostos) + la franja de marca de 4px — si no, el primer link
+     queda debajo del botón hamburguesa/X, que flota por encima del
+     panel con un z-index más alto para seguir siendo clickeable. */
+  padding: 64px 0 0.5rem;
+  margin: 0;
+  flex: 1;
+}
+
+.nav-links > li {
+  display: block;
+  width: 100%;
+  border-top: 1px solid #f3f3f3;
+}
+
+.nav-links > li:first-child {
+  border-top: none;
+}
+
+.nav-links > li > a,
+.nav-links > li > .dropdown-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.15rem 1.75rem;
+  margin: 0;
+  color: #1a1a1a;
+  font-size: 1.08rem;
+  font-weight: var(--font-weight-medium);
+  line-height: 1.4;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  border-left: 3px solid transparent;
+  border-radius: 0;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
+.nav-links > li > a:hover,
+.nav-links > li > .dropdown-toggle:hover {
+  background: rgba(123, 97, 255, 0.05);
+  color: var(--purple);
+  border-left-color: var(--purple);
+}
+
+.nav-links > li > a:focus-visible,
+.nav-links > li > .dropdown-toggle:focus-visible {
+  outline: none;
+  background: rgba(123, 97, 255, 0.08);
+  color: var(--purple);
+  border-left-color: var(--purple);
+}
+
+/* Sección/página activa */
+.nav-links > li > a.is-active,
+.nav-links > li > a[aria-current="page"],
+.nav-links > li > a[aria-current="true"] {
+  color: var(--purple);
+  border-left-color: var(--purple);
+  background: rgba(123, 97, 255, 0.04);
+  font-weight: var(--font-weight-semibold);
+}
+
+.nav-right .dropdown > .dropdown-toggle .dropdown-arrow {
+  color: #bbb;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.nav-right .dropdown.active > .dropdown-toggle {
+  color: var(--purple);
+  border-left-color: var(--purple);
+  background: rgba(123, 97, 255, 0.04);
+}
+
+.nav-right .dropdown.active > .dropdown-toggle .dropdown-arrow {
+  transform: rotate(180deg);
+  color: var(--purple);
+}
+
+/* -----------------------------------------------
+   SUBMENÚ "Quiénes somos": acordeón vertical
+----------------------------------------------- */
+.nav-right .dropdown-menu {
+  position: static;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  background: #f7f7fe;
+  list-style: none;
+  transition: max-height 0.3s ease;
+  z-index: auto;
+}
+
+.nav-right .dropdown.active .dropdown-menu {
+  max-height: 400px;
+  border-top: 1px solid #ebebff;
+}
+
+.nav-right .dropdown-menu li {
+  display: block;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-top: 1px solid #ebebff;
+}
+
+.nav-right .dropdown-menu li:first-child {
+  border-top: none;
+}
+
+.nav-right .dropdown-menu a {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1.75rem 0.85rem 2.5rem;
+  font-size: 0.95rem;
+  color: #555;
+  font-weight: var(--font-weight-normal);
+  text-decoration: none;
+  background: transparent;
+  border-left: 3px solid transparent;
+  border-radius: 0;
+  box-shadow: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-right .dropdown-menu a:hover,
+.nav-right .dropdown-menu a:focus-visible {
+  background: rgba(123, 97, 255, 0.06);
+  color: var(--purple);
+  border-left-color: var(--purple);
+}
+
+/* -----------------------------------------------
+   CTA "Reporta una barrera" DENTRO DEL PANEL (<1024px)
+   Instancia propia del panel, separada de la de la barra de escritorio
+   (ver .nav-actions .nav-cta-btn) — no hay espacio en la barra angosta
+   para mantenerlo visible permanentemente sin volver a la sobrecarga
+   que motivó la fase "hamburguesa permanente" en primer lugar.
+----------------------------------------------- */
+.nav-panel-cta {
+  padding: 1.25rem 1.75rem;
+  border-top: 1px solid #f3f3f3;
+}
+
+.nav-panel-cta .nav-cta-btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* -----------------------------------------------
+   ESLOGAN al fondo del panel
+----------------------------------------------- */
+.menu-content {
+  display: flex;
+  padding: 1.5rem 1.75rem;
+  border-top: 1px solid #f0f0f0;
+  margin-top: auto;
+}
+
+.menu-phrase {
+  font-size: 0.82rem;
+  /* #bbb daba ~1.8:1 sobre el fondo del panel — muy por debajo del
+     mínimo AA 4.5:1 (falla real, confirmada con axe-core). Este tono
+     ya se usa en el mega-menú de escritorio para el mismo tipo de
+     texto secundario (ver .megamenu-link-desc). */
+  color: #5b6472;
+  font-style: italic;
+  font-family: Georgia, serif;
+  line-height: 1.5;
+  margin: 0;
+  text-align: left;
+}
+
+/* Bloquear scroll en body mientras el panel está abierto */
+body.menu-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
+body.menu-open .floating-accessibility-wrapper {
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* ============================================
-   MOBILE (max-width: 768px)
+   AJUSTES POR TAMAÑO DE BARRA (altura/padding), el panel en sí
+   ya se comporta igual en todos los anchos (arriba).
    ============================================ */
 @media (max-width: 768px) {
-
-  /* Navbar container: hamburger izquierda, brand derecha (fila horizontal) */
   .navbar .nav-container {
     padding: 0 1.1rem;
-    gap: 0;
     height: 56px;
-    position: relative;
-    flex-direction: row;          /* cancelar el flex-direction:column de base.css */
-    align-items: center;
-    justify-content: space-between;
   }
 
-  /* Mostrar hamburger en el borde izquierdo */
-  .navbar .hamburger-btn {
-    display: flex;
-    order: -1;
-    margin-right: 0;
-    flex-shrink: 0;
-  }
-
-  /* Brand centrado absolutamente en la barra */
-  .navbar .brand {
-    position: absolute;
-    left: 0;
-    right: 0;
-    width: fit-content;
-    margin: 0 auto;
-    transform: none;
-    z-index: 1003;
-  }
-
-  /* Mostrar eslogan */
-  .navbar .menu-content {
-    display: flex;
-  }
-
-  /* Overlay: aparece solo detras del panel */
-  .navbar .nav-overlay {
-    display: block;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1000;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0s linear 0.3s;
-    touch-action: none;
-  }
-
-  .navbar .nav-overlay.active {
-    opacity: 1;
-    visibility: visible;
-    transition: opacity 0.3s ease;
-  }
-
-  /* -----------------------------------------------
-     PANEL FULLSCREEN: sale desde la izquierda
-     El nav-right en desktop tiene flex:1 (en flujo),
-     en movil lo sacamos del flujo con position:fixed
-  ----------------------------------------------- */
-  .navbar .nav-right {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    height: 100dvh !important;
-    max-width: none !important;
-    flex: none !important;
-    justify-content: flex-start !important;
-    flex-direction: column !important;
-    background: #fff;
-    z-index: 1001;
-    transform: translateX(-100%);
-    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-    overflow-y: auto;
-    overflow-x: hidden;
-    overscroll-behavior: contain;
-    padding: 0;
-    gap: 0;
-  }
-
-  .navbar .nav-right.active {
-    transform: translateX(0);
-  }
-
-  /* -----------------------------------------------
-     LINKS: columna, alineados a la izquierda
-     Reset completo de los estilos desktop
-  ----------------------------------------------- */
-  .navbar .nav-links {
-    width: 100% !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 0 !important;
-    list-style: none !important;
-    padding: 0.5rem 0 !important;
-    margin: 0 !important;
-    flex: 1;
-    height: auto !important;
-  }
-
-  .navbar .nav-links > li {
-    display: block !important;
-    width: 100% !important;
-    height: auto !important;
-    flex: none !important;
-    border-top: 1px solid #f3f3f3;
-  }
-
-  .navbar .nav-links > li:first-child {
-    border-top: none;
-  }
-
-  /* Links e items de primer nivel */
-  .navbar .nav-links > li > a,
-  .navbar .nav-links > li > .dropdown-toggle {
-    display: flex !important;
-    align-items: center !important;
-    justify-content: flex-start !important;
-    width: 100% !important;
-    box-sizing: border-box !important;
-    padding: 0.9rem 1.5rem !important;
-    margin: 0 !important;
-    color: #1a1a1a !important;
-    font-size: 1rem !important;
-    font-weight: var(--font-weight-medium) !important;
-    line-height: 1.4 !important;
-    text-decoration: none !important;
-    background: transparent !important;
-    border: none !important;
-    border-left: 3px solid transparent !important;
-    border-radius: 0 !important;
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease !important;
-    cursor: pointer;
-    text-align: left !important;
-    font-family: inherit !important;
-    vertical-align: baseline !important;
-  }
-
-  .navbar .nav-links > li > a:hover,
-  .navbar .nav-links > li > .dropdown-toggle:hover {
-    background: rgba(123, 97, 255, 0.05) !important;
-    color: var(--purple) !important;
-    border-left-color: var(--purple) !important;
-  }
-
-  /* Dropdown toggle: flecha a la derecha */
-  .navbar .nav-links > li > .dropdown-toggle {
-    justify-content: space-between !important;
-  }
-
-  .navbar .nav-right .dropdown > .dropdown-toggle .dropdown-arrow {
-    color: #bbb;
-    margin-left: auto;
-    flex-shrink: 0;
-  }
-
-  .navbar .nav-right .dropdown.active > .dropdown-toggle {
-    color: var(--purple) !important;
-    border-left-color: var(--purple) !important;
-    background: rgba(123, 97, 255, 0.04) !important;
-  }
-
-  .navbar .nav-right .dropdown.active > .dropdown-toggle .dropdown-arrow {
-    transform: rotate(180deg);
-    color: var(--purple);
-  }
-
-  /* -----------------------------------------------
-     SUBMENU: accordion
-  ----------------------------------------------- */
-  .navbar .nav-right .dropdown-menu {
-    position: static !important;
-    width: 100% !important;
-    max-height: 0 !important;
-    overflow: hidden !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-    transform: none !important;
-    box-shadow: none !important;
-    border: none !important;
-    border-radius: 0 !important;
-    min-width: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background: #f7f7fe !important;
-    list-style: none !important;
-    transition: max-height 0.3s ease !important;
-    z-index: auto !important;
-  }
-
-  .navbar .nav-right .dropdown.active .dropdown-menu {
-    max-height: 400px !important;
-    border-top: 1px solid #ebebff !important;
-  }
-
-  .navbar .nav-right .dropdown-menu li {
-    display: block !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    list-style: none !important;
-    border-top: 1px solid #ebebff;
-  }
-
-  .navbar .nav-right .dropdown-menu li:first-child {
-    border-top: none !important;
-  }
-
-  .navbar .nav-right .dropdown-menu a {
-    display: flex !important;
-    align-items: center !important;
-    padding: 0.8rem 1.5rem 0.8rem 2.25rem !important;
-    font-size: 0.9rem !important;
-    color: #555 !important;
-    font-weight: var(--font-weight-normal) !important;
-    text-decoration: none !important;
-    background: transparent !important;
-    border-left: 3px solid transparent !important;
-    border-radius: 0 !important;
-    box-shadow: none !important;
-    transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease !important;
-  }
-
-  .navbar .nav-right .dropdown-menu a:hover {
-    background: rgba(123, 97, 255, 0.06) !important;
-    color: var(--purple) !important;
-    border-left-color: var(--purple) !important;
-  }
-
-  /* -----------------------------------------------
-     ESLOGAN al fondo del panel
-  ----------------------------------------------- */
-  .navbar .menu-content {
-    display: flex;
-    padding: 1.5rem;
-    border-top: 1px solid #f0f0f0;
-    margin-top: auto;
-  }
-
-  .navbar .menu-phrase {
-    font-size: 0.82rem;
-    color: #bbb;
-    font-style: italic;
-    font-family: Georgia, serif;
-    line-height: 1.5;
-    margin: 0;
-    text-align: left;
-  }
-
-  /* Bloquear scroll en body */
-  body.menu-open {
-    overflow: hidden;
-    touch-action: none;
-  }
-
-  body.menu-open .floating-accessibility-wrapper {
-    opacity: 0;
-    pointer-events: none;
+  .nav-overlay {
+    top: 56px;
   }
 }
 
-/* ============================================
-   SMALL PHONES (max-width: 480px)
-   ============================================ */
 @media (max-width: 480px) {
   .navbar .nav-container {
     height: 52px;
     padding: 0 1rem;
   }
 
-  .navbar .nav-links > li > a,
-  .navbar .nav-links > li > .dropdown-toggle {
-    padding: 0.8rem 1.25rem !important;
-    font-size: 0.95rem !important;
-  }
-
-  .navbar .nav-right .dropdown-menu a {
-    padding: 0.75rem 1.25rem 0.75rem 2rem !important;
+  .nav-overlay {
+    top: 52px;
   }
 
   body {
     padding-top: 52px;
+  }
+
+  /* La marca de texto no cabe junto al CTA + hamburguesa en pantallas
+     angostas — el ícono del logo (con su alt/aria-label) ya identifica
+     la marca, así que se oculta solo el wordmark aquí. */
+  .brand span {
+    display: none;
+  }
+
+  .nav-cta-btn {
+    height: 36px;
+    padding: 0 0.7rem;
+    font-size: 0.74rem;
+  }
+
+  /* La flecha suma ancho y peso visual que este botón no necesita
+     compitiendo con el logo/hamburguesa en una barra tan angosta. */
+  .nav-cta-arrow {
+    display: none;
+  }
+}
+
+/* ============================================
+   NAV DE ESCRITORIO — ≥1024px (patrón Apple)
+   Por debajo de 1024px rige todo lo de arriba (panel off-canvas +
+   acordeón). Desde 1024px, ese panel desaparece del todo — display:none,
+   no solo transform fuera de pantalla, porque un elemento trasladado
+   fuera de vista con transform sigue siendo alcanzable con Tab — y en
+   su lugar aparece la fila horizontal de abajo, con "Quiénes somos"
+   como mega-menú.
+
+   Duplicación deliberada: sin sistema de includes (SITIO_CONTEXT.md
+   §1.4), replicar contenido entre el panel móvil y esta fila es la
+   misma realidad que ya existe entre las 8 páginas del sitio — se
+   opta por dos bloques de marcado (éste + el panel de arriba) en vez
+   de mover un único <ul> por JS entre la barra y el panel, para no
+   introducir un mecanismo nuevo del que dependería el nav de
+   escritorio completo.
+   ============================================ */
+@media (min-width: 1024px) {
+  .navbar .nav-container {
+    height: 52px;
+  }
+
+  .hamburger-btn,
+  .nav-overlay,
+  .nav-right {
+    display: none;
+  }
+
+  .nav-actions .nav-cta-btn {
+    display: inline-flex;
+    height: 36px;
+    padding: 0 1rem;
+    font-size: 13px;
+    gap: 0.4rem;
+  }
+
+  /* ---- FILA HORIZONTAL ---- */
+  .nav-links-desktop {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .nav-links-desktop > li {
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+
+  .nav-links-desktop > li > a,
+  .megamenu-trigger {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.4rem 0.05rem;
+    margin: 0;
+    background: none;
+    border: none;
+    /* .megamenu-trigger es un <button>: sin esto hereda box-shadow/
+       border-radius/margin-top de la regla genérica `button{...}` de
+       base.css — el mismo bug ya corregido para .dropdown-toggle ahí
+       mismo (ver "FIX: sombra heredada en el toggle del submenú"). */
+    box-shadow: none;
+    border-radius: 0;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.015em;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  /* Subrayado fino que aparece con transición — nunca un fondo de
+     color detrás del texto (Parte 1.4 del brief). */
+  .nav-links-desktop > li > a::after,
+  .megamenu-trigger::after {
+    content: "";
+    position: absolute;
+    left: 0.05rem;
+    right: 0.05rem;
+    bottom: -2px;
+    height: 1px;
+    background: var(--theme-color-strong);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+  }
+
+  .nav-links-desktop > li > a:hover,
+  .nav-links-desktop > li > a:focus-visible,
+  .nav-links-desktop > li > a.is-active,
+  .nav-links-desktop > li > a[aria-current],
+  .megamenu-trigger:hover,
+  .megamenu-trigger[aria-expanded="true"] {
+    /* --theme-color-strong (7.9:1 sobre blanco), no --purple (4.2:1,
+       por debajo del mínimo AA 4.5:1 en texto de este tamaño). */
+    color: var(--theme-color-strong);
+  }
+
+  .nav-links-desktop > li > a:hover::after,
+  .nav-links-desktop > li > a:focus-visible::after,
+  .nav-links-desktop > li > a.is-active::after,
+  .nav-links-desktop > li > a[aria-current]::after,
+  .megamenu-trigger:hover::after,
+  .megamenu-trigger[aria-expanded="true"]::after {
+    transform: scaleX(1);
+  }
+
+  .nav-links-desktop > li > a:focus-visible,
+  .megamenu-trigger:focus-visible {
+    outline: 2px solid var(--theme-color-strong);
+    outline-offset: 5px;
+    border-radius: 4px;
+  }
+
+  .megamenu-trigger[aria-expanded="true"] .dropdown-arrow {
+    transform: rotate(180deg);
+  }
+
+  /* ---- MEGA-MENÚ "QUIÉNES SOMOS" ----
+     position:absolute sin position:relative en .megamenu-item: así el
+     panel se posiciona contra .navbar (el ancestro position:sticky más
+     cercano, ver base.css), centrado bajo TODA la barra y no solo bajo
+     el disparador. */
+  .megamenu-panel {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: min(1000px, calc(100vw - 3rem));
+    background: var(--white);
+    border-radius: 16px;
+    box-shadow: 0 16px 48px rgba(var(--text-rgb), 0.14);
+    padding: 1.75rem;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transform: translate(-50%, -6px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  /* Estado abierto: lo controla navbar.js vía aria-expanded, no
+     :hover/:focus-within por CSS — así hay un único origen de verdad
+     que también sabe cerrar con Escape y devolver el foco. */
+  .megamenu-trigger[aria-expanded="true"] + .megamenu-panel {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translate(-50%, 4px);
+  }
+
+  .megamenu-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding: 0.85rem 0.75rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text);
+    transition: background 0.15s ease;
+  }
+
+  .megamenu-link:hover,
+  .megamenu-link:focus-visible {
+    background: rgba(var(--purple-rgb), 0.06);
+    outline: none;
+  }
+
+  .megamenu-link:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--theme-color-strong);
+  }
+
+  .megamenu-link[aria-current="page"] {
+    background: rgba(var(--purple-rgb), 0.08);
+  }
+
+  .megamenu-link-title {
+    font-size: 0.88rem;
+    font-weight: var(--font-weight-semibold);
+    color: var(--theme-color-strong);
+    line-height: 1.35;
+  }
+
+  .megamenu-link-desc {
+    font-size: 0.78rem;
+    color: #5b6472;
+    line-height: 1.45;
   }
 }
 
 /* ============================================
    DARK MODE
    ============================================ */
-body.theme-dark .navbar .nav-right {
+body.theme-dark .nav-right {
   background: #0f0f1a;
 }
 
-body.theme-dark .navbar .nav-links > li {
+body.theme-dark .nav-links > li {
   border-top-color: #1c1c2e;
 }
 
-body.theme-dark .navbar .nav-links > li > a,
-body.theme-dark .navbar .nav-links > li > .dropdown-toggle {
-  color: #ddd !important;
+body.theme-dark .nav-links > li > a,
+body.theme-dark .nav-links > li > .dropdown-toggle {
+  color: #ddd;
 }
 
-body.theme-dark .navbar .nav-links > li > a:hover,
-body.theme-dark .navbar .nav-links > li > .dropdown-toggle:hover {
-  background: rgba(167, 139, 250, 0.1) !important;
-  color: #a78bfa !important;
-  border-left-color: #a78bfa !important;
+body.theme-dark .nav-links > li > a:hover,
+body.theme-dark .nav-links > li > .dropdown-toggle:hover {
+  background: rgba(167, 139, 250, 0.1);
+  color: #a78bfa;
+  border-left-color: #a78bfa;
 }
 
-body.theme-dark .navbar .nav-right .dropdown.active > .dropdown-toggle {
-  color: #a78bfa !important;
-  border-left-color: #a78bfa !important;
-  background: rgba(167, 139, 250, 0.08) !important;
+body.theme-dark .nav-right .dropdown.active > .dropdown-toggle {
+  color: #a78bfa;
+  border-left-color: #a78bfa;
+  background: rgba(167, 139, 250, 0.08);
 }
 
-body.theme-dark .navbar .nav-right .dropdown.active > .dropdown-toggle .dropdown-arrow {
+body.theme-dark .nav-right .dropdown.active > .dropdown-toggle .dropdown-arrow {
   color: #a78bfa;
 }
 
-body.theme-dark .navbar .nav-right .dropdown-menu {
-  background: #08080f !important;
+body.theme-dark .nav-right .dropdown-menu {
+  background: #08080f;
 }
 
-body.theme-dark .navbar .nav-right .dropdown.active .dropdown-menu {
-  border-top-color: #1c1c2e !important;
-}
-
-body.theme-dark .navbar .nav-right .dropdown-menu li {
+body.theme-dark .nav-right .dropdown.active .dropdown-menu {
   border-top-color: #1c1c2e;
 }
 
-body.theme-dark .navbar .nav-right .dropdown-menu a {
-  color: #8888aa !important;
-}
-
-body.theme-dark .navbar .nav-right .dropdown-menu a:hover {
-  background: rgba(167, 139, 250, 0.1) !important;
-  color: #c4b5fd !important;
-  border-left-color: #a78bfa !important;
-}
-
-body.theme-dark .navbar .menu-content {
+body.theme-dark .nav-right .dropdown-menu li {
   border-top-color: #1c1c2e;
 }
 
-body.theme-dark .navbar .menu-phrase {
-  color: #333 !important;
+body.theme-dark .nav-right .dropdown-menu a {
+  color: #8888aa;
+}
+
+body.theme-dark .nav-right .dropdown-menu a:hover {
+  background: rgba(167, 139, 250, 0.1);
+  color: #c4b5fd;
+  border-left-color: #a78bfa;
+}
+
+body.theme-dark .menu-content {
+  border-top-color: #1c1c2e;
+}
+
+body.theme-dark .menu-phrase {
+  /* #333 sobre el panel oscuro (#0f0f1a) era prácticamente invisible
+     (texto oscuro sobre fondo oscuro). Mismo tono que ya usa
+     .nav-right .dropdown-menu a en este tema. */
+  color: #8888aa;
+}
+
+body.theme-dark .nav-cta-btn {
+  color: var(--white);
+}
+
+body.theme-dark .nav-panel-cta {
+  border-top-color: #1c1c2e;
+}
+
+body.theme-dark .nav-links-desktop > li > a,
+body.theme-dark .megamenu-trigger {
+  color: #ddd;
+}
+
+body.theme-dark .nav-links-desktop > li > a:hover,
+body.theme-dark .nav-links-desktop > li > a.is-active,
+body.theme-dark .nav-links-desktop > li > a[aria-current],
+body.theme-dark .megamenu-trigger:hover,
+body.theme-dark .megamenu-trigger[aria-expanded="true"] {
+  color: #a78bfa;
+}
+
+body.theme-dark .nav-links-desktop > li > a::after,
+body.theme-dark .megamenu-trigger::after {
+  background: #a78bfa;
+}
+
+body.theme-dark .megamenu-panel {
+  background: #0f0f1a;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.45);
+}
+
+body.theme-dark .megamenu-link {
+  color: #ddd;
+}
+
+body.theme-dark .megamenu-link:hover,
+body.theme-dark .megamenu-link:focus-visible,
+body.theme-dark .megamenu-link[aria-current="page"] {
+  background: rgba(167, 139, 250, 0.1);
+}
+
+body.theme-dark .megamenu-link-title {
+  color: #a78bfa;
+}
+
+body.theme-dark .megamenu-link-desc {
+  color: #8888aa;
 }
 
 /* ============================================
    HIGH CONTRAST
-   - Importante: en desktop el navbar es fondo blanco.
-     Por eso NO podemos forzar links blancos globalmente.
-   - En móvil el panel (.nav-right) es oscuro, ahí sí usamos links claros.
+   El panel siempre es oscuro con links claros ahora (ya no hay una
+   variante "desktop" con navbar plano de fondo blanco: el panel es
+   el mismo elemento flotante en todos los anchos).
    ============================================ */
-
-/* Desktop (>=769px): mantener navbar visible (texto oscuro sobre fondo claro) */
-@media (min-width: 769px) {
-  body.theme-high-contrast .navbar .nav-right {
-    background: transparent;
-  }
-
-  body.theme-high-contrast .navbar .nav-links > li > a,
-  body.theme-high-contrast .navbar .nav-links > li > .dropdown-toggle {
-    color: #000 !important;
-  }
+body.theme-high-contrast .navbar .hamburger-btn .hamburger-line {
+  background-color: #000;
 }
 
-/* Mobile (<=768px): panel del menú es oscuro, links claros */
-@media (max-width: 768px) {
-  body.theme-high-contrast .navbar .hamburger-btn .hamburger-line {
-    background-color: #000;
-  }
+body.theme-high-contrast .nav-right {
+  background: #000;
+}
 
-  body.theme-high-contrast .navbar .nav-right {
-    background: #000;
-  }
+body.theme-high-contrast .nav-links > li {
+  border-top-color: #222;
+}
 
-  body.theme-high-contrast .navbar .nav-links > li {
-    border-top-color: #222;
-  }
+body.theme-high-contrast .nav-links > li > a,
+body.theme-high-contrast .nav-links > li > .dropdown-toggle {
+  color: #fff;
+}
 
-  body.theme-high-contrast .navbar .nav-links > li > a,
-  body.theme-high-contrast .navbar .nav-links > li > .dropdown-toggle {
-    color: #fff !important;
-  }
+body.theme-high-contrast .nav-links > li > a:hover,
+body.theme-high-contrast .nav-links > li > .dropdown-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-left-color: #fff;
+}
 
-  body.theme-high-contrast .navbar .nav-links > li > a:hover,
-  body.theme-high-contrast .navbar .nav-links > li > .dropdown-toggle:hover {
-    background: rgba(255,255,255,0.08) !important;
-    color: #fff !important;
-    border-left-color: #fff !important;
-  }
+body.theme-high-contrast .nav-right .dropdown-menu {
+  background: #0a0a0a;
+}
 
-  body.theme-high-contrast .navbar .nav-right .dropdown-menu {
-    background: #0a0a0a !important;
-  }
+body.theme-high-contrast .nav-right .dropdown-menu a {
+  color: #e6e6e6;
+}
 
-  body.theme-high-contrast .navbar .nav-right .dropdown-menu a {
-    color: #e6e6e6 !important;
-  }
+body.theme-high-contrast .nav-right .dropdown-menu a:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
 
-  body.theme-high-contrast .navbar .nav-right .dropdown-menu a:hover {
-    color: #fff !important;
-    background: rgba(255,255,255,0.08) !important;
-  }
+body.theme-high-contrast .menu-phrase {
+  color: #fff;
+}
 
-  body.theme-high-contrast .navbar .menu-phrase {
-    color: #fff !important;
-  }
+body.theme-high-contrast .nav-cta-btn {
+  background: #000;
+  color: #fff;
+  border: 2px solid #000;
+  box-shadow: none;
+}
+
+body.theme-high-contrast .nav-cta-btn::before {
+  display: none;
+}
+
+body.theme-high-contrast .nav-panel-cta {
+  border-top-color: #333;
+}
+
+body.theme-high-contrast .nav-links-desktop > li > a,
+body.theme-high-contrast .megamenu-trigger {
+  color: #000;
+}
+
+body.theme-high-contrast .nav-links-desktop > li > a:hover,
+body.theme-high-contrast .nav-links-desktop > li > a.is-active,
+body.theme-high-contrast .nav-links-desktop > li > a[aria-current],
+body.theme-high-contrast .megamenu-trigger:hover,
+body.theme-high-contrast .megamenu-trigger[aria-expanded="true"] {
+  color: #000;
+  text-decoration: underline;
+}
+
+body.theme-high-contrast .megamenu-panel {
+  background: #fff;
+  border: 2px solid #000;
+  box-shadow: none;
+}
+
+body.theme-high-contrast .megamenu-link {
+  color: #000;
+}
+
+body.theme-high-contrast .megamenu-link:hover,
+body.theme-high-contrast .megamenu-link:focus-visible,
+body.theme-high-contrast .megamenu-link[aria-current="page"] {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+body.theme-high-contrast .megamenu-link-title {
+  color: #000;
+}
+
+body.theme-high-contrast .megamenu-link-desc {
+  color: #222;
 }
 
 /* ============================================
    SOFT THEME
    ============================================ */
-body.theme-soft .navbar .nav-right {
+body.theme-soft .nav-right {
   background: #fdfcf8;
 }
 
-body.theme-soft .navbar .nav-links > li {
+body.theme-soft .nav-links > li {
   border-top-color: #f0ece2;
 }
 
-body.theme-soft .navbar .nav-links > li > a:hover,
-body.theme-soft .navbar .nav-links > li > .dropdown-toggle:hover {
-  background: #f5f2ea !important;
+body.theme-soft .nav-links > li > a:hover,
+body.theme-soft .nav-links > li > .dropdown-toggle:hover {
+  background: #f5f2ea;
 }
 
-body.theme-soft .navbar .nav-right .dropdown-menu {
-  background: #f5f2ea !important;
+body.theme-soft .nav-right .dropdown-menu {
+  background: #f5f2ea;
 }
 
-body.theme-soft .navbar .nav-right .dropdown-menu li {
+body.theme-soft .nav-right .dropdown-menu li {
   border-top-color: #ebe7de;
 }
 
-body.theme-soft .navbar .menu-content {
+body.theme-soft .menu-content {
   border-top-color: #ebe7de;
+}
+
+body.theme-soft .nav-panel-cta {
+  border-top-color: #ebe7de;
+}
+
+body.theme-soft .nav-links-desktop > li > a:hover,
+body.theme-soft .megamenu-trigger:hover,
+body.theme-soft .megamenu-trigger[aria-expanded="true"] {
+  color: var(--theme-color-strong);
+}
+
+body.theme-soft .megamenu-panel {
+  background: #fdfcf8;
+}
+
+body.theme-soft .megamenu-link:hover,
+body.theme-soft .megamenu-link:focus-visible,
+body.theme-soft .megamenu-link[aria-current="page"] {
+  background: #f5f2ea;
 }
 
 /* ============================================
@@ -570,20 +1010,84 @@ body.theme-colorblind .navbar .hamburger-btn .hamburger-line {
   background-color: #0055cc;
 }
 
-body.theme-colorblind .navbar .nav-links > li > a:hover,
-body.theme-colorblind .navbar .nav-links > li > .dropdown-toggle:hover {
-  background: #e6f0ff !important;
-  color: #0055cc !important;
-  border-left-color: #0055cc !important;
+body.theme-colorblind .nav-links > li > a:hover,
+body.theme-colorblind .nav-links > li > .dropdown-toggle:hover {
+  background: #e6f0ff;
+  color: #0055cc;
+  border-left-color: #0055cc;
 }
 
-body.theme-colorblind .navbar .nav-right .dropdown.active > .dropdown-toggle {
-  color: #0055cc !important;
-  border-left-color: #0055cc !important;
+body.theme-colorblind .nav-right .dropdown.active > .dropdown-toggle {
+  color: #0055cc;
+  border-left-color: #0055cc;
 }
 
-body.theme-colorblind .navbar .nav-right .dropdown-menu a:hover {
-  background: #e6f0ff !important;
-  color: #0055cc !important;
-  border-left-color: #0055cc !important;
+body.theme-colorblind .nav-right .dropdown-menu a:hover {
+  background: #e6f0ff;
+  color: #0055cc;
+  border-left-color: #0055cc;
+}
+
+body.theme-colorblind .nav-cta-btn {
+  background: #005fcc;
+  box-shadow: none;
+}
+
+body.theme-colorblind .nav-links-desktop > li > a:hover,
+body.theme-colorblind .nav-links-desktop > li > a.is-active,
+body.theme-colorblind .nav-links-desktop > li > a[aria-current],
+body.theme-colorblind .megamenu-trigger:hover,
+body.theme-colorblind .megamenu-trigger[aria-expanded="true"] {
+  color: #0055cc;
+}
+
+body.theme-colorblind .nav-links-desktop > li > a::after,
+body.theme-colorblind .megamenu-trigger::after {
+  background: #0055cc;
+}
+
+body.theme-colorblind .megamenu-link:hover,
+body.theme-colorblind .megamenu-link:focus-visible,
+body.theme-colorblind .megamenu-link[aria-current="page"] {
+  background: #e6f0ff;
+  color: #0055cc;
+}
+
+/* ============================================
+   MOVIMIENTO REDUCIDO
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .nav-right,
+  .nav-overlay,
+  .hamburger-btn .hamburger-line,
+  .nav-cta-btn,
+  .nav-cta-arrow,
+  .nav-right .dropdown-menu,
+  .megamenu-panel,
+  .nav-links-desktop > li > a::after,
+  .megamenu-trigger::after {
+    transition: none;
+  }
+
+  .nav-cta-btn:hover,
+  .nav-cta-btn:focus-visible {
+    transform: none;
+  }
+}
+
+:root.reduce-motion .nav-right,
+:root.reduce-motion .nav-overlay,
+:root.reduce-motion .hamburger-btn .hamburger-line,
+:root.reduce-motion .nav-cta-btn,
+:root.reduce-motion .nav-cta-arrow,
+:root.reduce-motion .nav-right .dropdown-menu,
+:root.reduce-motion .megamenu-panel,
+:root.reduce-motion .nav-links-desktop > li > a::after,
+:root.reduce-motion .megamenu-trigger::after {
+  transition: none;
+}
+
+:root.reduce-motion .nav-cta-btn:hover,
+:root.reduce-motion .nav-cta-btn:focus-visible {
+  transform: none;
 }
