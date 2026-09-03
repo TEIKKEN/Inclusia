@@ -10,3 +10,6 @@ node_modules/
 
 # Artefactos de depuración de Playwright MCP (logs/snapshots de pruebas)
 .playwright-mcp/
+
+# Documento de contexto técnico interno (no va al repo)
+SITIO_CONTEXT.md
